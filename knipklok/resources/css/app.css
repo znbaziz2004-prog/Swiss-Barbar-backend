@@ -1,0 +1,11614 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+@import "./home.css";
+
+:root {
+
+    --kk-black: #000000;
+    --kk-white: #ffffff;
+
+    --kk-text: #454545;
+
+
+
+    --kk-muted: #8993a2;
+
+
+
+    --kk-green: #3b9668;
+
+
+
+    --kk-green-dark: #2d8056;
+
+
+
+    --kk-grey: #eeeeee;
+
+
+
+}
+
+
+
+
+
+
+
+* {
+
+
+
+    box-sizing: border-box;
+
+
+
+}
+
+
+
+
+
+
+
+html {
+
+
+
+    scroll-behavior: smooth;
+
+
+
+}
+
+
+
+
+
+
+
+body {
+
+
+
+    margin: 0;
+
+
+
+    padding: 0;
+
+
+
+    background: #fff;
+
+
+
+    color: var(--kk-text);
+
+
+
+    font-family: "DM Sans", Arial, sans-serif;
+
+
+
+    -webkit-font-smoothing: antialiased;
+
+
+
+}
+
+a {
+
+
+
+    color: inherit;
+
+
+
+    text-decoration: none;
+
+
+
+}
+
+button,
+
+input,
+
+select {
+
+
+    font: inherit;
+
+
+
+}
+
+img {
+
+
+    max-width: 100%;
+
+
+}
+
+.kk-page {
+
+
+
+    width: 100%;
+
+
+
+    overflow: hidden;
+
+
+
+}
+
+.kk-header {
+
+
+
+    position: relative;
+
+
+
+    z-index: 100;
+
+    width: 100%;
+
+    height: 96px;
+
+    background: #000;
+    color: #fff;
+
+}
+.kk-header-inner {
+
+    width: min(1280px, calc(100% - 48px));
+    height: 96px;
+    margin: 0 auto;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 35px;
+}
+
+.kk-brand {
+
+
+    display: inline-flex;
+
+    align-items: center;
+
+    flex-shrink: 0;
+
+    color: #fff;
+
+
+
+}
+
+.kk-brand-script {
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 31px;
+
+    font-weight: 700;
+
+    font-style: italic;
+
+    letter-spacing: -1.5px;
+
+}
+
+
+
+
+
+
+
+.kk-main-nav {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 32px;
+
+
+
+
+
+
+
+    margin-left: auto;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-main-nav a {
+
+
+
+    color: #fff;
+
+
+
+    font-size: 14px;
+
+
+
+    font-weight: 500;
+
+
+
+
+
+
+
+    transition: opacity .2s ease;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-main-nav a:hover {
+
+
+
+    opacity: .65;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-header-actions {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 24px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-register {
+
+
+
+    color: #fff;
+
+
+
+    font-size: 13px;
+
+
+
+    font-weight: 500;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-login {
+
+
+
+    display: inline-flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 8px;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+    font-size: 13px;
+
+
+
+    font-weight: 500;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-login span {
+
+
+
+    font-size: 18px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-language {
+
+
+
+    display: inline-flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 6px;
+
+
+
+
+
+
+
+    padding: 0;
+
+
+
+
+
+
+
+    border: 0;
+
+
+
+    background: transparent;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-flag {
+
+
+
+    font-size: 18px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-chevron {
+
+
+
+    font-size: 12px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-menu-button {
+
+
+
+    display: none;
+
+
+
+
+
+
+
+    width: 42px;
+
+
+
+    height: 42px;
+
+
+
+
+
+
+
+    border: 0;
+
+
+
+    background: transparent;
+
+
+
+
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-menu-button span {
+
+
+
+    display: block;
+
+
+
+
+
+
+
+    width: 25px;
+
+
+
+    height: 2px;
+
+
+
+
+
+
+
+    margin: 5px auto;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-mobile-nav {
+
+
+
+    display: none;
+
+
+
+}
+
+
+
+.kk-hero {
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    min-height: 635px;
+
+
+
+
+
+
+
+    padding: 95px 24px 75px;
+
+
+
+
+
+
+
+    background: #000;
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero-inner {
+
+
+
+    position: relative;
+
+
+
+    z-index: 3;
+
+
+
+
+
+
+
+    width: min(1080px, 100%);
+
+
+
+    margin: 0 auto;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero-kicker {
+
+
+
+    margin: 0 0 8px;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 18px;
+
+
+
+    font-weight: 500;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero-title {
+
+
+
+    margin: 0 0 45px;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: clamp(58px, 8vw, 104px);
+
+
+
+    font-weight: 800;
+
+
+
+    line-height: .95;
+
+
+
+    letter-spacing: -5px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-search-box {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+    width: min(970px, 100%);
+
+
+
+    min-height: 77px;
+
+
+
+
+
+
+
+    margin: 0 auto;
+
+
+
+
+
+
+
+    padding: 8px;
+
+
+
+
+
+
+
+    border-radius: 45px;
+
+
+
+
+
+
+
+    background: #eeeeee;
+
+
+
+    color: #444;
+
+
+
+
+
+
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.12);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-search-field {
+
+
+
+    flex: 1;
+
+
+
+
+
+
+
+    min-width: 0;
+
+
+
+
+
+
+
+    height: 60px;
+
+
+
+
+
+
+
+    padding: 0 28px;
+
+
+
+
+
+
+
+    border: 0;
+
+
+
+    outline: 0;
+
+
+
+
+
+
+
+    background: transparent;
+
+
+
+
+
+
+
+    color: #555;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-search-field::placeholder {
+
+
+
+    color: #777;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-search-select {
+
+
+
+    flex: 0 0 190px;
+
+
+
+
+
+
+
+    height: 60px;
+
+
+
+
+
+
+
+    padding: 0 20px;
+
+
+
+
+
+
+
+    border: 0;
+
+
+
+    outline: 0;
+
+
+
+
+
+
+
+    background: transparent;
+
+
+
+
+
+
+
+    color: #555;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-search-submit {
+
+
+
+    flex: 0 0 60px;
+
+
+
+
+
+
+
+    width: 60px;
+
+
+
+    height: 60px;
+
+
+
+
+
+
+
+    border: 0;
+
+
+
+    border-radius: 50%;
+
+
+
+
+
+
+
+    background: var(--kk-green);
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 24px;
+
+
+
+
+
+
+
+    cursor: pointer;
+
+
+
+
+
+
+
+    transition: background .2s ease, transform .2s ease;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-search-submit:hover {
+
+
+
+    background: var(--kk-green-dark);
+
+
+
+    transform: scale(1.04);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero-testimonial {
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    margin: 90px auto 0;
+
+
+
+
+
+
+
+    max-width: 560px;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero-testimonial p {
+
+
+
+    margin: 0 0 20px;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 17px;
+
+
+
+    line-height: 1.6;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-testimonial-author {
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+    line-height: 1.6;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-testimonial-author strong {
+
+
+
+    display: block;
+
+
+
+    font-weight: 600;
+
+
+
+}
+
+
+
+
+
+.kk-hero::before,
+
+
+
+.kk-hero::after {
+
+
+
+    content: "";
+
+
+
+    position: absolute;
+
+
+
+
+
+
+
+    width: 0;
+
+
+
+    height: 0;
+
+
+
+
+
+
+
+    opacity: .8;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero::before {
+
+
+
+    left: 3%;
+
+
+
+    bottom: 45px;
+
+
+
+
+
+
+
+    border-left: 75px solid transparent;
+
+
+
+    border-right: 75px solid transparent;
+
+
+
+    border-bottom: 110px solid #444;
+
+
+
+
+
+
+
+    transform: rotate(18deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-hero::after {
+
+
+
+    right: 5%;
+
+
+
+    top: 45px;
+
+
+
+
+
+
+
+    border-left: 60px solid transparent;
+
+
+
+    border-right: 60px solid transparent;
+
+
+
+    border-top: 95px solid #444;
+
+
+
+
+
+
+
+    transform: rotate(-17deg);
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+
+
+
+   BEST IN THE REGION
+
+
+
+   ========================================================= */
+
+
+
+
+
+
+
+.kk-region-section {
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+    min-height: 590px;
+
+
+
+
+
+
+
+    padding: 108px 24px 88px;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+
+
+
+
+    overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-inner {
+
+
+
+    position: relative;
+
+
+
+    z-index: 2;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+    max-width: 1303px;
+
+
+
+
+
+
+
+    margin: 0 auto;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-title {
+
+
+
+    margin: 0 0 57px;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+
+
+
+
+    color: #454545;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: 36px;
+
+
+
+    font-weight: 700;
+
+
+
+    line-height: 1.15;
+
+
+
+
+
+
+
+    letter-spacing: -.8px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-shapes {
+
+
+
+    position: absolute;
+
+
+
+    inset: 0;
+
+
+
+
+
+
+
+    z-index: 0;
+
+
+
+
+
+
+
+    pointer-events: none;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape {
+
+
+
+    position: absolute;
+
+
+
+
+
+
+
+    width: 0;
+
+
+
+    height: 0;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape-1 {
+
+
+
+    top: 0;
+
+
+
+    left: -2px;
+
+
+
+
+
+
+
+    border-top: 28px solid transparent;
+
+
+
+    border-bottom: 28px solid transparent;
+
+
+
+    border-right: 82px solid #d2d2d2;
+
+
+
+
+
+
+
+    transform: rotate(7deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape-2 {
+
+
+
+    top: 1px;
+
+
+
+    left: 183px;
+
+
+
+
+
+
+
+    border-left: 31px solid transparent;
+
+
+
+    border-right: 31px solid transparent;
+
+
+
+    border-top: 64px solid #cecece;
+
+
+
+
+
+
+
+    transform: rotate(7deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape-3 {
+
+
+
+    top: 62px;
+
+
+
+    left: 299px;
+
+
+
+
+
+
+
+    border-left: 25px solid transparent;
+
+
+
+    border-right: 25px solid transparent;
+
+
+
+    border-bottom: 55px solid #d9d9d9;
+
+
+
+
+
+
+
+    transform: rotate(-19deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape-4 {
+
+
+
+    top: 129px;
+
+
+
+    left: 380px;
+
+
+
+
+
+
+
+    border-left: 22px solid transparent;
+
+
+
+    border-right: 22px solid transparent;
+
+
+
+    border-bottom: 46px solid #cecece;
+
+
+
+
+
+
+
+    transform: rotate(21deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape-5 {
+
+
+
+    top: 79px;
+
+
+
+    left: 98px;
+
+
+
+
+
+
+
+    border-left: 48px solid transparent;
+
+
+
+    border-right: 48px solid transparent;
+
+
+
+    border-bottom: 88px solid #e4e4e4;
+
+
+
+
+
+
+
+    transform: rotate(4deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-shape-6 {
+
+
+
+    top: 157px;
+
+
+
+    left: 4px;
+
+
+
+
+
+
+
+    border-left: 29px solid transparent;
+
+
+
+    border-right: 29px solid transparent;
+
+
+
+    border-bottom: 58px solid #d6d6d6;
+
+
+
+
+
+
+
+    transform: rotate(28deg);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-carousel {
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-track {
+
+
+
+    display: flex;
+
+
+
+    flex-wrap: nowrap;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    gap: 10px;
+
+
+
+
+
+
+
+    overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-card {
+
+
+
+    flex: 0 0 calc((100% - 30px) / 4);
+
+
+
+
+
+
+
+    min-width: 0;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-image {
+
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    height: 201px;
+
+    overflow: hidden;
+
+    background: #edf3f0;
+
+    text-decoration: none;
+
+}
+
+
+
+
+
+
+
+.kk-region-image img {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    display: block;
+
+    width: 63.2075%;
+
+    height: 158.209%;
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    object-fit: fill;
+
+    object-position: center;
+
+    transform: translate(-50%, -50%) rotate(90deg);
+
+    transform-origin: center center;
+
+}
+
+
+
+
+
+
+
+.kk-region-card-content {
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    padding: 18px 8px 0;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-card-content h3 {
+
+
+
+    display: block;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    margin: 0 0 7px;
+
+
+
+    padding: 0;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+
+
+
+
+    color: #4b4b4b;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: 17px;
+
+
+
+    font-weight: 500;
+
+
+
+    line-height: 1.3;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-details {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+    gap: 28px;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+    height: 18px;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-rating {
+
+
+
+    display: inline-flex;
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+    gap: 4px;
+
+
+
+
+
+
+
+    padding: 0 !important;
+
+
+
+    margin: 0 !important;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+
+
+
+
+    color: #e5bd00;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: 13px;
+
+
+
+    font-weight: 400;
+
+
+
+
+
+
+
+    line-height: 18px;
+
+
+
+
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-star {
+
+
+
+    display: inline-block;
+
+
+
+
+
+
+
+    padding: 0 !important;
+
+
+
+    margin: 0 !important;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+
+
+
+
+    color: #f0ca00;
+
+
+
+
+
+
+
+    font-size: 17px;
+
+
+
+    line-height: 17px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-rating-count {
+
+
+
+    color: #8994a5;
+
+
+
+
+
+
+
+    font-size: 12px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-review-count {
+
+
+
+    display: inline-block;
+
+
+
+
+
+
+
+    padding: 0 !important;
+
+
+
+    margin: 0 !important;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+
+
+
+
+    color: #8994a5 !important;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: 12px;
+
+
+
+    font-weight: 400;
+
+
+
+
+
+
+
+    line-height: 18px;
+
+
+
+
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-location {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+    gap: 9px;
+
+
+
+
+
+
+
+    margin-top: 12px;
+
+
+
+    padding: 0;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+
+
+
+
+    color: #888;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: 13px;
+
+
+
+    font-weight: 400;
+
+
+
+
+
+
+
+    line-height: 16px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-pin {
+
+
+
+    display: inline-flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+
+
+
+
+    width: 11px;
+
+
+
+    height: 11px;
+
+
+
+
+
+
+
+    padding: 0;
+
+
+
+    margin: 0;
+
+
+
+
+
+
+
+    background: transparent !important;
+
+
+
+
+
+
+
+    color: #999;
+
+
+
+
+
+
+
+    font-size: 9px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-arrow {
+
+
+
+    position: absolute;
+
+
+
+
+
+
+
+    top: 50%;
+
+
+
+    right: -23px;
+
+
+
+
+
+
+
+    z-index: 20;
+
+
+
+
+
+
+
+    width: 46px;
+
+
+
+    height: 46px;
+
+
+
+
+
+
+
+    padding: 0;
+
+
+
+
+
+
+
+    border: 0;
+
+
+
+    border-radius: 50%;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+
+
+
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.11);
+
+
+
+
+
+
+
+    color: #7c858e;
+
+
+
+
+
+
+
+    font-family: Arial, sans-serif;
+
+
+
+    font-size: 29px;
+
+
+
+    font-weight: 300;
+
+
+
+    line-height: 46px;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+
+
+
+
+    cursor: pointer;
+
+
+
+
+
+
+
+    transform: translateY(-50%);
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-footer {
+
+
+
+    display: flex;
+
+
+
+    justify-content: center;
+
+
+
+
+
+
+
+    margin-top: 57px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-all {
+
+
+
+    display: inline-flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+
+
+
+
+    width: 207px;
+
+
+
+    height: 44px;
+
+
+
+
+
+
+
+    border: 1px solid #dcdcdc;
+
+
+
+    border-radius: 4px;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+
+
+
+
+    color: #555;
+
+
+
+
+
+
+
+    font-family: Arial, Helvetica, sans-serif;
+
+
+
+    font-size: 13px;
+
+
+
+    font-weight: 400;
+
+
+
+
+
+
+
+    text-decoration: none;
+
+
+
+}
+
+
+
+
+
+.kk-container {
+
+
+
+    width: min(1180px, calc(100% - 48px));
+
+
+
+    margin: 0 auto;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-section {
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    padding: 90px 0;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-section-title {
+
+
+
+    margin: 0 0 15px;
+
+
+
+
+
+
+
+    color: #3f3f3f;
+
+
+
+
+
+
+
+    font-size: 36px;
+
+
+
+    font-weight: 700;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-section-subtitle {
+
+
+
+    max-width: 650px;
+
+
+
+
+
+
+
+    margin: 0 auto 45px;
+
+
+
+
+
+
+
+    color: #777;
+
+
+
+
+
+
+
+    font-size: 16px;
+
+
+
+    line-height: 1.7;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+.kk-how-section {
+
+
+
+    padding: 100px 24px;
+
+
+
+
+
+
+
+    background: #f7f7f5;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-how-grid {
+
+
+
+    width: min(1100px, 100%);
+
+
+
+    margin: 55px auto 0;
+
+
+
+
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns: repeat(3, 1fr);
+
+
+
+
+
+
+
+    gap: 35px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-how-card {
+
+
+
+    padding: 35px 28px;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-how-number {
+
+
+
+    width: 52px;
+
+
+
+    height: 52px;
+
+
+
+
+
+
+
+    margin: 0 auto 22px;
+
+
+
+
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+
+
+
+
+    border-radius: 50%;
+
+
+
+
+
+
+
+    background: var(--kk-green);
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 20px;
+
+
+
+    font-weight: 700;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-how-card h3 {
+
+
+
+    margin: 0 0 12px;
+
+
+
+
+
+
+
+    color: #444;
+
+
+
+
+
+
+
+    font-size: 20px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-how-card p {
+
+
+
+    margin: 0;
+
+
+
+
+
+
+
+    color: #777;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+.kk-reviews-section {
+
+
+
+    padding: 100px 24px;
+
+
+
+
+
+
+
+    background: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-review-slider {
+
+
+
+    display: flex;
+
+
+
+    gap: 24px;
+
+
+
+
+
+
+
+    width: 100%;
+
+
+
+
+
+
+
+    overflow-x: auto;
+
+
+
+
+
+
+
+    scrollbar-width: none;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-review-slider::-webkit-scrollbar {
+
+
+
+    display: none;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-review-card {
+
+
+
+    flex: 0 0 330px;
+
+
+
+
+
+
+
+    padding: 30px;
+
+
+
+
+
+
+
+    background: #f5f5f3;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-review-card p {
+
+
+
+    margin: 0 0 22px;
+
+
+
+
+
+
+
+    color: #555;
+
+
+
+
+
+
+
+    font-size: 15px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-review-card strong {
+
+
+
+    color: #333;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+.kk-barber-cta {
+
+
+
+    position: relative;
+
+
+
+
+
+
+
+    padding: 100px 24px;
+
+
+
+
+
+
+
+    background: #111714;
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    text-align: center;
+
+
+
+
+
+
+
+    overflow: hidden;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-barber-cta h2 {
+
+
+
+    margin: 0 0 18px;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: clamp(34px, 5vw, 58px);
+
+
+
+    line-height: 1.05;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-barber-cta p {
+
+
+
+    max-width: 650px;
+
+
+
+
+
+
+
+    margin: 0 auto 30px;
+
+
+
+
+
+
+
+    color: #c9c9c9;
+
+
+
+
+
+
+
+    font-size: 16px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-cta-button {
+
+
+
+    display: inline-flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+
+
+
+
+    min-width: 190px;
+
+
+
+    height: 50px;
+
+
+
+
+
+
+
+    padding: 0 28px;
+
+
+
+
+
+
+
+    border-radius: 4px;
+
+
+
+
+
+
+
+    background: var(--kk-green);
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+    font-weight: 600;
+
+
+
+}
+
+
+
+
+
+.kk-app-section {
+
+
+
+    padding: 90px 24px;
+
+
+
+
+
+
+
+    background: #f5f5f2;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-app-inner {
+
+
+
+    width: min(1050px, 100%);
+
+
+
+    margin: 0 auto;
+
+
+
+
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns: 1fr 1fr;
+
+
+
+
+
+
+
+    align-items: center;
+
+
+
+
+
+
+
+    gap: 70px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-app-content h2 {
+
+
+
+    margin: 0 0 18px;
+
+
+
+
+
+
+
+    color: #3e3e3e;
+
+
+
+
+
+
+
+    font-size: 42px;
+
+
+
+    line-height: 1.1;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-app-content p {
+
+
+
+    margin: 0 0 28px;
+
+
+
+
+
+
+
+    color: #707070;
+
+
+
+
+
+
+
+    font-size: 15px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-app-image {
+
+
+
+    min-height: 350px;
+
+
+
+
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+
+
+
+
+    background: #e8e8e4;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.kk-footer {
+
+
+
+    padding: 65px 24px 25px;
+
+
+
+
+
+
+
+    background: #111714;
+
+
+
+    color: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-main {
+
+
+
+    width: min(1180px, 100%);
+
+
+
+    margin: 0 auto;
+
+
+
+
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+
+
+
+
+
+
+    gap: 45px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-brand p {
+
+
+
+    max-width: 280px;
+
+
+
+
+
+
+
+    margin: 18px 0;
+
+
+
+
+
+
+
+    color: #a9aaa8;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-logo {
+
+
+
+    color: #fff;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-instagram {
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 13px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-column {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+
+
+
+
+    gap: 11px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-column h4 {
+
+
+
+    margin: 0 0 8px;
+
+
+
+
+
+
+
+    color: #fff;
+
+
+
+
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-column a {
+
+
+
+    color: #a9aaa8;
+
+
+
+
+
+
+
+    font-size: 13px;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-footer-bottom {
+
+
+
+    width: min(1180px, 100%);
+
+
+
+
+
+
+
+    margin: 45px auto 0;
+
+
+
+    padding-top: 20px;
+
+
+
+
+
+
+
+    border-top: 1px solid rgba(255,255,255,.12);
+
+
+
+
+
+
+
+    display: flex;
+
+
+
+    justify-content: space-between;
+
+
+
+
+
+
+
+    color: #888;
+
+
+
+
+
+
+
+    font-size: 12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 1100px) {
+
+
+
+
+
+
+
+    .kk-header-inner {
+
+
+
+        width: calc(100% - 36px);
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-main-nav {
+
+
+
+        gap: 20px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-header-actions {
+
+
+
+        gap: 15px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-inner {
+
+
+
+        max-width: none;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+
+
+
+
+
+
+
+    .kk-main-nav,
+
+
+
+    .kk-header-actions {
+
+
+
+        display: none;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-menu-button {
+
+
+
+        display: block;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-mobile-nav {
+
+
+
+        position: absolute;
+
+
+
+        top: 96px;
+
+
+
+        left: 0;
+
+
+
+
+
+
+
+        width: 100%;
+
+
+
+
+
+
+
+        padding: 20px 24px;
+
+
+
+
+
+
+
+        background: #000;
+
+
+
+
+
+
+
+        display: none;
+
+
+
+        flex-direction: column;
+
+
+
+
+
+
+
+        gap: 18px;
+
+
+
+
+
+
+
+        border-top: 1px solid rgba(255,255,255,.1);
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-mobile-nav.active {
+
+
+
+        display: flex;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-mobile-nav a {
+
+
+
+        color: #fff;
+
+
+
+        font-size: 14px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-hero {
+
+
+
+        min-height: 600px;
+
+
+
+
+
+
+
+        padding-top: 75px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-box {
+
+
+
+        flex-wrap: wrap;
+
+
+
+
+
+
+
+        min-height: auto;
+
+
+
+
+
+
+
+        border-radius: 25px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-field {
+
+
+
+        flex: 1 1 100%;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-select {
+
+
+
+        flex: 1;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-submit {
+
+
+
+        flex: 0 0 58px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-card {
+
+
+
+        flex: 0 0 calc((100% - 10px) / 2);
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-track {
+
+
+
+        overflow-x: auto;
+
+
+
+        scrollbar-width: none;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-track::-webkit-scrollbar {
+
+
+
+        display: none;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-how-grid {
+
+
+
+        grid-template-columns: 1fr;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-app-inner {
+
+
+
+        grid-template-columns: 1fr;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-footer-main {
+
+
+
+        grid-template-columns: repeat(2, 1fr);
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+
+
+
+
+
+
+
+    .kk-header {
+
+
+
+        height: 78px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-header-inner {
+
+
+
+        height: 78px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-mobile-nav {
+
+
+
+        top: 78px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-brand-script {
+
+
+
+        font-size: 27px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-hero {
+
+
+
+        min-height: 650px;
+
+
+
+
+
+
+
+        padding: 70px 16px 60px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-hero-title {
+
+
+
+        font-size: 56px;
+
+
+
+        letter-spacing: -3px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-box {
+
+
+
+        padding: 6px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-field {
+
+
+
+        height: 52px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-select {
+
+
+
+        height: 52px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-search-submit {
+
+
+
+        width: 52px;
+
+
+
+        height: 52px;
+
+
+
+        flex-basis: 52px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-hero-testimonial {
+
+
+
+        margin-top: 65px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-section {
+
+
+
+        padding: 75px 16px 70px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-title {
+
+
+
+        margin-bottom: 38px;
+
+
+
+        font-size: 25px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-card {
+
+
+
+        flex: 0 0 84%;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-image {
+
+
+
+        height: 200px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-region-arrow {
+
+
+
+        right: -8px;
+
+
+
+
+
+
+
+        width: 40px;
+
+
+
+        height: 40px;
+
+
+
+
+
+
+
+        line-height: 40px;
+
+
+
+        font-size: 26px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-section-title {
+
+
+
+        font-size: 30px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-how-section,
+
+
+
+    .kk-reviews-section,
+
+
+
+    .kk-app-section {
+
+
+
+        padding-top: 70px;
+
+
+
+        padding-bottom: 70px;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-footer-main {
+
+
+
+        grid-template-columns: 1fr;
+
+
+
+    }
+
+
+
+
+
+
+
+    .kk-footer-bottom {
+
+
+
+        flex-direction: column;
+
+
+
+        gap: 8px;
+
+
+
+    }
+
+
+
+}
+
+
+
+/* =========================================================
+
+
+
+   FIX BARBER CARD IMAGES
+
+
+
+========================================================= */
+
+
+
+
+
+
+
+.kk-region-image {
+
+
+
+    display: block !important;
+
+
+
+    width: 100% !important;
+
+
+
+    height: 201px !important;
+
+
+
+
+
+
+
+    overflow: hidden !important;
+
+
+
+
+
+
+
+    transform: none !important;
+
+
+
+    rotate: none !important;
+
+
+
+}
+
+
+
+
+
+
+
+.kk-region-image img {
+
+
+
+    display: block !important;
+
+
+
+
+
+
+
+    width: 100% !important;
+
+
+
+    height: 100% !important;
+
+
+
+
+
+
+
+    max-width: none !important;
+
+
+
+
+
+
+
+    margin: 0 !important;
+
+
+
+    padding: 0 !important;
+
+
+
+
+
+
+
+    border: 0 !important;
+
+
+
+
+
+
+
+    object-fit: cover !important;
+
+
+
+    object-position: center center !important;
+
+
+
+
+
+
+
+    transform: none !important;
+
+
+
+    rotate: none !important;
+
+
+
+
+
+
+
+    writing-mode: horizontal-tb !important;
+
+
+
+}
+
+
+
+/* =========================================================
+
+   FINAL BARBER IMAGE RESPONSIVE FIX
+
+   ========================================================= */
+
+
+
+.kk-region-image img {
+
+    width: 63.2075% !important;
+
+    height: 158.209% !important;
+
+    object-fit: fill !important;
+
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+
+}
+
+
+
+@media (max-width: 600px) {
+
+    .kk-region-image {
+
+        height: 200px !important;
+
+    }
+
+
+
+    .kk-region-image img {
+
+        width: 63.2075% !important;
+
+        height: 158.209% !important;
+
+    }
+
+}
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.kk-how-section {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    padding: 86px 40px 82px;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+.kk-how-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.kk-how-title {
+    margin: 0 0 62px;
+    text-align: center;
+    font-family: "DM Sans", sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1.2px;
+    color: #454545;
+}
+
+.kk-how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 85px;
+    align-items: start;
+}
+
+.kk-how-item {
+    position: relative;
+    text-align: center;
+}
+
+.kk-how-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10);
+
+}
+
+.kk-how-icon svg {
+    width: 76px;
+    height: 76px;
+    display: block;
+}
+
+.kk-how-item h3 {
+    margin: 0 0 10px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+
+    color: #454545;
+}
+
+.kk-how-item p {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+
+    color: #777777;
+}
+
+
+/* =========================================================
+   DECORATIVE TRIANGLES
+========================================================= */
+
+.kk-how-decoration {
+    position: absolute;
+    z-index: 1;
+
+    right: 24px;
+    top: 50%;
+
+    width: 125px;
+    height: 170px;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
+.kk-how-triangle {
+    position: absolute;
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+    opacity: 0.55;
+}
+
+.kk-how-triangle-1 {
+    top: 10px;
+    right: 35px;
+
+    border-width: 0 18px 31px 18px;
+    border-color: transparent transparent #c9c9c9 transparent;
+
+    transform: rotate(38deg);
+}
+
+.kk-how-triangle-2 {
+    top: 48px;
+    right: 5px;
+
+    border-width: 0 14px 24px 14px;
+    border-color: transparent transparent #bdbdbd transparent;
+
+    transform: rotate(20deg);
+}
+
+.kk-how-triangle-3 {
+    top: 74px;
+    right: 55px;
+
+    border-width: 0 13px 22px 13px;
+    border-color: transparent transparent #c2c2c2 transparent;
+
+    transform: rotate(-5deg);
+}
+
+.kk-how-triangle-4 {
+    top: 105px;
+    right: 18px;
+
+    border-width: 0 15px 26px 15px;
+    border-color: transparent transparent #c7c7c7 transparent;
+
+    transform: rotate(25deg);
+}
+
+.kk-how-triangle-5 {
+    top: 118px;
+    right: 74px;
+
+    border-width: 0 19px 33px 19px;
+    border-color: transparent transparent #d0d0d0 transparent;
+
+    transform: rotate(-35deg);
+}
+
+.kk-how-triangle-6 {
+    top: 30px;
+    right: 88px;
+
+    border-width: 0 10px 18px 10px;
+    border-color: transparent transparent #d2d2d2 transparent;
+
+    transform: rotate(55deg);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .kk-how-grid {
+        gap: 40px;
+    }
+
+    .kk-how-title {
+        font-size: 32px;
+    }
+
+    .kk-how-decoration {
+        right: 5px;
+        opacity: 0.75;
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .kk-how-section {
+        padding: 70px 25px;
+    }
+
+    .kk-how-title {
+        margin-bottom: 45px;
+        font-size: 30px;
+    }
+
+    .kk-how-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .kk-how-decoration {
+        right: -25px;
+        top: 42%;
+        transform: translateY(-50%) scale(0.75);
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .kk-how-section {
+        padding: 60px 20px;
+    }
+
+    .kk-how-title {
+        font-size: 27px;
+    }
+
+    .kk-how-icon {
+        width: 92px;
+        height: 92px;
+    }
+
+    .kk-how-icon svg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .kk-how-item h3 {
+        font-size: 19px;
+    }
+
+    .kk-how-item p {
+        font-size: 14px;
+    }
+
+    .kk-how-decoration {
+        display: none;
+    }
+
+}
+/* =========================================================
+   WHAT OUR BARBERS SAY
+========================================================= */
+
+.kk-reviews-section {
+    position: relative;
+    width: 100%;
+    padding: 88px 0 80px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.kk-reviews-inner {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.kk-reviews-title {
+    margin: 0 0 58px;
+
+    text-align: center;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -1px;
+
+    color: #454545;
+}
+
+
+/* CAROUSEL */
+
+.kk-reviews-carousel {
+    position: relative;
+    width: 100%;
+}
+
+.kk-review-slider {
+    display: flex;
+
+    gap: 42px;
+
+    width: 100%;
+
+    padding: 0 0 2px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
+}
+
+.kk-review-slider::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* CARD */
+
+.kk-review-card {
+    position: relative;
+
+    flex: 0 0 390px;
+
+    min-height: 270px;
+
+    padding: 32px 28px 27px;
+
+    background: #ffffff;
+
+    border: 1px solid #e3e5e4;
+
+    box-sizing: border-box;
+}
+
+
+/* QUOTE */
+
+.kk-review-quote {
+    margin-bottom: 17px;
+
+    font-family: Georgia, serif;
+
+    font-size: 58px;
+    font-weight: 700;
+    line-height: 0.65;
+
+    color: #41976d;
+}
+
+
+/* TEXT */
+
+.kk-review-text {
+    margin: 0;
+
+    max-width: 320px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+
+    color: #777777;
+}
+
+
+/* AUTHOR */
+
+.kk-review-author {
+    position: absolute;
+
+    left: 28px;
+    bottom: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* AVATAR */
+
+.kk-review-avatar {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #888888;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.kk-review-avatar span {
+    display: block;
+}
+
+
+/* NAME */
+
+.kk-review-author strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #252525;
+}
+
+
+/* BUSINESS */
+
+.kk-review-author small {
+    display: block;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    color: #999999;
+}
+
+
+/* NEXT BUTTON */
+
+.kk-review-next {
+    position: absolute;
+
+    right: -7px;
+    top: 50%;
+
+    width: 50px;
+    height: 50px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.10);
+
+    color: #777777;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    z-index: 5;
+}
+
+.kk-review-next:hover {
+    background: #f4f4f4;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1350px) {
+
+    .kk-reviews-inner {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .kk-review-card {
+        flex-basis: 350px;
+    }
+
+    .kk-reviews-title {
+        font-size: 32px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .kk-reviews-section {
+        padding: 65px 0;
+    }
+
+    .kk-reviews-inner {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .kk-reviews-title {
+        margin-bottom: 40px;
+        font-size: 28px;
+    }
+
+    .kk-review-slider {
+        gap: 18px;
+    }
+
+    .kk-review-card {
+        flex-basis: calc(100vw - 45px);
+        min-height: 270px;
+    }
+
+    .kk-review-next {
+        right: -2px;
+        width: 44px;
+        height: 44px;
+    }
+
+}
+/* =========================================================
+   REVIEWS / WHAT OUR BARBERS SAY
+   ========================================================= */
+
+.kk-reviews-section {
+    position: relative;
+    width: 100%;
+    padding: 88px 0 96px;
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
+.kk-reviews-inner {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.kk-reviews-title {
+    margin: 0 0 55px;
+    padding: 0 30px;
+
+    text-align: center;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1px;
+
+    color: #454545;
+}
+
+
+/* -----------------------------------------
+   CAROUSEL
+   ----------------------------------------- */
+
+.kk-reviews-carousel {
+    position: relative;
+    width: 100%;
+}
+
+.kk-reviews-track {
+    display: flex;
+    align-items: stretch;
+    gap: 28px;
+
+    width: 100%;
+
+    padding: 5px 70px 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+}
+
+.kk-reviews-track::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* -----------------------------------------
+   CARD
+   ----------------------------------------- */
+
+.kk-review-card {
+    position: relative;
+
+    flex: 0 0 390px;
+
+    min-height: 300px;
+
+    padding: 42px 34px 30px;
+
+    background: #ffffff;
+
+    border: 1px solid #e4e4e4;
+
+    border-radius: 2px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.035);
+
+    scroll-snap-align: center;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* -----------------------------------------
+   GREEN QUOTE MARK
+   ----------------------------------------- */
+
+.kk-review-quote {
+    position: absolute;
+
+    top: 20px;
+    left: 28px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 64px;
+    font-weight: 700;
+
+    line-height: 0.7;
+
+    color: #4fd39a;
+
+    pointer-events: none;
+}
+
+
+/* -----------------------------------------
+   REVIEW TEXT
+   ----------------------------------------- */
+
+.kk-review-text {
+    margin: 20px 0 30px;
+
+    max-width: 320px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 16px;
+    font-weight: 400;
+
+    line-height: 1.65;
+
+    color: #555555;
+}
+
+
+/* -----------------------------------------
+   PERSON
+   ----------------------------------------- */
+
+.kk-review-person {
+    display: flex;
+    align-items: center;
+
+    margin-top: auto;
+
+    min-height: 62px;
+}
+
+
+/* -----------------------------------------
+   AVATAR
+   ----------------------------------------- */
+
+.kk-review-avatar {
+    flex: 0 0 58px;
+
+    width: 58px;
+    height: 58px;
+
+    margin-right: 15px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kk-review-avatar img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+}
+
+
+/* Temporary fallback when portrait isn't available */
+
+.kk-review-placeholder {
+    background: #eeeeee;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+
+    color: #555555;
+}
+
+.kk-review-placeholder span {
+    display: block;
+}
+
+
+/* -----------------------------------------
+   PERSON INFO
+   ----------------------------------------- */
+
+.kk-review-person-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.kk-review-person-info strong {
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    line-height: 1.25;
+
+    color: #3f3f3f;
+}
+
+.kk-review-person-info span {
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.3;
+
+    color: #888888;
+}
+
+
+/* -----------------------------------------
+   ARROWS
+   ----------------------------------------- */
+
+.kk-review-arrow {
+    position: absolute;
+    z-index: 10;
+
+    top: 50%;
+
+    width: 48px;
+    height: 48px;
+
+    margin-top: -24px;
+
+    border: 1px solid #dddddd;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #555555;
+
+    font-family: Arial, sans-serif;
+    font-size: 31px;
+    font-weight: 300;
+
+    line-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.kk-review-arrow:hover {
+    background: #4fd39a;
+    color: #ffffff;
+
+    border-color: #4fd39a;
+
+    transform: scale(1.04);
+}
+
+.kk-review-prev {
+    left: 20px;
+}
+
+.kk-review-next {
+    right: 20px;
+}
+
+
+/* -----------------------------------------
+   DESKTOP - SHOW PARTIAL CARDS
+   ----------------------------------------- */
+
+@media (min-width: 1200px) {
+
+    .kk-reviews-track {
+        padding-left: 105px;
+        padding-right: 105px;
+    }
+
+    .kk-review-card {
+        flex-basis: 390px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   TABLET
+   ----------------------------------------- */
+
+@media (max-width: 1000px) {
+
+    .kk-reviews-section {
+        padding: 75px 0 80px;
+    }
+
+    .kk-reviews-title {
+        font-size: 32px;
+        margin-bottom: 45px;
+    }
+
+    .kk-reviews-track {
+        gap: 22px;
+        padding-left: 65px;
+        padding-right: 65px;
+    }
+
+    .kk-review-card {
+        flex-basis: 350px;
+        min-height: 290px;
+    }
+
+    .kk-review-prev {
+        left: 10px;
+    }
+
+    .kk-review-next {
+        right: 10px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 760px) {
+
+    .kk-reviews-section {
+        padding: 65px 0 70px;
+    }
+
+    .kk-reviews-title {
+        padding: 0 20px;
+
+        font-size: 28px;
+        letter-spacing: -0.5px;
+
+        margin-bottom: 38px;
+    }
+
+    .kk-reviews-track {
+        gap: 18px;
+
+        padding-left: 42px;
+        padding-right: 42px;
+
+        scroll-snap-type: x mandatory;
+    }
+
+    .kk-review-card {
+        flex: 0 0 calc(100vw - 84px);
+
+        min-height: 300px;
+
+        padding: 40px 27px 27px;
+    }
+
+    .kk-review-text {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .kk-review-arrow {
+        width: 42px;
+        height: 42px;
+
+        margin-top: -21px;
+
+        font-size: 27px;
+        line-height: 36px;
+    }
+
+    .kk-review-prev {
+        left: 7px;
+    }
+
+    .kk-review-next {
+        right: 7px;
+    }
+
+}
+
+
+/* -----------------------------------------
+   SMALL MOBILE
+   ----------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .kk-reviews-title {
+        font-size: 25px;
+    }
+
+    .kk-reviews-track {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .kk-review-card {
+        flex-basis: calc(100vw - 60px);
+
+        padding: 38px 24px 25px;
+    }
+
+    .kk-review-quote {
+        left: 22px;
+        top: 18px;
+
+        font-size: 58px;
+    }
+
+    .kk-review-text {
+        margin-top: 18px;
+        font-size: 14px;
+    }
+
+}
+/* =========================================================
+   DOWNLOAD OUR APP
+   ========================================================= */
+
+.kk-app-download {
+    position: relative;
+
+    width: 100%;
+    min-height: 575px;
+
+    overflow: hidden;
+
+    background: #f7f7f7;
+}
+
+
+/* =========================================================
+   MAIN INNER
+   ========================================================= */
+
+.kk-app-download-inner {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    max-width: 1050px;
+
+    min-height: 575px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   PHONE AREA
+   ========================================================= */
+
+.kk-app-phone-area {
+    position: relative;
+
+    height: 575px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.kk-app-phone {
+    position: relative;
+
+    width: 360px;
+    height: 650px;
+
+    margin-bottom: -145px;
+
+    padding: 9px;
+
+    background: #111111;
+
+    border: 4px solid #252525;
+
+    border-radius: 55px;
+
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.18),
+        inset 0 0 0 2px #555555;
+
+    transform: scale(0.92);
+}
+
+
+/* =========================================================
+   PHONE SCREEN
+   ========================================================= */
+
+.kk-phone-screen {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 43px;
+
+    background: #171717;
+}
+
+
+/* =========================================================
+   STATUS BAR
+   ========================================================= */
+
+.kk-phone-status {
+    position: absolute;
+
+    top: 25px;
+    left: 0;
+    right: 0;
+
+    padding: 0 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    z-index: 5;
+}
+
+.kk-phone-status-icons {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   DYNAMIC ISLAND
+   ========================================================= */
+
+.kk-phone-notch {
+    position: absolute;
+
+    top: 14px;
+    left: 50%;
+
+    width: 112px;
+    height: 31px;
+
+    transform: translateX(-50%);
+
+    border-radius: 20px;
+
+    background: #000000;
+
+    z-index: 10;
+}
+
+.kk-phone-notch::after {
+    content: "";
+
+    position: absolute;
+
+    right: 17px;
+    top: 9px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #171717;
+
+    box-shadow: inset 0 0 0 2px #222222;
+}
+
+
+/* =========================================================
+   PHONE LOGO
+   ========================================================= */
+
+.kk-phone-logo {
+    position: absolute;
+
+    top: 185px;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+
+    font-size: 34px;
+    font-weight: 600;
+
+    transform: rotate(-3deg);
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   PHONE SEARCH
+   ========================================================= */
+
+.kk-phone-search {
+    position: absolute;
+
+    top: 252px;
+    left: 48px;
+    right: 48px;
+
+    height: 43px;
+
+    padding: 0 20px;
+
+    display: flex;
+    align-items: center;
+
+    border-radius: 25px;
+
+    background: #dddddd;
+
+    color: #8995a5;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   PHONE BUTTON
+   ========================================================= */
+
+.kk-phone-button {
+    position: absolute;
+
+    top: 312px;
+    left: 48px;
+    right: 48px;
+
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 25px;
+
+    background: #999999;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   PHONE DECORATION
+   ========================================================= */
+
+.kk-phone-shapes span {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+
+    opacity: 0.17;
+}
+
+.kk-phone-shapes span:nth-child(1) {
+    left: 75px;
+    bottom: 55px;
+
+    border-width: 0 22px 58px 22px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(-20deg);
+}
+
+.kk-phone-shapes span:nth-child(2) {
+    right: 65px;
+    bottom: 75px;
+
+    border-width: 0 18px 48px 18px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(35deg);
+}
+
+.kk-phone-shapes span:nth-child(3) {
+    left: 150px;
+    top: 85px;
+
+    border-width: 0 14px 35px 14px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(-25deg);
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+   ========================================================= */
+
+.kk-app-download-content {
+    padding-left: 55px;
+
+    margin-top: -15px;
+}
+
+
+.kk-app-download-content h2 {
+    margin: 0 0 32px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 36px;
+    font-weight: 600;
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+
+    color: #4b4b4b;
+}
+
+
+/* =========================================================
+   STORE BUTTONS
+   ========================================================= */
+
+.kk-store-buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   STORE BUTTON
+   ========================================================= */
+
+.kk-store-button {
+    width: 200px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 15px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.kk-store-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   GOOGLE PLAY
+   ========================================================= */
+
+.kk-google-play {
+    background: #000000;
+
+    border: 1px solid #222222;
+}
+
+.kk-google-play .kk-store-icon {
+    color: #54d66f;
+
+    font-size: 28px;
+
+    margin-right: 11px;
+}
+
+
+/* =========================================================
+   APP STORE
+   ========================================================= */
+
+.kk-app-store {
+    background: #1454ba;
+
+    border: 1px solid #1454ba;
+}
+
+.kk-app-store .kk-store-icon {
+    color: #ffffff;
+
+    font-size: 26px;
+
+    margin-right: 10px;
+}
+
+
+/* =========================================================
+   STORE TEXT
+   ========================================================= */
+
+.kk-store-text {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1;
+}
+
+.kk-store-text small {
+    margin-bottom: 5px;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.kk-store-text strong {
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 21px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LEFT GEOMETRIC SHAPES
+   ========================================================= */
+
+.kk-app-download-decoration {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 0;
+    top: 0;
+
+    width: 270px;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+
+.kk-app-triangle {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+
+    opacity: 0.55;
+}
+
+
+/* top left */
+
+.kk-app-triangle-1 {
+    top: 48px;
+    left: -22px;
+
+    border-width: 0 27px 80px 27px;
+    border-color: transparent transparent #cfcfcf transparent;
+
+    transform: rotate(-8deg);
+}
+
+
+/* upper triangle */
+
+.kk-app-triangle-2 {
+    top: 88px;
+    left: 80px;
+
+    border-width: 0 28px 52px 28px;
+    border-color: transparent transparent #a9a9a9 transparent;
+
+    transform: rotate(35deg);
+}
+
+
+/* middle large */
+
+.kk-app-triangle-3 {
+    top: 145px;
+    left: 35px;
+
+    border-width: 0 42px 72px 42px;
+    border-color: transparent transparent #dedede transparent;
+
+    transform: rotate(-2deg);
+}
+
+
+/* middle right */
+
+.kk-app-triangle-4 {
+    top: 220px;
+    left: 150px;
+
+    border-width: 0 23px 50px 23px;
+    border-color: transparent transparent #b6b6b6 transparent;
+
+    transform: rotate(30deg);
+}
+
+
+/* lower left */
+
+.kk-app-triangle-5 {
+    top: 305px;
+    left: 20px;
+
+    border-width: 0 31px 58px 31px;
+    border-color: transparent transparent #dddddd transparent;
+
+    transform: rotate(12deg);
+}
+
+
+/* lower middle */
+
+.kk-app-triangle-6 {
+    top: 330px;
+    left: 145px;
+
+    border-width: 0 32px 58px 32px;
+    border-color: transparent transparent #b2b2b2 transparent;
+
+    transform: rotate(0deg);
+}
+
+
+/* small */
+
+.kk-app-triangle-7 {
+    top: 180px;
+    left: 225px;
+
+    border-width: 0 18px 32px 18px;
+    border-color: transparent transparent #d5d5d5 transparent;
+
+    transform: rotate(-18deg);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .kk-app-download-inner {
+        max-width: 900px;
+    }
+
+    .kk-app-phone {
+        transform: scale(0.82);
+        transform-origin: bottom center;
+    }
+
+    .kk-app-download-content {
+        padding-left: 20px;
+    }
+
+    .kk-app-download-content h2 {
+        font-size: 31px;
+    }
+
+    .kk-store-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .kk-app-download {
+        min-height: auto;
+
+        padding: 65px 20px 70px;
+    }
+
+    .kk-app-download-inner {
+        min-height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .kk-app-phone-area {
+        width: 100%;
+        height: 430px;
+
+        align-items: flex-start;
+    }
+
+    .kk-app-phone {
+        width: 300px;
+        height: 540px;
+
+        margin-bottom: -110px;
+
+        transform: scale(0.72);
+
+        transform-origin: top center;
+    }
+
+    .kk-app-download-content {
+        width: 100%;
+
+        padding: 0;
+
+        margin-top: 15px;
+
+        text-align: center;
+    }
+
+    .kk-app-download-content h2 {
+        font-size: 29px;
+
+        margin-bottom: 28px;
+    }
+
+    .kk-store-buttons {
+        align-items: center;
+
+        justify-content: center;
+
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .kk-store-button {
+        width: 190px;
+    }
+
+    .kk-app-download-decoration {
+        width: 180px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .kk-app-phone-area {
+        height: 390px;
+    }
+
+    .kk-app-phone {
+        transform: scale(0.65);
+    }
+
+    .kk-app-download-content h2 {
+        font-size: 25px;
+    }
+
+    .kk-store-buttons {
+        flex-direction: column;
+    }
+
+    .kk-store-button {
+        width: 205px;
+    }
+
+}
+/* =========================================================
+   KNIPKLOK - DOWNLOAD OUR APP
+   ========================================================= */
+
+.kk-app-download {
+    position: relative;
+    width: 100%;
+    height: 575px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.kk-app-download-inner {
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
+    max-width: 1050px;
+    height: 100%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+
+/* PHONE VISUAL */
+
+.kk-app-visual {
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.kk-app-visual img {
+    display: block;
+
+    width: 430px;
+    max-width: none;
+    height: auto;
+
+    margin-top: 32px;
+
+    object-fit: contain;
+}
+
+
+/* RIGHT CONTENT */
+
+.kk-app-content {
+    padding-left: 45px;
+    padding-top: 5px;
+}
+
+.kk-app-content h2 {
+    margin: 0 0 32px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -1px;
+
+    color: #4b4b4b;
+}
+
+
+/* STORE BUTTONS */
+
+.kk-app-stores {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.kk-store-google,
+.kk-store-apple {
+    width: 200px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+}
+
+
+/* GOOGLE PLAY */
+
+.kk-store-google {
+    background: #000;
+}
+
+.kk-google-play-icon {
+    margin-right: 12px;
+
+    color: #58d76f;
+
+    font-size: 28px;
+    line-height: 1;
+}
+
+.kk-store-google small,
+.kk-store-apple small {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    line-height: 1;
+}
+
+.kk-store-google strong,
+.kk-store-apple strong {
+    display: block;
+
+    color: #fff;
+
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+
+/* APP STORE */
+
+.kk-store-apple {
+    background: #1555b8;
+}
+
+.kk-apple-icon {
+    margin-right: 12px;
+
+    color: #fff;
+
+    font-size: 25px;
+}
+
+
+/* GEOMETRIC BACKGROUND */
+
+.kk-app-download-shapes {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+.kk-app-shape {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+
+    opacity: .65;
+}
+
+.kk-app-shape-1 {
+    left: -20px;
+    top: 50px;
+
+    border-width: 0 28px 78px 28px;
+    border-color: transparent transparent #c9c9c9 transparent;
+
+    transform: rotate(-8deg);
+}
+
+.kk-app-shape-2 {
+    left: 80px;
+    top: 80px;
+
+    border-width: 0 28px 52px 28px;
+    border-color: transparent transparent #aaa transparent;
+
+    transform: rotate(35deg);
+}
+
+.kk-app-shape-3 {
+    left: 25px;
+    top: 145px;
+
+    border-width: 0 42px 75px 42px;
+    border-color: transparent transparent #dedede transparent;
+}
+
+.kk-app-shape-4 {
+    left: 145px;
+    top: 210px;
+
+    border-width: 0 23px 50px 23px;
+    border-color: transparent transparent #b5b5b5 transparent;
+
+    transform: rotate(30deg);
+}
+
+.kk-app-shape-5 {
+    left: 5px;
+    top: 300px;
+
+    border-width: 0 30px 55px 30px;
+    border-color: transparent transparent #ddd transparent;
+}
+
+.kk-app-shape-6 {
+    left: 140px;
+    top: 325px;
+
+    border-width: 0 32px 58px 32px;
+    border-color: transparent transparent #aaa transparent;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+
+    .kk-app-download-inner {
+        max-width: 900px;
+    }
+
+    .kk-app-visual img {
+        width: 390px;
+    }
+
+    .kk-app-content {
+        padding-left: 20px;
+    }
+
+    .kk-app-content h2 {
+        font-size: 31px;
+    }
+
+    .kk-app-stores {
+        gap: 12px;
+    }
+
+    .kk-store-google,
+    .kk-store-apple {
+        width: 180px;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+    .kk-app-download {
+        height: auto;
+        padding: 50px 20px 65px;
+    }
+
+    .kk-app-download-inner {
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .kk-app-visual {
+        width: 100%;
+        height: 390px;
+
+        align-items: flex-start;
+    }
+
+    .kk-app-visual img {
+        width: 340px;
+        margin-top: 0;
+    }
+
+    .kk-app-content {
+        width: 100%;
+        padding: 20px 0 0;
+
+        text-align: center;
+    }
+
+    .kk-app-content h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    .kk-app-stores {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .kk-app-visual {
+        height: 330px;
+    }
+
+    .kk-app-visual img {
+        width: 290px;
+    }
+
+    .kk-app-content h2 {
+        font-size: 25px;
+    }
+
+    .kk-app-stores {
+        flex-direction: column;
+    }
+}
+/* =========================================================
+   DOWNLOAD OUR APP
+   ========================================================= */
+
+.kk-app-download {
+    position: relative;
+    width: 100%;
+    height: 575px;
+    overflow: hidden;
+    background: #f6f6f6;
+}
+
+.kk-app-download-inner {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+    max-width: 1050px;
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 52% 48%;
+    align-items: center;
+}
+
+
+/* =========================================================
+   BACKGROUND TRIANGLES
+   ========================================================= */
+
+.kk-app-bg-shapes {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+.kk-app-shape {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+
+    opacity: .65;
+}
+
+.kk-app-shape.shape-1 {
+    left: -18px;
+    top: 42px;
+
+    border-width: 0 28px 78px 28px;
+    border-color: transparent transparent #c9c9c9 transparent;
+
+    transform: rotate(-8deg);
+}
+
+.kk-app-shape.shape-2 {
+    left: 80px;
+    top: 76px;
+
+    border-width: 0 27px 52px 27px;
+    border-color: transparent transparent #adadad transparent;
+
+    transform: rotate(34deg);
+}
+
+.kk-app-shape.shape-3 {
+    left: 20px;
+    top: 145px;
+
+    border-width: 0 42px 74px 42px;
+    border-color: transparent transparent #dedede transparent;
+}
+
+.kk-app-shape.shape-4 {
+    left: 145px;
+    top: 210px;
+
+    border-width: 0 22px 50px 22px;
+    border-color: transparent transparent #b6b6b6 transparent;
+
+    transform: rotate(30deg);
+}
+
+.kk-app-shape.shape-5 {
+    left: 0;
+    top: 300px;
+
+    border-width: 0 30px 55px 30px;
+    border-color: transparent transparent #dddddd transparent;
+}
+
+.kk-app-shape.shape-6 {
+    left: 140px;
+    top: 326px;
+
+    border-width: 0 31px 57px 31px;
+    border-color: transparent transparent #b0b0b0 transparent;
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.kk-app-phone-wrap {
+    position: relative;
+
+    height: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.kk-app-phone {
+    position: relative;
+
+    width: 355px;
+    height: 645px;
+
+    margin-top: 38px;
+
+    padding: 8px;
+
+    background: #111111;
+
+    border: 4px solid #272727;
+
+    border-radius: 55px;
+
+    box-shadow:
+        0 8px 18px rgba(0, 0, 0, .20),
+        inset 0 0 0 1px #555;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PHONE SCREEN
+   ========================================================= */
+
+.kk-phone-screen {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 43px;
+
+    background: #171717;
+}
+
+
+/* =========================================================
+   PHONE STATUS
+   ========================================================= */
+
+.kk-phone-status {
+    position: absolute;
+
+    top: 24px;
+    left: 27px;
+    right: 27px;
+
+    z-index: 10;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.kk-phone-status > div {
+    display: flex;
+    gap: 6px;
+
+    align-items: center;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   DYNAMIC ISLAND
+   ========================================================= */
+
+.kk-phone-island {
+    position: absolute;
+
+    top: 12px;
+    left: 50%;
+
+    width: 108px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    border-radius: 20px;
+
+    background: #000000;
+
+    z-index: 12;
+}
+
+.kk-phone-island::after {
+    content: "";
+
+    position: absolute;
+
+    top: 9px;
+    right: 16px;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #151515;
+
+    box-shadow: inset 0 0 0 2px #222;
+}
+
+
+/* =========================================================
+   PHONE DECORATION
+   ========================================================= */
+
+.kk-phone-decoration i {
+    position: absolute;
+
+    display: block;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+
+    opacity: .13;
+}
+
+.kk-phone-decoration i:nth-child(1) {
+    left: 18px;
+    top: 35px;
+
+    border-width: 0 25px 48px 25px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(-30deg);
+}
+
+.kk-phone-decoration i:nth-child(2) {
+    right: 65px;
+    top: 75px;
+
+    border-width: 0 18px 42px 18px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(30deg);
+}
+
+.kk-phone-decoration i:nth-child(3) {
+    left: 100px;
+    top: 95px;
+
+    border-width: 0 16px 35px 16px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(-25deg);
+}
+
+.kk-phone-decoration i:nth-child(4) {
+    left: 40px;
+    bottom: 35px;
+
+    border-width: 0 32px 80px 32px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(-20deg);
+}
+
+.kk-phone-decoration i:nth-child(5) {
+    right: 65px;
+    bottom: 50px;
+
+    border-width: 0 22px 55px 22px;
+    border-color: transparent transparent #ffffff transparent;
+
+    transform: rotate(25deg);
+}
+
+
+/* =========================================================
+   PHONE LOGO
+   ========================================================= */
+
+.kk-phone-logo {
+    position: absolute;
+
+    top: 190px;
+    left: 0;
+    right: 0;
+
+    z-index: 5;
+
+    text-align: center;
+
+    color: #ffffff;
+
+    font-family: "Brush Script MT", "Segoe Script", cursive;
+
+    font-size: 32px;
+    font-weight: 600;
+
+    transform: rotate(-3deg);
+}
+
+
+/* =========================================================
+   PHONE SEARCH
+   ========================================================= */
+
+.kk-phone-search {
+    position: absolute;
+
+    top: 252px;
+    left: 47px;
+    right: 47px;
+
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 20px;
+
+    box-sizing: border-box;
+
+    border-radius: 25px;
+
+    background: #dddddd;
+
+    color: #8793a2;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   PHONE FIND BUTTON
+   ========================================================= */
+
+.kk-phone-find {
+    position: absolute;
+
+    top: 312px;
+    left: 47px;
+    right: 47px;
+
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 25px;
+
+    background: #999999;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   RIGHT CONTENT
+   ========================================================= */
+
+.kk-app-download-content {
+    padding-left: 30px;
+
+    margin-top: -15px;
+}
+
+.kk-app-download-content h2 {
+    margin: 0 0 32px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 36px;
+    font-weight: 600;
+
+    line-height: 1.15;
+
+    letter-spacing: -1px;
+
+    color: #4a4a4a;
+}
+
+
+/* =========================================================
+   STORE BUTTONS
+   ========================================================= */
+
+.kk-app-store-buttons {
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+.kk-app-store {
+    width: 200px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+}
+
+.google-play {
+    background: #000000;
+}
+
+.apple-store {
+    background: #000000;
+}
+
+
+/* =========================================================
+   STORE ICONS
+   ========================================================= */
+
+.google-play-symbol {
+    margin-right: 11px;
+
+    color: #4bd467;
+
+    font-size: 28px;
+}
+
+.apple-symbol {
+    margin-right: 11px;
+
+    color: #ffffff;
+
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   STORE TEXT
+   ========================================================= */
+
+.store-copy {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1;
+}
+
+.store-copy small {
+    margin-bottom: 5px;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+}
+
+.store-copy strong {
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .kk-app-download-inner {
+        max-width: 900px;
+    }
+
+    .kk-app-phone {
+        width: 320px;
+        height: 585px;
+    }
+
+    .kk-app-download-content {
+        padding-left: 10px;
+    }
+
+    .kk-app-download-content h2 {
+        font-size: 31px;
+    }
+
+    .kk-app-store {
+        width: 175px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .kk-app-download {
+        height: auto;
+        padding: 55px 20px 65px;
+    }
+
+    .kk-app-download-inner {
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .kk-app-phone-wrap {
+        width: 100%;
+        height: 455px;
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .kk-app-phone {
+        width: 300px;
+        height: 545px;
+
+        margin-top: 0;
+
+        border-radius: 48px;
+    }
+
+    .kk-phone-screen {
+        border-radius: 37px;
+    }
+
+    .kk-phone-logo {
+        top: 165px;
+    }
+
+    .kk-phone-search {
+        top: 225px;
+
+        left: 40px;
+        right: 40px;
+    }
+
+    .kk-phone-find {
+        top: 280px;
+
+        left: 40px;
+        right: 40px;
+    }
+
+    .kk-app-download-content {
+        width: 100%;
+
+        padding: 0;
+
+        margin: 15px 0 0;
+
+        text-align: center;
+    }
+
+    .kk-app-download-content h2 {
+        font-size: 29px;
+
+        margin-bottom: 25px;
+    }
+
+    .kk-app-store-buttons {
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 12px;
+    }
+
+    .kk-app-store {
+        width: 190px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .kk-app-phone-wrap {
+        height: 420px;
+    }
+
+    .kk-app-phone {
+        width: 275px;
+        height: 500px;
+    }
+
+    .kk-phone-logo {
+        top: 150px;
+        font-size: 29px;
+    }
+
+    .kk-phone-search {
+        top: 205px;
+        left: 35px;
+        right: 35px;
+    }
+
+    .kk-phone-find {
+        top: 258px;
+        left: 35px;
+        right: 35px;
+    }
+
+    .kk-app-download-content h2 {
+        font-size: 25px;
+    }
+
+    .kk-app-store-buttons {
+        flex-direction: column;
+    }
+}
+/* =========================================================
+   KNIPKLOK FOOTER
+   ========================================================= */
+
+.kk-footer {
+    width: 100%;
+    background: #111111;
+    color: #a9a9a9;
+    font-family: "DM Sans", sans-serif;
+}
+
+
+/* =========================================================
+   FOOTER MAIN AREA
+   ========================================================= */
+
+.kk-footer-main {
+    width: 100%;
+    min-height: 192px;
+
+    padding: 54px 24px 45px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================================
+   FOOTER LINKS
+   ========================================================= */
+
+.kk-footer-simple-links {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 48px;
+}
+
+.kk-footer-simple-links a {
+    color: #a9a9a9;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.kk-footer-simple-links a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   INSTAGRAM
+   ========================================================= */
+
+.kk-footer-social {
+    width: 100%;
+
+    margin-top: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.kk-footer-social a {
+    color: #a9a9a9;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.kk-footer-social a:hover {
+    color: #ffffff;
+}
+
+
+/* Instagram icon */
+
+.kk-instagram-icon {
+    position: relative;
+
+    display: inline-block;
+
+    width: 19px;
+    height: 19px;
+
+    border: 2px solid #a9a9a9;
+    border-radius: 5px;
+
+    box-sizing: border-box;
+}
+
+.kk-instagram-icon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    left: 4.5px;
+    top: 4.5px;
+
+    border: 1.5px solid #a9a9a9;
+    border-radius: 50%;
+
+    box-sizing: border-box;
+}
+
+.kk-instagram-icon::after {
+    content: "";
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    right: 2px;
+    top: 2px;
+
+    border-radius: 50%;
+
+    background: #a9a9a9;
+}
+
+
+/* =========================================================
+   FOOTER DIVIDER / BOTTOM
+   ========================================================= */
+
+.kk-footer-bottom {
+    width: 100%;
+
+    min-height: 77px;
+
+    padding: 0 24px;
+
+    box-sizing: border-box;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #888888;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .kk-footer-main {
+        min-height: 225px;
+
+        padding: 48px 18px 42px;
+    }
+
+    .kk-footer-simple-links {
+        flex-wrap: wrap;
+
+        gap: 22px 34px;
+    }
+
+    .kk-footer-social {
+        margin-top: 34px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .kk-footer-simple-links {
+        gap: 18px 22px;
+    }
+
+    .kk-footer-simple-links a {
+        font-size: 13px;
+    }
+
+    .kk-footer-social a {
+        font-size: 13px;
+    }
+
+    .kk-footer-bottom {
+        min-height: 70px;
+
+        padding: 0 18px;
+
+        font-size: 12px;
+    }
+
+}
+/* =========================================================
+   REMOVE OLD BARBER CTA
+   ========================================================= */
+
+.kk-barber-cta {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+/* =========================================================
+   GREEN BARBER LOGIN BAR
+   ========================================================= */
+
+.kk-barber-login-bar {
+    width: 100% !important;
+    height: 106px !important;
+    min-height: 106px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: #3b9668 !important;
+    box-sizing: border-box !important;
+}
+
+.kk-barber-login-button {
+    width: 212px !important;
+    height: 60px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #ffffff !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+    color: #ffffff !important;
+
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1 !important;
+
+    text-decoration: none !important;
+}
+
+.kk-barber-login-button:hover {
+    background: #ffffff !important;
+    color: #3b9668 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .kk-barber-login-bar {
+        height: 96px !important;
+        min-height: 96px !important;
+    }
+
+    .kk-barber-login-button {
+        width: 200px !important;
+        height: 56px !important;
+    }
+}
+.kk-shops-hero {
+    position: relative;
+    height: 233px;
+    overflow: hidden;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kk-shops-hero h1 {
+    position: relative;
+    z-index: 5;
+    margin: 0;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.kk-shops-search {
+    background: #fff;
+    padding: 48px 40px 100px;
+}
+
+.kk-shops-search-box {
+    width: min(970px, 100%);
+    height: 78px;
+    margin: 0 auto;
+    padding: 0 8px 0 38px;
+
+    display: flex;
+    align-items: center;
+
+    background: #fff;
+    border-radius: 42px;
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.14);
+}
+
+.kk-shops-search-input {
+    flex: 1;
+}
+
+.kk-shops-search-input input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+}
+
+.kk-shops-select {
+    width: 190px;
+}
+
+.kk-shops-select select {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    color: #444;
+}
+
+.kk-shops-search-button {
+    width: 62px;
+    height: 62px;
+
+    flex: 0 0 62px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: #3b9668;
+
+    position: relative;
+}
+
+.kk-shops-search-button span {
+    position: absolute;
+
+    width: 15px;
+    height: 15px;
+
+    border: 2px solid #fff;
+    border-radius: 50%;
+
+    left: 21px;
+    top: 19px;
+}
+
+.kk-shops-search-button span::after {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 2px;
+
+    background: #fff;
+
+    right: -6px;
+    bottom: -3px;
+
+    transform: rotate(45deg);
+}
+
+.kk-shops-count {
+    margin: 44px 0 86px;
+
+    text-align: center;
+
+    color: #9aa5b8;
+    font-size: 15px;
+}
+
+.kk-shops-grid {
+    width: min(1080px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+
+.kk-shop-image {
+    width: 100%;
+    height: 201px;
+    overflow: hidden;
+}
+
+.kk-shop-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.kk-shop-card h3 {
+    margin: 18px 8px 7px;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #4c4c4c;
+}
+
+.kk-shop-meta {
+    margin: 0 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    font-size: 13px;
+}
+
+.kk-shop-meta .rating {
+    color: #f1c900;
+}
+
+.kk-shop-meta .rating-reviews {
+    color: #9aa5b8;
+}
+
+.kk-shop-meta .reviews {
+    margin-left: 12px;
+    color: #9aa5b8;
+}
+
+.kk-shop-location {
+    margin: 15px 8px 0;
+
+    color: #888;
+    font-size: 13px;
+}
+/* =========================================================
+   SEARCH SHOP IMAGES - FIX ROTATION
+   ========================================================= */
+
+.kk-shop-image {
+    width: 100% !important;
+    height: 201px !important;
+
+    overflow: hidden !important;
+
+    position: relative !important;
+}
+
+.kk-shop-image img {
+    display: block !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    object-fit: cover !important;
+    object-position: center center !important;
+
+    transform: rotate(90deg) scale(1.35) !important;
+    transform-origin: center center !important;
+}
+/* =========================
+   INFO PAGE
+========================= */
+
+.kk-info-section {
+    background: #ffffff;
+    padding: 48px 40px 90px;
+}
+
+.kk-info-inner {
+    width: min(903px, 100%);
+    margin: 0 auto;
+}
+
+.kk-info-card {
+    border: 1px solid #d9d9d9;
+    background: #ffffff;
+    padding: 28px 22px 30px;
+    margin-bottom: 28px;
+}
+
+.kk-info-card h2 {
+    margin: 0 0 24px;
+    color: #151515 !important;
+    font-family: "DM Sans", sans-serif;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.kk-info-card p {
+    margin: 0 0 25px;
+    color: #555555 !important;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.kk-info-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* INFO LINKS */
+.kk-info-card a {
+    color: #299563 !important;
+    text-decoration: none !important;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+.kk-info-card a:hover {
+    color: #1f754d !important;
+    text-decoration: underline !important;
+}
+
+/* Remove browser focus box */
+.kk-info-card a:focus,
+.kk-info-card a:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Arrow spacing */
+.kk-info-card a .info-arrow {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+}
+
+.kk-info-card a:hover .info-arrow {
+    transform: translateX(3px);
+}
+/* =========================================================
+   INFO PAGE - FINAL OVERRIDE
+   ========================================================= */
+
+/* ---------- INFO HERO ---------- */
+
+.kk-info-hero {
+    position: relative !important;
+    width: 100% !important;
+    height: 232px !important;
+    min-height: 232px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #000000 !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.kk-info-hero h1 {
+    position: relative !important;
+    z-index: 10 !important;
+}
+/* INFO PAGE CONTENT ALIGNMENT */
+.kk-info-inner {
+    text-align: center !important;
+}
+
+.kk-info-card {
+    text-align: center !important;
+}
+
+.kk-info-card h2 {
+    font-size: 18px !important;
+    color: #111 !important;
+}
+
+.kk-info-card p {
+    font-size: 14px !important;
+    color: #222 !important;
+}
+
+
+/* =========================================================
+   CONTACT PAGE - ONLY CONTACT PAGE STYLES
+   Append this block at the END of resources/css/app.css
+   ========================================================= */
+
+.kk-contact-hero {
+    position: relative;
+    width: 100%;
+    height: 233px;
+    min-height: 233px;
+    overflow: hidden;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kk-contact-hero h1 {
+    position: relative;
+    z-index: 5;
+    margin: 0;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 38px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.kk-contact-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.kk-contact-shape {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 26px solid transparent;
+    border-right: 26px solid transparent;
+    border-bottom: 42px solid #1b1b1b;
+    opacity: .95;
+}
+
+.kk-contact-shape-1 {
+    left: -12px;
+    top: 0;
+    transform: rotate(-8deg);
+}
+
+.kk-contact-shape-2 {
+    left: 80px;
+    top: 43px;
+    transform: rotate(62deg);
+}
+
+.kk-contact-shape-3 {
+    left: 158px;
+    top: 107px;
+    transform: rotate(35deg);
+}
+
+.kk-contact-shape-4 {
+    left: 248px;
+    top: 121px;
+    transform: rotate(-35deg);
+    border-bottom-color: #343434;
+}
+
+.kk-contact-shape-5 {
+    right: 300px;
+    top: 65px;
+    transform: rotate(70deg);
+}
+
+.kk-contact-shape-6 {
+    right: 178px;
+    top: 145px;
+    transform: rotate(60deg);
+    border-bottom-color: #343434;
+}
+
+.kk-contact-shape-7 {
+    right: 70px;
+    top: 80px;
+    transform: rotate(-12deg);
+}
+
+.kk-contact-shape-8 {
+    right: -6px;
+    top: 115px;
+    transform: rotate(42deg);
+    border-bottom-color: #343434;
+}
+
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+
+.kk-contact-faq {
+    width: 100%;
+    background: #ffffff;
+    padding: 48px 40px 72px;
+}
+
+.kk-contact-faq-inner {
+    width: min(900px, 100%);
+    margin: 0 auto;
+}
+
+.kk-contact-faq-item {
+    border-bottom: 1px solid #dedede;
+}
+
+.kk-contact-faq-question {
+    width: 100%;
+    min-height: 74px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #111111;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    text-align: left;
+    cursor: pointer;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.kk-contact-faq-question:focus {
+    outline: none;
+}
+
+.kk-contact-faq-arrow {
+    flex: 0 0 auto;
+    margin-left: 20px;
+    color: #111111;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    line-height: 1;
+    transition: transform .2s ease;
+}
+
+.kk-contact-faq-item.active .kk-contact-faq-arrow {
+    transform: rotate(180deg);
+}
+
+.kk-contact-faq-answer {
+    display: none;
+    padding: 0 42px 24px 0;
+    color: #666666;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.kk-contact-faq-answer p {
+    margin: 0;
+}
+
+.kk-contact-faq-item.active .kk-contact-faq-answer {
+    display: block;
+}
+
+
+/* =========================================================
+   SEND MESSAGE
+   ========================================================= */
+
+.kk-contact-form-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 58px 24px 100px;
+}
+
+.kk-contact-form-inner {
+    width: min(513px, 100%);
+    margin: 0 auto;
+}
+
+.kk-contact-kicker {
+    margin: 0 0 9px;
+    text-align: center;
+    color: #9aa5b8;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 400;
+}
+
+.kk-contact-form-inner h2 {
+    margin: 0 0 48px;
+    text-align: center;
+    color: #4c596d;
+    font-family: "DM Sans", sans-serif;
+    font-size: 34px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.kk-contact-note {
+    width: 100%;
+    min-height: 48px;
+    margin: 0 0 22px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #fff1d4;
+    color: #333333;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.kk-contact-note-icon {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #f4b63f;
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.kk-contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.kk-contact-field {
+    margin: 0 0 21px;
+}
+
+.kk-contact-field label {
+    display: block;
+    margin: 0 0 9px;
+    color: #444444;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 500;
+}
+
+.kk-contact-field input,
+.kk-contact-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #cfcfcf;
+    border-radius: 0;
+    outline: none;
+
+    background: #ffffff;
+    color: #333333;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.kk-contact-field input {
+    height: 50px;
+    padding: 0 13px;
+}
+
+.kk-contact-field textarea {
+    height: 150px;
+    padding: 13px;
+    resize: vertical;
+}
+
+.kk-contact-field input::placeholder,
+.kk-contact-field textarea::placeholder {
+    color: #c5c5c5;
+}
+
+.kk-contact-field input:focus,
+.kk-contact-field textarea:focus {
+    border-color: #999999;
+}
+
+.kk-contact-submit {
+    width: 100%;
+    height: 52px;
+    margin: 5px 0 0;
+    padding: 0;
+
+    border: 0;
+    border-radius: 0;
+
+    background: #3b9668;
+    color: #ffffff;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+.kk-contact-submit:hover {
+    background: #2d8056;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .kk-contact-faq {
+        padding: 35px 20px 55px;
+    }
+
+    .kk-contact-form-section {
+        padding: 50px 20px 75px;
+    }
+
+    .kk-contact-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .kk-contact-form-inner h2 {
+        font-size: 29px;
+        margin-bottom: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .kk-contact-hero {
+        height: 200px;
+        min-height: 200px;
+    }
+
+    .kk-contact-hero h1 {
+        font-size: 32px;
+    }
+
+    .kk-contact-faq-question {
+        min-height: 68px;
+        font-size: 14px;
+    }
+
+    .kk-contact-faq-answer {
+        font-size: 13px;
+    }
+}
+
+/* =========================================================
+   REGISTER INFORMATION PAGE
+   Screenshot-matched layout
+   ========================================================= */
+
+.kk-register-hero {
+    width: 100%;
+    min-height: 535px;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+.kk-register-hero-inner {
+    width: min(1078px, calc(100% - 48px));
+    min-height: 535px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    column-gap: 55px;
+}
+
+.kk-register-hero-copy {
+    align-self: center;
+    padding-top: 3px;
+}
+
+.kk-register-hero-copy h1 {
+    margin: 0 0 28px;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 47px;
+    line-height: 1.16;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.kk-register-hero-copy p {
+    margin: 0 0 27px;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.95;
+    font-weight: 400;
+}
+
+.kk-register-hero-copy ul {
+    margin: 0 0 31px;
+    padding: 0;
+    list-style: none;
+}
+
+.kk-register-hero-copy li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0 0 13px;
+    color: #fff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+.kk-register-hero-copy li span {
+    width: 17px;
+    flex: 0 0 17px;
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.kk-register-start-button {
+    width: 390px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background: #3b9668;
+    color: #fff;
+    text-decoration: none;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.kk-register-hero-visual {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.kk-register-hero-visual img {
+    display: block;
+    width: 470px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   EVERYTHING YOU NEED
+   ========================================================= */
+
+.kk-register-features {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.kk-register-features-inner {
+    width: min(1078px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 61px 0 76px;
+}
+
+.kk-register-features-inner > h2 {
+    margin: 0 0 74px;
+    text-align: center;
+    color: #4d4d4d;
+    font-family: "DM Sans", sans-serif;
+    font-size: 38px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -.5px;
+}
+
+.kk-register-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 72px;
+    row-gap: 86px;
+}
+
+.kk-register-feature {
+    text-align: center;
+}
+
+.kk-register-feature img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 26px;
+    object-fit: contain;
+}
+
+.kk-register-feature h3 {
+    margin: 0 0 10px;
+    color: #4d4d4d;
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 500;
+}
+
+.kk-register-feature p {
+    margin: 0;
+    color: #8b8b8b;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   OVERVIEW
+   ========================================================= */
+
+.kk-register-overview {
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.kk-register-overview-inner {
+    width: min(1078px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 77px 0 93px;
+}
+
+.kk-register-overview-inner > h2 {
+    margin: 0;
+    text-align: center;
+    color: #4d4d4d;
+    font-family: "DM Sans", sans-serif;
+    font-size: 38px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.kk-register-overview-subtitle {
+    margin: 14px 0 51px;
+    text-align: center;
+    color: #999;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.kk-register-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 49px;
+}
+
+.kk-register-overview-card {
+    text-align: center;
+}
+
+.kk-register-overview-image {
+    width: 100%;
+    height: 248px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 7px 25px rgba(0,0,0,.08);
+    background: #fff;
+}
+
+.kk-register-overview-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.kk-register-overview-card h3 {
+    margin: 21px 0 10px;
+    color: #4d4d4d;
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+    line-height: 1.35;
+    font-weight: 500;
+}
+
+.kk-register-overview-card p {
+    margin: 0;
+    color: #999;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+    .kk-register-hero-inner {
+        grid-template-columns: 1fr;
+        row-gap: 35px;
+        padding: 60px 0;
+    }
+
+    .kk-register-hero {
+        min-height: auto;
+    }
+
+    .kk-register-hero-copy {
+        text-align: center;
+    }
+
+    .kk-register-hero-copy ul {
+        display: inline-block;
+        text-align: left;
+    }
+
+    .kk-register-start-button {
+        margin: 0 auto;
+    }
+
+    .kk-register-hero-visual {
+        justify-content: center;
+    }
+
+    .kk-register-features-grid,
+    .kk-register-overview-grid {
+        column-gap: 30px;
+    }
+}
+
+@media (max-width: 700px) {
+    .kk-register-hero-inner,
+    .kk-register-features-inner,
+    .kk-register-overview-inner {
+        width: min(100% - 40px, 560px);
+    }
+
+    .kk-register-hero-copy h1 {
+        font-size: 38px;
+    }
+
+    .kk-register-start-button {
+        width: 100%;
+    }
+
+    .kk-register-features-grid,
+    .kk-register-overview-grid {
+        grid-template-columns: 1fr;
+        row-gap: 60px;
+    }
+
+    .kk-register-features-inner > h2,
+    .kk-register-overview-inner > h2 {
+        font-size: 31px;
+    }
+}
+/* =========================================================
+   REGISTER INFO - MATCH SECOND ROW ICONS WITH FIRST ROW
+   ========================================================= */
+
+.kk-register-feature:nth-child(4) img,
+.kk-register-feature:nth-child(5) img,
+.kk-register-feature:nth-child(6) img {
+    width: 100px !important;
+    height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+
+    display: block !important;
+    margin: 0 auto 20px !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    transform: scale(1.45) !important;
+    transform-origin: center center !important;
+}
+/* =========================================================
+   KNIPKLOK — INFORMATION PAGE REDESIGN
+   Scoped ONLY to .kk-info-page
+   ========================================================= */
+
+.kk-info-page {
+    --info-navy: #17283b;
+    --info-navy-deep: #0f2438;
+    --info-green: #168575;
+    --info-green-light: #eaf7f3;
+    --info-text: #25313a;
+    --info-muted: #697780;
+    --info-line: #e2ebe8;
+    --info-paper: #f8fbfa;
+
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    color: var(--info-text);
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.kk-info-page .kk-info-hero-new {
+    position: relative;
+    min-height: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 65px 24px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 15% 50%,
+            rgba(22, 133, 117, .08),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 85% 40%,
+            rgba(22, 133, 117, .07),
+            transparent 30%
+        ),
+        #ffffff;
+    text-align: center;
+}
+
+
+.kk-info-page .kk-info-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 760px;
+}
+
+
+.kk-info-page .kk-info-eyebrow {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: var(--info-green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+
+.kk-info-page .kk-info-hero-new h1 {
+    margin: 0;
+    color: var(--info-navy);
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.03;
+    letter-spacing: -2.5px;
+}
+
+
+.kk-info-page .kk-info-hero-new p {
+    max-width: 600px;
+    margin: 20px auto 0;
+    color: var(--info-muted);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* Hero decoration */
+
+.kk-info-page .kk-info-hero-decoration {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+
+.kk-info-page .kk-info-circle-one {
+    width: 330px;
+    height: 330px;
+    top: -180px;
+    left: -110px;
+    background: #edf8f5;
+}
+
+
+.kk-info-page .kk-info-circle-two {
+    width: 260px;
+    height: 260px;
+    right: -100px;
+    bottom: -150px;
+    background: #f0f8f6;
+}
+
+
+/* =========================================================
+   GENERAL SECTION
+   ========================================================= */
+
+.kk-info-page .kk-info-general {
+    padding: 25px 24px 85px;
+    background: #ffffff;
+}
+
+
+.kk-info-page .kk-info-container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+}
+
+
+.kk-info-page .kk-info-general-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    align-items: center;
+    min-height: 360px;
+    overflow: hidden;
+    border: 1px solid var(--info-line);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 18px 50px rgba(23, 40, 59, .07);
+}
+
+
+.kk-info-page .kk-info-general-content {
+    position: relative;
+    z-index: 2;
+    padding: 58px 60px;
+}
+
+
+.kk-info-page .kk-info-label {
+    display: block;
+    margin-bottom: 13px;
+    color: var(--info-green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+.kk-info-page .kk-info-general-content h2 {
+    margin: 0 0 20px;
+    color: var(--info-navy);
+    font-size: clamp(30px, 3vw, 42px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+
+.kk-info-page .kk-info-general-content > p {
+    max-width: 650px;
+    margin: 0;
+    color: var(--info-muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+
+.kk-info-page .kk-info-general-contact {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--info-line);
+}
+
+
+.kk-info-page .kk-info-general-contact strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--info-navy);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.kk-info-page .kk-info-general-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--info-green);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.kk-info-page .kk-info-general-contact a span {
+    transition: transform .2s ease;
+}
+
+
+.kk-info-page .kk-info-general-contact a:hover span {
+    transform: translateX(4px);
+}
+
+
+.kk-info-page .kk-info-general-contact p {
+    display: inline;
+    margin: 0 0 0 5px;
+    color: var(--info-muted);
+    font-size: 14px;
+}
+
+
+/* Visual */
+
+.kk-info-page .kk-info-general-visual {
+    position: relative;
+    height: 100%;
+    min-height: 360px;
+    display: grid;
+    place-items: center;
+    background: var(--info-paper);
+}
+
+
+.kk-info-page .kk-info-visual-circle {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e8f6f1;
+}
+
+
+.kk-info-page .kk-info-visual-circle::before,
+.kk-info-page .kk-info-visual-circle::after {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    border: 1px solid rgba(22, 133, 117, .13);
+}
+
+
+.kk-info-page .kk-info-visual-circle::before {
+    width: 270px;
+    height: 270px;
+}
+
+
+.kk-info-page .kk-info-visual-circle::after {
+    width: 310px;
+    height: 310px;
+}
+
+
+/* Calendar icon */
+
+.kk-info-page .kk-info-calendar {
+    position: relative;
+    width: 110px;
+    height: 118px;
+    padding: 22px 13px 13px;
+    box-sizing: border-box;
+    border: 3px solid var(--info-navy);
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 15px 30px rgba(23, 40, 59, .13);
+}
+
+
+.kk-info-page .kk-calendar-top {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    height: 24px;
+    border-radius: 11px 11px 0 0;
+    background: var(--info-green);
+}
+
+
+.kk-info-page .kk-calendar-line {
+    position: absolute;
+    top: -10px;
+    left: 22px;
+    width: 5px;
+    height: 18px;
+    border-radius: 4px;
+    background: var(--info-navy);
+}
+
+
+.kk-info-page .kk-calendar-line.short {
+    left: auto;
+    right: 22px;
+}
+
+
+.kk-info-page .kk-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    margin-top: 14px;
+}
+
+
+.kk-info-page .kk-calendar-grid i {
+    display: block;
+    width: 100%;
+    height: 9px;
+    border-radius: 3px;
+    background: #dcece7;
+}
+
+
+.kk-info-page .kk-calendar-check {
+    position: absolute;
+    right: -24px;
+    bottom: -17px;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--info-green);
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(22, 133, 117, .25);
+}
+
+
+/* =========================================================
+   QUICK INFORMATION
+   ========================================================= */
+
+.kk-info-page .kk-info-options {
+    padding: 82px 24px 95px;
+    background: var(--info-paper);
+}
+
+
+.kk-info-page .kk-info-section-heading {
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+
+.kk-info-page .kk-info-section-heading span {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--info-green);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+.kk-info-page .kk-info-section-heading h2 {
+    margin: 0;
+    color: var(--info-navy);
+    font-size: clamp(30px, 3.5vw, 42px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+}
+
+
+.kk-info-page .kk-info-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+
+.kk-info-page .kk-info-option-card {
+    position: relative;
+    min-height: 330px;
+    padding: 38px 34px 34px;
+    overflow: hidden;
+    border: 1px solid var(--info-line);
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(23, 40, 59, .045);
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+
+.kk-info-page .kk-info-option-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(22, 133, 117, .3);
+    box-shadow: 0 18px 40px rgba(23, 40, 59, .09);
+}
+
+
+.kk-info-page .kk-info-option-number {
+    position: absolute;
+    top: 31px;
+    right: 30px;
+    color: #dcebe6;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+.kk-info-page .kk-info-option-icon {
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 28px;
+    border-radius: 17px;
+    background: var(--info-green-light);
+}
+
+
+.kk-info-page .kk-info-icon-scissors {
+    color: var(--info-green);
+    font-size: 27px;
+}
+
+
+.kk-info-page .kk-info-icon-plus,
+.kk-info-page .kk-info-icon-question {
+    color: var(--info-green);
+    font-size: 31px;
+    font-weight: 500;
+}
+
+
+.kk-info-page .kk-info-option-card h3 {
+    margin: 0 0 12px;
+    color: var(--info-navy);
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+
+.kk-info-page .kk-info-option-card p {
+    max-width: 280px;
+    min-height: 55px;
+    margin: 0 0 25px;
+    color: var(--info-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+.kk-info-page .kk-info-option-card a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--info-green);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.kk-info-page .kk-info-option-card a span {
+    transition: transform .2s ease;
+}
+
+
+.kk-info-page .kk-info-option-card a:hover span {
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.kk-info-page .kk-info-cta {
+    position: relative;
+    padding: 90px 24px;
+    overflow: hidden;
+    background: var(--info-navy);
+    text-align: center;
+}
+
+
+.kk-info-page .kk-info-cta-inner {
+    position: relative;
+    z-index: 3;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+
+.kk-info-page .kk-info-cta .kk-info-eyebrow {
+    margin-bottom: 12px;
+    color: #66c6b4;
+}
+
+
+.kk-info-page .kk-info-cta h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(34px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+
+.kk-info-page .kk-info-cta p {
+    margin: 16px auto 28px;
+    color: #b8c8d0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+.kk-info-page .kk-info-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 170px;
+    min-height: 52px;
+    padding: 0 25px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    background: var(--info-green);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition:
+        background .2s ease,
+        transform .2s ease;
+}
+
+
+.kk-info-page .kk-info-cta-button:hover {
+    background: #1a967f;
+    transform: translateY(-2px);
+}
+
+
+.kk-info-page .kk-info-cta-button span {
+    transition: transform .2s ease;
+}
+
+
+.kk-info-page .kk-info-cta-button:hover span {
+    transform: translateX(4px);
+}
+
+
+/* CTA decoration */
+
+.kk-info-page .kk-info-cta-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(22, 133, 117, .12);
+}
+
+
+.kk-info-page .kk-info-cta-shape-one {
+    width: 360px;
+    height: 360px;
+    left: -170px;
+    top: -190px;
+}
+
+
+.kk-info-page .kk-info-cta-shape-two {
+    width: 300px;
+    height: 300px;
+    right: -140px;
+    bottom: -180px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .kk-info-page .kk-info-general-card {
+        grid-template-columns: 1fr;
+    }
+
+    .kk-info-page .kk-info-general-content {
+        padding: 45px 40px;
+    }
+
+    .kk-info-page .kk-info-general-visual {
+        min-height: 280px;
+    }
+
+    .kk-info-page .kk-info-options-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .kk-info-page .kk-info-option-card {
+        min-height: 290px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .kk-info-page .kk-info-hero-new {
+        min-height: 280px;
+        padding: 55px 20px;
+    }
+
+    .kk-info-page .kk-info-hero-new h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
+
+    .kk-info-page .kk-info-hero-new p {
+        font-size: 14px;
+    }
+
+    .kk-info-page .kk-info-general {
+        padding: 15px 16px 60px;
+    }
+
+    .kk-info-page .kk-info-general-content {
+        padding: 35px 25px;
+    }
+
+    .kk-info-page .kk-info-general-content h2 {
+        font-size: 30px;
+    }
+
+    .kk-info-page .kk-info-general-visual {
+        min-height: 250px;
+    }
+
+    .kk-info-page .kk-info-visual-circle {
+        width: 185px;
+        height: 185px;
+    }
+
+    .kk-info-page .kk-info-options {
+        padding: 60px 16px 70px;
+    }
+
+    .kk-info-page .kk-info-section-heading {
+        margin-bottom: 32px;
+    }
+
+    .kk-info-page .kk-info-section-heading h2 {
+        font-size: 31px;
+    }
+
+    .kk-info-page .kk-info-option-card {
+        min-height: 280px;
+        padding: 30px 26px;
+    }
+
+    .kk-info-page .kk-info-cta {
+        padding: 70px 20px;
+    }
+
+}
+
+/* =========================================================
+   CONTACT FORM — PREMIUM CARD DESIGN
+   ========================================================= */
+
+.kk-contact-form-section {
+    width: 100%;
+    padding: 95px 24px 110px;
+    background: #f4f8f6;
+}
+
+.kk-contact-form-inner {
+    width: min(820px, 100%);
+    margin: 0 auto;
+    padding: 52px 55px 58px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #e5ece9;
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 55px rgba(17, 43, 60, 0.08),
+        0 4px 15px rgba(17, 43, 60, 0.04);
+}
+
+
+/* Heading */
+
+.kk-contact-kicker {
+    margin: 0 0 10px;
+    text-align: center;
+
+    color: #239473;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+}
+
+.kk-contact-form-inner h2 {
+    margin: 0 0 38px;
+
+    text-align: center;
+    color: #122b43;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+
+/* Small decorative line */
+
+.kk-contact-form-inner h2::after {
+    content: "";
+    display: block;
+
+    width: 48px;
+    height: 3px;
+
+    margin: 17px auto 0;
+
+    border-radius: 10px;
+    background: #3b9668;
+}
+
+
+/* =========================================================
+   NOTE BOX
+   ========================================================= */
+
+.kk-contact-note {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    width: 100%;
+    min-height: 56px;
+
+    margin-bottom: 32px;
+    padding: 12px 17px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #f2dda5;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #fff9e8,
+        #fffdf5
+    );
+
+    color: #665522;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.kk-contact-note-icon {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f2b632;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.kk-contact-form {
+    width: 100%;
+}
+
+.kk-contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.kk-contact-field {
+    margin-bottom: 22px;
+}
+
+.kk-contact-field label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #23384b;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.kk-contact-field input,
+.kk-contact-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #dce5e1;
+    border-radius: 9px;
+
+    background: #fbfdfc;
+    color: #172d40;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+.kk-contact-field input {
+    height: 54px;
+    padding: 0 16px;
+}
+
+.kk-contact-field textarea {
+    min-height: 155px;
+    padding: 15px 16px;
+
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.kk-contact-field input::placeholder,
+.kk-contact-field textarea::placeholder {
+    color: #aab6b2;
+}
+
+
+/* Focus */
+
+.kk-contact-field input:focus,
+.kk-contact-field textarea:focus {
+    border-color: #3b9668;
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 150, 104, 0.10),
+        0 5px 15px rgba(59, 150, 104, 0.05);
+}
+
+
+/* =========================================================
+   SEND BUTTON
+   ========================================================= */
+
+.kk-contact-submit {
+    width: 100%;
+    height: 56px;
+
+    margin-top: 6px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #3b9668,
+        #178c72
+    );
+
+    color: #ffffff;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(23, 140, 114, 0.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.kk-contact-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 28px rgba(23, 140, 114, 0.25);
+
+    filter: brightness(1.03);
+}
+
+.kk-contact-submit:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .kk-contact-form-section {
+        padding: 60px 16px 75px;
+    }
+
+    .kk-contact-form-inner {
+        padding: 35px 22px 40px;
+        border-radius: 14px;
+    }
+
+    .kk-contact-form-inner h2 {
+        font-size: 31px;
+    }
+
+    .kk-contact-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .kk-contact-note {
+        align-items: flex-start;
+    }
+}
+/* =========================================================
+   CONTACT FORM — PREMIUM CARD DESIGN
+   ========================================================= */
+
+.kk-contact-form-section {
+    width: 100%;
+    padding: 95px 24px 110px;
+    background: #f4f8f6;
+}
+
+.kk-contact-form-inner {
+    width: min(820px, 100%);
+    margin: 0 auto;
+    padding: 52px 55px 58px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border: 1px solid #e5ece9;
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 55px rgba(17, 43, 60, 0.08),
+        0 4px 15px rgba(17, 43, 60, 0.04);
+}
+
+
+/* Heading */
+
+.kk-contact-kicker {
+    margin: 0 0 10px;
+    text-align: center;
+
+    color: #239473;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+}
+
+.kk-contact-form-inner h2 {
+    margin: 0 0 38px;
+
+    text-align: center;
+    color: #122b43;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 40px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+
+/* Small decorative line */
+
+.kk-contact-form-inner h2::after {
+    content: "";
+    display: block;
+
+    width: 48px;
+    height: 3px;
+
+    margin: 17px auto 0;
+
+    border-radius: 10px;
+    background: #3b9668;
+}
+
+
+/* =========================================================
+   NOTE BOX
+   ========================================================= */
+
+.kk-contact-note {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    width: 100%;
+    min-height: 56px;
+
+    margin-bottom: 32px;
+    padding: 12px 17px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #f2dda5;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #fff9e8,
+        #fffdf5
+    );
+
+    color: #665522;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.kk-contact-note-icon {
+    width: 25px;
+    height: 25px;
+    min-width: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f2b632;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.kk-contact-form {
+    width: 100%;
+}
+
+.kk-contact-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.kk-contact-field {
+    margin-bottom: 22px;
+}
+
+.kk-contact-field label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: #23384b;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.kk-contact-field input,
+.kk-contact-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+
+    border: 1px solid #dce5e1;
+    border-radius: 9px;
+
+    background: #fbfdfc;
+    color: #172d40;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+}
+
+.kk-contact-field input {
+    height: 54px;
+    padding: 0 16px;
+}
+
+.kk-contact-field textarea {
+    min-height: 155px;
+    padding: 15px 16px;
+
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.kk-contact-field input::placeholder,
+.kk-contact-field textarea::placeholder {
+    color: #aab6b2;
+}
+
+
+/* Focus */
+
+.kk-contact-field input:focus,
+.kk-contact-field textarea:focus {
+    border-color: #3b9668;
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 150, 104, 0.10),
+        0 5px 15px rgba(59, 150, 104, 0.05);
+}
+
+
+/* =========================================================
+   SEND BUTTON
+   ========================================================= */
+
+.kk-contact-submit {
+    width: 100%;
+    height: 56px;
+
+    margin-top: 6px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(
+        135deg,
+        #3b9668,
+        #178c72
+    );
+
+    color: #ffffff;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(23, 140, 114, 0.18);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.kk-contact-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 28px rgba(23, 140, 114, 0.25);
+
+    filter: brightness(1.03);
+}
+
+.kk-contact-submit:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .kk-contact-form-section {
+        padding: 60px 16px 75px;
+    }
+
+    .kk-contact-form-inner {
+        padding: 35px 22px 40px;
+        border-radius: 14px;
+    }
+
+    .kk-contact-form-inner h2 {
+        font-size: 31px;
+    }
+
+    .kk-contact-form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .kk-contact-note {
+        align-items: flex-start;
+    }
+}
+/* =========================================================
+   CONTACT FORM — FINAL PREMIUM DESIGN
+   ========================================================= */
+
+.kk-contact-form-section {
+    width: 100% !important;
+    padding: 85px 24px 100px !important;
+    background: #f4f8f6 !important;
+    box-sizing: border-box !important;
+}
+
+.kk-contact-form-inner {
+    width: min(820px, 100%) !important;
+    margin: 0 auto !important;
+    padding: 50px 55px 55px !important;
+    box-sizing: border-box !important;
+
+    background: #ffffff !important;
+    border: 1px solid #e2ebe7 !important;
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 22px 60px rgba(15, 42, 58, 0.09),
+        0 5px 18px rgba(15, 42, 58, 0.04) !important;
+}
+
+
+/* Heading */
+
+.kk-contact-kicker {
+    margin: 0 0 10px !important;
+    text-align: center !important;
+
+    color: #16896f !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 2.2px !important;
+    text-transform: uppercase !important;
+}
+
+.kk-contact-form-inner h2 {
+    margin: 0 0 34px !important;
+    text-align: center !important;
+
+    color: #122b43 !important;
+    font-size: 38px !important;
+    line-height: 1.15 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.8px !important;
+}
+
+.kk-contact-form-inner h2::after {
+    content: "" !important;
+    display: block !important;
+
+    width: 46px !important;
+    height: 3px !important;
+
+    margin: 15px auto 0 !important;
+
+    background: #3b9668 !important;
+    border-radius: 10px !important;
+}
+
+
+/* Note */
+
+.kk-contact-note {
+    width: 100% !important;
+    min-height: 54px !important;
+
+    margin: 0 0 30px !important;
+    padding: 12px 16px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #f0dda7 !important;
+    border-radius: 9px !important;
+
+    background: #fff9e8 !important;
+    color: #665522 !important;
+
+    font-size: 13px !important;
+}
+
+.kk-contact-note-icon {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    background: #f2b632 !important;
+    color: #ffffff !important;
+
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+
+/* Form row */
+
+.kk-contact-form-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+}
+
+
+/* Fields */
+
+.kk-contact-field {
+    margin: 0 0 21px !important;
+}
+
+.kk-contact-field label {
+    display: block !important;
+    margin: 0 0 8px !important;
+
+    color: #263b4d !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+.kk-contact-field input,
+.kk-contact-field textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+
+    border: 1px solid #d9e3df !important;
+    border-radius: 9px !important;
+
+    background: #fbfdfc !important;
+    color: #172d40 !important;
+
+    font-size: 14px !important;
+    outline: none !important;
+
+    transition: all .2s ease !important;
+}
+
+.kk-contact-field input {
+    height: 53px !important;
+    padding: 0 16px !important;
+}
+
+.kk-contact-field textarea {
+    min-height: 145px !important;
+    padding: 14px 16px !important;
+    resize: vertical !important;
+    line-height: 1.6 !important;
+}
+
+.kk-contact-field input::placeholder,
+.kk-contact-field textarea::placeholder {
+    color: #a8b5b0 !important;
+}
+
+.kk-contact-field input:focus,
+.kk-contact-field textarea:focus {
+    border-color: #3b9668 !important;
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 150, 104, 0.10) !important;
+}
+
+
+/* Button */
+
+.kk-contact-submit {
+    width: 100% !important;
+    height: 55px !important;
+
+    margin-top: 4px !important;
+
+    border: none !important;
+    border-radius: 9px !important;
+
+    background: #198e73 !important;
+    color: #ffffff !important;
+
+    font-size: 15px !important;
+    font-weight: 700 !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 9px 22px rgba(25, 142, 115, 0.18) !important;
+
+    transition: all .2s ease !important;
+}
+
+.kk-contact-submit:hover {
+    background: #12765f !important;
+    transform: translateY(-2px) !important;
+
+    box-shadow:
+        0 13px 28px rgba(25, 142, 115, 0.24) !important;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .kk-contact-form-section {
+        padding: 55px 16px 70px !important;
+    }
+
+    .kk-contact-form-inner {
+        padding: 35px 22px 40px !important;
+        border-radius: 14px !important;
+    }
+
+    .kk-contact-form-inner h2 {
+        font-size: 30px !important;
+    }
+
+    .kk-contact-form-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+}
+/* =========================================================
+   KNIPKLOK REGISTER INFO
+   PREMIUM FEATURES SECTION
+   ========================================================= */
+
+.kk-register-features {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
+
+    padding: 78px 24px 90px !important;
+
+    background:
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(59, 150, 104, 0.09) 0,
+            rgba(59, 150, 104, 0.04) 170px,
+            transparent 300px
+        ),
+        radial-gradient(
+            circle at 94% 45%,
+            rgba(59, 150, 104, 0.08) 0,
+            rgba(59, 150, 104, 0.035) 160px,
+            transparent 300px
+        ),
+        #f8fcfa !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Decorative circles */
+
+.kk-register-features-bg {
+    position: absolute !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(59, 150, 104, 0.055) !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
+
+.kk-register-features-bg-left {
+    width: 330px !important;
+    height: 330px !important;
+
+    left: -210px !important;
+    bottom: -190px !important;
+}
+
+.kk-register-features-bg-right {
+    width: 300px !important;
+    height: 300px !important;
+
+    right: -180px !important;
+    top: 150px !important;
+}
+
+
+/* Main container */
+
+.kk-register-features-inner {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    width: min(1120px, 100%) !important;
+
+    margin: 0 auto !important;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.kk-register-features-heading {
+    text-align: center !important;
+
+    margin: 0 auto 48px !important;
+}
+
+
+/* FEATURES */
+
+.kk-register-features-eyebrow {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 8px 28px !important;
+
+    margin-bottom: 18px !important;
+
+    border-radius: 50px !important;
+
+    background: #e8f7f0 !important;
+
+    color: #148864 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 12px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 3px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* Main heading */
+
+.kk-register-features-heading h2 {
+    margin: 0 auto 16px !important;
+
+    max-width: 900px !important;
+
+    color: #142c43 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 44px !important;
+
+    line-height: 1.12 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: -1.2px !important;
+}
+
+
+/* Green part of heading */
+
+.kk-register-features-heading h2 span {
+    color: #198d70 !important;
+
+    position: relative !important;
+}
+
+
+/* Small underline */
+
+.kk-register-features-heading h2 span::after {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 4% !important;
+    right: 4% !important;
+
+    bottom: -7px !important;
+
+    height: 3px !important;
+
+    background: #62c5a0 !important;
+
+    border-radius: 10px !important;
+
+    transform: rotate(-1deg) !important;
+}
+
+
+/* Subtitle */
+
+.kk-register-features-heading p {
+    max-width: 700px !important;
+
+    margin: 0 auto !important;
+
+    color: #718094 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 16px !important;
+
+    line-height: 1.7 !important;
+
+    font-weight: 400 !important;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.kk-register-features-grid {
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 24px !important;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.kk-register-feature-card {
+    position: relative !important;
+
+    min-height: 285px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 30px 28px 27px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.98),
+            rgba(255,255,255,0.92)
+        ) !important;
+
+    border: 1px solid #dcefe7 !important;
+
+    border-radius: 18px !important;
+
+    text-align: center !important;
+
+    box-shadow:
+        0 10px 30px rgba(20, 44, 67, 0.045) !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease !important;
+}
+
+
+/* Hover */
+
+.kk-register-feature-card:hover {
+    transform: translateY(-7px) !important;
+
+    border-color: #bfe4d5 !important;
+
+    box-shadow:
+        0 20px 45px rgba(20, 44, 67, 0.09) !important;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.kk-register-feature-icon {
+    width: 92px !important;
+    height: 92px !important;
+
+    margin: 0 auto 22px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 50% !important;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0,
+            #effbf6 55%,
+            #dff5eb 100%
+        ) !important;
+
+    border: 1px solid #d6eee4 !important;
+
+    box-shadow:
+        0 10px 25px rgba(59, 150, 104, 0.09) !important;
+
+    position: relative !important;
+}
+
+
+/* Outer decorative ring */
+
+.kk-register-feature-icon::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    inset: 7px !important;
+
+    border-radius: 50% !important;
+
+    border: 1px solid rgba(59, 150, 104, 0.13) !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Existing icon */
+
+.kk-register-feature-icon img {
+    width: 54px !important;
+    height: 54px !important;
+
+    max-width: 54px !important;
+    max-height: 54px !important;
+
+    object-fit: contain !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    transition: transform .25s ease !important;
+}
+
+
+.kk-register-feature-card:hover
+.kk-register-feature-icon img {
+    transform: scale(1.08) !important;
+}
+
+
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
+
+.kk-register-feature-card h3 {
+    margin: 0 0 10px !important;
+
+    color: #142c43 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 20px !important;
+
+    line-height: 1.3 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: -0.2px !important;
+}
+
+
+/* =========================================================
+   CARD DESCRIPTION
+   ========================================================= */
+
+.kk-register-feature-card p {
+    max-width: 315px !important;
+
+    margin: 0 auto !important;
+
+    color: #6e7c8e !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.65 !important;
+
+    font-weight: 400 !important;
+}
+
+
+/* =========================================================
+   GREEN CARD LINE
+   ========================================================= */
+
+.kk-register-feature-line {
+    display: block !important;
+
+    width: 48px !important;
+    height: 4px !important;
+
+    margin: 21px auto 0 !important;
+
+    border-radius: 20px !important;
+
+    background: #168d6d !important;
+
+    transition:
+        width .25s ease !important;
+}
+
+
+.kk-register-feature-card:hover
+.kk-register-feature-line {
+    width: 68px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .kk-register-features {
+        padding: 65px 20px 75px !important;
+    }
+
+    .kk-register-features-heading h2 {
+        font-size: 38px !important;
+    }
+
+    .kk-register-features-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .kk-register-features {
+        padding: 55px 16px 65px !important;
+    }
+
+    .kk-register-features-heading {
+        margin-bottom: 34px !important;
+    }
+
+    .kk-register-features-eyebrow {
+        font-size: 10px !important;
+        letter-spacing: 2.5px !important;
+
+        padding: 7px 20px !important;
+    }
+
+    .kk-register-features-heading h2 {
+        font-size: 30px !important;
+
+        letter-spacing: -0.6px !important;
+    }
+
+    .kk-register-features-heading p {
+        font-size: 14px !important;
+    }
+
+    .kk-register-features-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 18px !important;
+    }
+
+    .kk-register-feature-card {
+        min-height: auto !important;
+
+        padding: 28px 22px 25px !important;
+    }
+
+    .kk-register-feature-icon {
+        width: 82px !important;
+        height: 82px !important;
+    }
+
+    .kk-register-feature-icon img {
+        width: 48px !important;
+        height: 48px !important;
+
+        max-width: 48px !important;
+        max-height: 48px !important;
+    }
+
+    .kk-register-feature-card h3 {
+        font-size: 18px !important;
+    }
+}
+/* =========================================================
+   KNIPKLOK REGISTER INFO
+   PREMIUM FEATURES SECTION
+   ========================================================= */
+
+.kk-register-features {
+    position: relative !important;
+    width: 100% !important;
+    overflow: hidden !important;
+
+    padding: 78px 24px 90px !important;
+
+    background:
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(59, 150, 104, 0.09) 0,
+            rgba(59, 150, 104, 0.04) 170px,
+            transparent 300px
+        ),
+        radial-gradient(
+            circle at 94% 45%,
+            rgba(59, 150, 104, 0.08) 0,
+            rgba(59, 150, 104, 0.035) 160px,
+            transparent 300px
+        ),
+        #f8fcfa !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* Decorative circles */
+
+.kk-register-features-bg {
+    position: absolute !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(59, 150, 104, 0.055) !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
+
+.kk-register-features-bg-left {
+    width: 330px !important;
+    height: 330px !important;
+
+    left: -210px !important;
+    bottom: -190px !important;
+}
+
+.kk-register-features-bg-right {
+    width: 300px !important;
+    height: 300px !important;
+
+    right: -180px !important;
+    top: 150px !important;
+}
+
+
+/* Main container */
+
+.kk-register-features-inner {
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    width: min(1120px, 100%) !important;
+
+    margin: 0 auto !important;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.kk-register-features-heading {
+    text-align: center !important;
+
+    margin: 0 auto 48px !important;
+}
+
+
+/* FEATURES */
+
+.kk-register-features-eyebrow {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 8px 28px !important;
+
+    margin-bottom: 18px !important;
+
+    border-radius: 50px !important;
+
+    background: #e8f7f0 !important;
+
+    color: #148864 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 12px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 3px !important;
+
+    line-height: 1 !important;
+}
+
+
+/* Main heading */
+
+.kk-register-features-heading h2 {
+    margin: 0 auto 16px !important;
+
+    max-width: 900px !important;
+
+    color: #142c43 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 44px !important;
+
+    line-height: 1.12 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: -1.2px !important;
+}
+
+
+/* Green part of heading */
+
+.kk-register-features-heading h2 span {
+    color: #198d70 !important;
+
+    position: relative !important;
+}
+
+
+/* Small underline */
+
+.kk-register-features-heading h2 span::after {
+    content: "" !important;
+
+    position: absolute !important;
+
+    left: 4% !important;
+    right: 4% !important;
+
+    bottom: -7px !important;
+
+    height: 3px !important;
+
+    background: #62c5a0 !important;
+
+    border-radius: 10px !important;
+
+    transform: rotate(-1deg) !important;
+}
+
+
+/* Subtitle */
+
+.kk-register-features-heading p {
+    max-width: 700px !important;
+
+    margin: 0 auto !important;
+
+    color: #718094 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 16px !important;
+
+    line-height: 1.7 !important;
+
+    font-weight: 400 !important;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.kk-register-features-grid {
+    display: grid !important;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 24px !important;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.kk-register-feature-card {
+    position: relative !important;
+
+    min-height: 285px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 30px 28px 27px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.98),
+            rgba(255,255,255,0.92)
+        ) !important;
+
+    border: 1px solid #dcefe7 !important;
+
+    border-radius: 18px !important;
+
+    text-align: center !important;
+
+    box-shadow:
+        0 10px 30px rgba(20, 44, 67, 0.045) !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease !important;
+}
+
+
+/* Hover */
+
+.kk-register-feature-card:hover {
+    transform: translateY(-7px) !important;
+
+    border-color: #bfe4d5 !important;
+
+    box-shadow:
+        0 20px 45px rgba(20, 44, 67, 0.09) !important;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.kk-register-feature-icon {
+    width: 92px !important;
+    height: 92px !important;
+
+    margin: 0 auto 22px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 50% !important;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0,
+            #effbf6 55%,
+            #dff5eb 100%
+        ) !important;
+
+    border: 1px solid #d6eee4 !important;
+
+    box-shadow:
+        0 10px 25px rgba(59, 150, 104, 0.09) !important;
+
+    position: relative !important;
+}
+
+
+/* Outer decorative ring */
+
+.kk-register-feature-icon::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    inset: 7px !important;
+
+    border-radius: 50% !important;
+
+    border: 1px solid rgba(59, 150, 104, 0.13) !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Existing icon */
+
+.kk-register-feature-icon img {
+    width: 54px !important;
+    height: 54px !important;
+
+    max-width: 54px !important;
+    max-height: 54px !important;
+
+    object-fit: contain !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    position: relative !important;
+
+    z-index: 2 !important;
+
+    transition: transform .25s ease !important;
+}
+
+
+.kk-register-feature-card:hover
+.kk-register-feature-icon img {
+    transform: scale(1.08) !important;
+}
+
+
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
+
+.kk-register-feature-card h3 {
+    margin: 0 0 10px !important;
+
+    color: #142c43 !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 20px !important;
+
+    line-height: 1.3 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: -0.2px !important;
+}
+
+
+/* =========================================================
+   CARD DESCRIPTION
+   ========================================================= */
+
+.kk-register-feature-card p {
+    max-width: 315px !important;
+
+    margin: 0 auto !important;
+
+    color: #6e7c8e !important;
+
+    font-family: "DM Sans", sans-serif !important;
+
+    font-size: 14px !important;
+
+    line-height: 1.65 !important;
+
+    font-weight: 400 !important;
+}
+
+
+/* =========================================================
+   GREEN CARD LINE
+   ========================================================= */
+
+.kk-register-feature-line {
+    display: block !important;
+
+    width: 48px !important;
+    height: 4px !important;
+
+    margin: 21px auto 0 !important;
+
+    border-radius: 20px !important;
+
+    background: #168d6d !important;
+
+    transition:
+        width .25s ease !important;
+}
+
+
+.kk-register-feature-card:hover
+.kk-register-feature-line {
+    width: 68px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .kk-register-features {
+        padding: 65px 20px 75px !important;
+    }
+
+    .kk-register-features-heading h2 {
+        font-size: 38px !important;
+    }
+
+    .kk-register-features-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .kk-register-features {
+        padding: 55px 16px 65px !important;
+    }
+
+    .kk-register-features-heading {
+        margin-bottom: 34px !important;
+    }
+
+    .kk-register-features-eyebrow {
+        font-size: 10px !important;
+        letter-spacing: 2.5px !important;
+
+        padding: 7px 20px !important;
+    }
+
+    .kk-register-features-heading h2 {
+        font-size: 30px !important;
+
+        letter-spacing: -0.6px !important;
+    }
+
+    .kk-register-features-heading p {
+        font-size: 14px !important;
+    }
+
+    .kk-register-features-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 18px !important;
+    }
+
+    .kk-register-feature-card {
+        min-height: auto !important;
+
+        padding: 28px 22px 25px !important;
+    }
+
+    .kk-register-feature-icon {
+        width: 82px !important;
+        height: 82px !important;
+    }
+
+    .kk-register-feature-icon img {
+        width: 48px !important;
+        height: 48px !important;
+
+        max-width: 48px !important;
+        max-height: 48px !important;
+    }
+
+    .kk-register-feature-card h3 {
+        font-size: 18px !important;
+    }
+}

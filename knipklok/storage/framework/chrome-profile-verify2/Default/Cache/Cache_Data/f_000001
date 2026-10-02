@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Maak online een afspraak bij je kapper met Knipklok. Vind een lokale kapper, kies een tijd en voorkom wachten."
+    >
+
+    <meta
+        name="theme-color"
+        content="#000000"
+    >
+
+    <title>
+        Knipklok - online kapper afspraak maken    </title>
+
+    <script type="module" src="http://[::1]:5173/@vite/client"></script><link rel="stylesheet" href="http://[::1]:5173/resources/css/app.css" /><script type="module" src="http://[::1]:5173/resources/js/app.js"></script>
+    
+</head>
+
+
+<body>
+
+    <div class="kk-page kk-home-page">
+
+        <header class="kk-header">
+    <div class="kk-header-inner">
+
+        <a href="http://127.0.0.1:8099" class="kk-brand">
+            <span class="kk-brand-script">Knipklok</span>
+        </a>
+
+        <nav class="kk-main-nav">
+         <a href="http://127.0.0.1:8099/search">Search</a>
+            <a href="http://127.0.0.1:8099/info">Info</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="http://127.0.0.1:8099/register-info" class="kk-register">
+    Register barbershop
+</a>
+            <a href="#" class="kk-login">
+                Log in as barber
+                <span>→</span>
+            </a>
+
+            <button class="kk-language" type="button">
+                <span class="kk-flag">🇬🇧</span>
+                <span class="kk-chevron">⌄</span>
+            </button>
+        </div>
+
+        <button class="kk-menu-button" id="kkMenuButton" type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+
+    <div class="kk-mobile-nav" id="kkMobileNav">
+       <a href="http://127.0.0.1:8099/search">Search</a>
+        <a href="http://127.0.0.1:8099/info">Info</a>
+        <a href="#contact">Contact</a>
+        <a href="http://127.0.0.1:8099/register-info" class="kk-register">
+    Register barbershop
+</a>
+        <a href="#">Log in as barber →</a>
+    </div>
+</header>
+        <main>
+            
+<div class="kk-home-page">
+
+    
+
+    <section class="kk-hero" id="search">
+
+        <div class="kk-hero-inner">
+
+            <div class="kk-hero-copy">
+
+                <p class="kk-hero-kicker">
+                    Welcome to
+                </p>
+
+                <h1 class="kk-hero-title">
+                    KNIPKLOK
+                </h1>
+
+                <form
+                    class="kk-search-box"
+                    action="#"
+                    method="GET"
+                >
+
+                    <label class="kk-search-control">
+                        <span>Search</span>
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="kk-search-field"
+                            placeholder="Search..."
+                            aria-label="Search for a barber or barbershop"
+                        >
+                    </label>
+
+                    <label class="kk-search-control">
+                        <span>Country</span>
+
+                        <select
+                            name="country"
+                            class="kk-search-select"
+                            aria-label="Country"
+                        >
+                            <option value="ch" selected>
+                                Switzerland
+                            </option>
+                        </select>
+                    </label>
+
+                    <label class="kk-search-control">
+                        <span>City</span>
+
+                        <select
+                            name="city"
+                            class="kk-search-select"
+                            aria-label="City"
+                        >
+                            <option value="">
+                                All cities
+                            </option>
+
+                            <option value="zurich">Zurich</option>
+                            <option value="geneva">Geneva</option>
+                            <option value="basel">Basel</option>
+                            <option value="lausanne">Lausanne</option>
+                            <option value="bern">Bern</option>
+                            <option value="winterthur">Winterthur</option>
+                            <option value="lucerne">Lucerne</option>
+                            <option value="st-gallen">St. Gallen</option>
+                            <option value="lugano">Lugano</option>
+                            <option value="biel">Biel/Bienne</option>
+                            <option value="thun">Thun</option>
+                            <option value="zug">Zug</option>
+                            <option value="fribourg">Fribourg</option>
+                            <option value="chur">Chur</option>
+                            <option value="neuchatel">Neuchâtel</option>
+                            <option value="schaffhausen">Schaffhausen</option>
+                        </select>
+                    </label>
+
+                    <button
+                        type="submit"
+                        class="kk-search-submit"
+                        aria-label="Search"
+                    >
+                        <span class="kk-search-icon"></span>
+                    </button>
+
+                </form>
+
+                <div class="kk-hero-testimonial">
+
+                    <p>
+                        Fijn programma, klanten zijn er ook heel tevreden mee!
+                    </p>
+
+                    <div class="kk-testimonial-author">
+                        <strong>Mansor</strong>
+                        Kapsalon Royal
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="kk-hero-visual">
+
+                <div class="kk-hero-image-frame">
+
+                    <img
+                        src="/images/sudandebarber.jpg"
+                        alt="Sudandebarber"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    
+
+    <section class="kk-region-section" id="barbers">
+
+    <div class="kk-region-shapes" aria-hidden="true">
+        <span class="kk-shape kk-shape-1"></span>
+        <span class="kk-shape kk-shape-2"></span>
+        <span class="kk-shape kk-shape-3"></span>
+        <span class="kk-shape kk-shape-4"></span>
+        <span class="kk-shape kk-shape-5"></span>
+        <span class="kk-shape kk-shape-6"></span>
+    </div>
+
+    <div class="kk-region-inner">
+
+        <h2 class="kk-region-title">
+            BEST IN THE REGION
+        </h2>
+
+        <div class="kk-region-carousel">
+
+            <div class="kk-region-track" id="kkRegionSlider">
+
+                
+                <article class="kk-region-card">
+
+                    <a href="#" class="kk-region-image">
+                        <img
+                            src="/images/sudandebarber.jpg"
+                            alt="Sudandebarber"
+                        >
+                    </a>
+
+                    <div class="kk-region-card-content">
+
+                        <h3>Sudandebarber</h3>
+
+                        <div class="kk-region-details">
+
+                            <span class="kk-region-rating">
+                                <span class="kk-star">★</span>
+                                <span>4.8</span>
+                                <span class="kk-rating-count">(859)</span>
+                            </span>
+
+                            <span class="kk-review-count">
+                                148 Reviews
+                            </span>
+
+                        </div>
+
+                        <div class="kk-region-location">
+                            <span class="kk-pin">●</span>
+                            <span>Den Haag</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-region-card">
+
+                    <a href="#" class="kk-region-image">
+                        <img
+                            src="/images/barbershop-een-tweetje.jpg"
+                            alt="Barbershop Één-tweetje"
+                        >
+                    </a>
+
+                    <div class="kk-region-card-content">
+
+                        <h3>Barbershop Één-tweetje</h3>
+
+                        <div class="kk-region-details">
+
+                            <span class="kk-region-rating">
+                                <span class="kk-star">★</span>
+                                <span>4.8</span>
+                                <span class="kk-rating-count">(1355)</span>
+                            </span>
+
+                            <span class="kk-review-count">
+                                298 Reviews
+                            </span>
+
+                        </div>
+
+                        <div class="kk-region-location">
+                            <span class="kk-pin">●</span>
+                            <span>Dordrecht</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-region-card">
+
+                    <a href="#" class="kk-region-image">
+                        <img
+                            src="/images/mister-cuts.jpg"
+                            alt="Mister Cuts"
+                        >
+                    </a>
+
+                    <div class="kk-region-card-content">
+
+                        <h3>Mister Cuts</h3>
+
+                        <div class="kk-region-details">
+
+                            <span class="kk-region-rating">
+                                <span class="kk-star">★</span>
+                                <span>4.9</span>
+                                <span class="kk-rating-count">(1910)</span>
+                            </span>
+
+                            <span class="kk-review-count">
+                                467 Reviews
+                            </span>
+
+                        </div>
+
+                        <div class="kk-region-location">
+                            <span class="kk-pin">●</span>
+                            <span>Nijmegen</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-region-card">
+
+                    <a href="#" class="kk-region-image">
+                        <img
+                            src="/images/barbershop-ak.jpg"
+                            alt="Barbershop Ak"
+                        >
+                    </a>
+
+                    <div class="kk-region-card-content">
+
+                        <h3>Barbershop Ak</h3>
+
+                        <div class="kk-region-details">
+
+                            <span class="kk-region-rating">
+                                <span class="kk-star">★</span>
+                                <span>4.9</span>
+                                <span class="kk-rating-count">(603)</span>
+                            </span>
+
+                            <span class="kk-review-count">
+                                125 Reviews
+                            </span>
+
+                        </div>
+
+                        <div class="kk-region-location">
+                            <span class="kk-pin">●</span>
+                            <span>Dordrecht</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="kk-region-arrow"
+                id="kkRegionNext"
+                aria-label="Next"
+            >
+                ›
+            </button>
+
+        </div>
+
+
+        <div class="kk-region-footer">
+
+            <a href="#" class="kk-region-all">
+                Toon alle kappers (430+)
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+    
+
+    <section class="kk-how-section" id="how-it-works">
+
+    <div class="kk-how-decoration" aria-hidden="true">
+        <span class="kk-how-triangle kk-how-triangle-1"></span>
+        <span class="kk-how-triangle kk-how-triangle-2"></span>
+        <span class="kk-how-triangle kk-how-triangle-3"></span>
+        <span class="kk-how-triangle kk-how-triangle-4"></span>
+        <span class="kk-how-triangle kk-how-triangle-5"></span>
+        <span class="kk-how-triangle kk-how-triangle-6"></span>
+    </div>
+
+    <div class="kk-how-inner">
+
+        <h2 class="kk-how-title">
+            HOW IT WORKS
+        </h2>
+
+        <div class="kk-how-grid">
+
+            
+            <article class="kk-how-item">
+
+                <div class="kk-how-icon">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="47"
+                            fill="#ffffff"
+                        />
+
+                        <path
+                            d="M29 68
+                               C34 65 39 61 43 56
+                               L67 32
+                               C70 29 75 29 78 32
+                               L82 36
+                               C85 39 85 44 82 47
+                               L58 71
+                               C53 76 46 79 39 80
+                               L28 82
+                               C25 82 23 79 24 76
+                               L29 68Z"
+                            fill="none"
+                            stroke="#444444"
+                            stroke-width="3"
+                            stroke-linejoin="round"
+                        />
+
+                        <path
+                            d="M62 37 L75 50"
+                            fill="none"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M37 60 L47 70"
+                            fill="none"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M27 78 L33 76"
+                            fill="none"
+                            stroke="#4fd39a"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M34 52 L49 67"
+                            fill="none"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+                    </svg>
+
+                </div>
+
+                <h3>
+                    Find your barber
+                </h3>
+
+                <p>
+                    Knipklok automatically shows<br>
+                    barbers based on your location.<br>
+                    You can also search manually.
+                </p>
+
+            </article>
+
+
+            
+            <article class="kk-how-item">
+
+                <div class="kk-how-icon">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        aria-hidden="true"
+                    >
+
+                        <rect
+                            x="24"
+                            y="27"
+                            width="52"
+                            height="56"
+                            rx="7"
+                            fill="#ffffff"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M33 20 V35"
+                            stroke="#4fd39a"
+                            stroke-width="4"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M67 20 V35"
+                            stroke="#4fd39a"
+                            stroke-width="4"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M25 40 H75"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M35 51 H57"
+                            stroke="#4fd39a"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M35 62 H58"
+                            stroke="#4fd39a"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+                        <circle
+                            cx="68"
+                            cy="70"
+                            r="14"
+                            fill="#ffffff"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M61 70 L66 75 L76 64"
+                            fill="none"
+                            stroke="#4fd39a"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <h3>
+                    Make an appointment
+                </h3>
+
+                <p>
+                    Choose your treatment and a<br>
+                    time that suits you to reserve<br>
+                    your own space.
+                </p>
+
+            </article>
+
+
+            
+            <article class="kk-how-item">
+
+                <div class="kk-how-icon">
+
+                    <svg
+                        viewBox="0 0 100 100"
+                        aria-hidden="true"
+                    >
+
+                        <circle
+                            cx="50"
+                            cy="50"
+                            r="32"
+                            fill="#ffffff"
+                            stroke="#444444"
+                            stroke-width="3"
+                        />
+
+                        <path
+                            d="M32 51 L44 63 L69 38"
+                            fill="none"
+                            stroke="#4fd39a"
+                            stroke-width="4"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <h3>
+                    Take advantage
+                </h3>
+
+                <p>
+                    Arrive on time thanks to a<br>
+                    reminder, pass the waiting line<br>
+                    and enjoy your treatment.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+    
+
+    <section class="kk-reviews-section" id="reviews">
+
+    <div class="kk-reviews-inner">
+
+        <h2 class="kk-reviews-title">WHAT OUR BARBERS SAY</h2>
+
+        <div class="kk-reviews-carousel">
+
+            <button
+                type="button"
+                class="kk-review-arrow kk-review-prev"
+                id="kkReviewPrev"
+                aria-label="Previous testimonial">
+                ‹
+            </button>
+
+            <div class="kk-reviews-track" id="kkReviewsTrack">
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Fijn programma, klanten zijn er ook heel tevreden mee!
+                    </p>
+
+                    <div class="kk-review-person">
+                        <div class="kk-review-avatar">
+                            <img
+                                src="https://api.knipklok.nl/images/barber/0ddc47bc62fcbda17c68ef7b475fc9ed.webp"
+                                alt="Mansor"
+                            >
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>Mansor</strong>
+                            <span>Kapsalon Royal</span>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Het is heel handig voor mij omdat het tijd en moeite bespaard.
+                        Voor mijn klanten is het ook heel makkelijk, zij bepalen zelf
+                        hun dag en tijd.
+                    </p>
+
+                    <div class="kk-review-person">
+                        <div class="kk-review-avatar">
+                            <img
+                                src="https://api.knipklok.nl/images/barber/7d4f849cada80aece9d391a3a86c7885.webp"
+                                alt="Emre"
+                            >
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>Emre</strong>
+                            <span>HairQuality By Emre</span>
+                        </div>
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Knipklok is ideaal voor kappers. Je ziet vanzelf op het scherm
+                        wie er hoelaat binnenkomt.
+                    </p>
+
+                    <div class="kk-review-person">
+
+                        <div class="kk-review-avatar kk-review-placeholder">
+                            <span>Y</span>
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>Yusuf</strong>
+                            <span>Man Cave</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Ik vind knipklok ideaal omdat klanten hun eigen tijd kunnen
+                        bepalen en een herinnerings sms ontvangen. Top site!
+                    </p>
+
+                    <div class="kk-review-person">
+
+                        <div class="kk-review-avatar kk-review-placeholder">
+                            <span>H</span>
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>Hasan Aydin</strong>
+                            <span>Barber Hasan</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Sinds knipklok is er meer structuur in mijn werk ontstaan.
+                        voorheen was het lastig om de telefoontjes en whatsapp
+                        berichten te beantwoorden tijdens het knippen.
+                    </p>
+
+                    <div class="kk-review-person">
+
+                        <div class="kk-review-avatar kk-review-placeholder">
+                            <span>J</span>
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>jays</strong>
+                            <span>Jays Barbershop</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Mijn klanten en ik zijn gewend aan knipklok, wij kunnen
+                        niet meer zonder.
+                    </p>
+
+                    <div class="kk-review-person">
+
+                        <div class="kk-review-avatar kk-review-placeholder">
+                            <span>M</span>
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>Mohammed</strong>
+                            <span>Herenkapper Confiance</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                
+                <article class="kk-review-card">
+
+                    <div class="kk-review-quote">“</div>
+
+                    <p class="kk-review-text">
+                        Door knipklok is alle stress verdwenen en hebben we meer
+                        aandacht voor de klant. Geen pen en papier meer, vanaf nu
+                        mobiel en TV scherm!
+                    </p>
+
+                    <div class="kk-review-person">
+
+                        <div class="kk-review-avatar kk-review-placeholder">
+                            <span>H</span>
+                        </div>
+
+                        <div class="kk-review-person-info">
+                            <strong>Hassan</strong>
+                            <span>Barbershop0318</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            <button
+                type="button"
+                class="kk-review-arrow kk-review-next"
+                id="kkReviewNext"
+                aria-label="Next testimonial">
+                ›
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+    
+
+    <section class="kk-app-download" id="download-app">
+
+    <div class="kk-app-bg-shapes" aria-hidden="true">
+        <span class="kk-app-shape shape-1"></span>
+        <span class="kk-app-shape shape-2"></span>
+        <span class="kk-app-shape shape-3"></span>
+        <span class="kk-app-shape shape-4"></span>
+        <span class="kk-app-shape shape-5"></span>
+        <span class="kk-app-shape shape-6"></span>
+    </div>
+
+    <div class="kk-app-download-inner">
+
+        <!-- PHONE -->
+        <div class="kk-app-phone-wrap">
+
+            <div class="kk-app-phone">
+
+                <div class="kk-phone-screen">
+
+                    <div class="kk-phone-status">
+                        <span>9:41</span>
+
+                        <div>
+                            <span>▮▮▮</span>
+                            <span>⌁</span>
+                            <span>▰</span>
+                        </div>
+                    </div>
+
+                    <div class="kk-phone-island"></div>
+
+                    <div class="kk-phone-decoration">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+                    <div class="kk-phone-logo">
+                        Knipklok
+                    </div>
+
+                    <div class="kk-phone-search">
+                        Search...
+                    </div>
+
+                    <div class="kk-phone-find">
+                        Find your barber
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT CONTENT -->
+        <div class="kk-app-download-content">
+
+            <h2>DOWNLOAD OUR APP</h2>
+
+            <div class="kk-app-store-buttons">
+
+                <a
+                    href="#"
+                    class="kk-app-store google-play"
+                    aria-label="Google Play"
+                >
+                    <span class="google-play-symbol">▶</span>
+
+                    <span class="store-copy">
+                        <small>GET IT ON</small>
+                        <strong>Google Play</strong>
+                    </span>
+                </a>
+
+
+                <a
+                    href="#"
+                    class="kk-app-store apple-store"
+                    aria-label="App Store"
+                >
+                    <span class="apple-symbol">●</span>
+
+                    <span class="store-copy">
+                        <small>Download on the</small>
+                        <strong>App Store</strong>
+                    </span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+    
+
+    <section class="kk-barber-login-bar">
+    <a href="#" class="kk-barber-login-button">
+        Log in as barber
+    </a>
+</section>
+
+</div>
+
+        </main>
+
+        <footer class="kk-footer">
+    <div class="kk-footer-main">
+        <div class="kk-footer-simple-links">
+            <a href="#">Register information</a>
+            <a href="#">Terms of use</a>
+            <a href="#">Privacy policy</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="kk-footer-social">
+            <a href="#" aria-label="Instagram">
+                <span class="kk-instagram-icon" aria-hidden="true"></span>
+            </a>
+            <a href="#">Follow us on instagram</a>
+        </div>
+    </div>
+
+    <div class="kk-footer-bottom">
+        <span>© 2026 Knipklok. Reserved under all rights</span>
+    </div>
+</footer>
+
+    </div>
+
+
+    
+</body>
+
+</html>
