@@ -242,8 +242,452 @@ const updateOwnerStatus = async (req, res) => {
   }
 };
 
+const reviewBarberRegistration = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const registrationId = Number(req.params.id);
+    const { action, rejectionReason } = req.body;
+    const reviewerId = req.user.id;
+
+    if (!registrationId || registrationId <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid registration ID",
+      });
+    }
+
+    if (!["approve", "reject"].includes(action)) {
+      return res.status(400).json({
+        success: false,
+        message: "Action must be either approve or reject",
+      });
+    }
+
+    if (action === "reject" && !rejectionReason) {
+      return res.status(400).json({
+        success: false,
+        message: "Rejection reason is required",
+      });
+    }
+
+    const [registrations] = await connection.query(
+      `
+      SELECT
+        br.id,
+        br.user_id,
+        br.shop_id,
+        br.registration_status,
+        br.business_name,
+        u.name AS owner_name,
+        u.email AS owner_email,
+        u.status AS owner_status,
+        bs.status AS shop_status,
+        ss.id AS subscription_id,
+        ss.status AS subscription_status
+      FROM barber_registrations br
+      INNER JOIN users u
+        ON u.id = br.user_id
+      INNER JOIN barber_shops bs
+        ON bs.id = br.shop_id
+      LEFT JOIN shop_subscriptions ss
+        ON ss.shop_id = br.shop_id
+      WHERE br.id = ?
+      LIMIT 1
+      `,
+      [registrationId]
+    );
+
+    if (registrations.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Barber registration not found",
+      });
+    }
+
+    const registration = registrations[0];
+
+    if (registration.registration_status !== "pending") {
+      return res.status(400).json({
+        success: false,
+        message: `Registration has already been ${registration.registration_status}`,
+      });
+    }
+
+    if (action === "approve") {
+      if (registration.subscription_status !== "active") {
+        return res.status(400).json({
+          success: false,
+          message: "Registration cannot be approved because subscription is not active",
+        });
+      }
+    }
+
+    await connection.beginTransaction();
+
+    if (action === "approve") {
+      await connection.query(
+        `
+        UPDATE barber_registrations
+        SET
+          registration_status = 'approved',
+          rejection_reason = NULL,
+          reviewed_by = ?,
+          reviewed_at = NOW()
+        WHERE id = ?
+        `,
+        [reviewerId, registrationId]
+      );
+
+      await connection.query(
+        `
+        UPDATE barber_shops
+        SET status = 'active'
+        WHERE id = ?
+        `,
+        [registration.shop_id]
+      );
+
+      await connection.query(
+        `
+        UPDATE users
+        SET status = 'active'
+        WHERE id = ?
+          AND role = 'owner'
+        `,
+        [registration.user_id]
+      );
+
+      await connection.commit();
+
+      return res.status(200).json({
+        success: true,
+        message: "Barber registration approved successfully",
+        data: {
+          registration: {
+            id: registration.id,
+            status: "approved",
+          },
+          owner: {
+            id: registration.user_id,
+            status: "active",
+          },
+          shop: {
+            id: registration.shop_id,
+            status: "active",
+          },
+          subscription: {
+            id: registration.subscription_id,
+            status: "active",
+          },
+          nextStep: "barber_login",
+        },
+      });
+    }
+
+    await connection.query(
+      `
+      UPDATE barber_registrations
+      SET
+        registration_status = 'rejected',
+        rejection_reason = ?,
+        reviewed_by = ?,
+        reviewed_at = NOW()
+      WHERE id = ?
+      `,
+      [rejectionReason, reviewerId, registrationId]
+    );
+
+    await connection.query(
+      `
+      UPDATE barber_shops
+      SET status = 'inactive'
+      WHERE id = ?
+      `,
+      [registration.shop_id]
+    );
+
+    await connection.query(
+      `
+      UPDATE users
+      SET status = 'inactive'
+      WHERE id = ?
+        AND role = 'owner'
+      `,
+      [registration.user_id]
+    );
+
+    await connection.query(
+      `
+      UPDATE shop_subscriptions
+      SET status = 'cancelled'
+      WHERE id = ?
+        AND status = 'active'
+      `,
+      [registration.subscription_id]
+    );
+
+    await connection.commit();
+
+    return res.status(200).json({
+      success: true,
+      message: "Barber registration rejected successfully",
+      data: {
+        registration: {
+          id: registration.id,
+          status: "rejected",
+          rejectionReason,
+        },
+        owner: {
+          id: registration.user_id,
+          status: "inactive",
+        },
+        shop: {
+          id: registration.shop_id,
+          status: "inactive",
+        },
+        nextStep: "registration_rejected",
+      },
+    });
+  } catch (error) {
+    try {
+      await connection.rollback();
+    } catch (rollbackError) {
+      console.error("Rollback error:", rollbackError);
+    }
+
+    console.error("Review barber registration error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to review barber registration",
+    });
+  } finally {
+    connection.release();
+  }
+};
+
+const getPendingBarberRegistrations = async (req, res) => {
+  try {
+    const [registrations] = await pool.query(`
+      SELECT
+        br.id,
+        br.user_id,
+        br.shop_id,
+        br.registration_status,
+        br.business_name,
+        br.registration_data,
+        br.add_ons,
+        br.created_at,
+
+        u.name AS owner_name,
+        u.email AS owner_email,
+        u.phone AS owner_phone,
+
+        bs.name AS shop_name,
+        bs.phone AS shop_phone,
+        bs.email AS shop_email,
+        bs.address,
+        bs.city,
+        bs.postal_code,
+        bs.canton,
+        bs.status AS shop_status,
+
+        ss.id AS subscription_id,
+        ss.status AS subscription_status,
+        ss.start_date,
+        ss.next_billing_date,
+
+        sp.id AS plan_id,
+        sp.name AS plan_name,
+        sp.monthly_price,
+        sp.currency,
+        sp.billing_interval
+
+      FROM barber_registrations br
+
+      INNER JOIN users u
+        ON u.id = br.user_id
+
+      INNER JOIN barber_shops bs
+        ON bs.id = br.shop_id
+
+      LEFT JOIN shop_subscriptions ss
+        ON ss.shop_id = br.shop_id
+
+      LEFT JOIN subscription_plans sp
+        ON sp.id = ss.plan_id
+
+      WHERE br.registration_status = 'pending'
+
+      ORDER BY br.created_at ASC
+    `);
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        registrations,
+      },
+    });
+  } catch (error) {
+    console.error(
+      "Get pending barber registrations error:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch pending barber registrations",
+    });
+  }
+};
+
+
+const updateShopFeaturedStatus = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    const shopId = req.params.id;
+
+    const {
+      isFeatured,
+      featuredUntil,
+      featuredPriority,
+    } = req.body;
+
+    if (typeof isFeatured !== "boolean") {
+      return res.status(400).json({
+        success: false,
+        message: "isFeatured must be true or false",
+      });
+    }
+
+    const [shops] = await connection.query(
+      `
+      SELECT
+        bs.id,
+        bs.name,
+        bs.status,
+        sp.status AS subscription_status,
+        plan.name AS plan_name,
+        plan.features
+      FROM barber_shops bs
+
+      LEFT JOIN shop_subscriptions sp
+        ON sp.shop_id = bs.id
+        AND sp.status = 'active'
+
+      LEFT JOIN subscription_plans plan
+        ON plan.id = sp.plan_id
+        AND plan.status = 'active'
+
+      WHERE bs.id = ?
+      LIMIT 1
+      `,
+      [shopId]
+    );
+
+    if (shops.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Barber shop not found",
+      });
+    }
+
+    const shop = shops[0];
+
+    if (isFeatured) {
+      if (shop.status !== "active") {
+        return res.status(400).json({
+          success: false,
+          message: "Only active barber shops can be featured",
+        });
+      }
+
+      if (shop.subscription_status !== "active") {
+        return res.status(400).json({
+          success: false,
+          message: "Shop must have an active subscription",
+        });
+      }
+
+      let features = shop.features;
+
+      if (typeof features === "string") {
+        try {
+          features = JSON.parse(features);
+        } catch (error) {
+          features = {};
+        }
+      }
+
+      if (!features || features.homepage_featured !== true) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Selected subscription plan does not include homepage featured listing",
+        });
+      }
+    }
+
+    const priority =
+      featuredPriority !== undefined
+        ? Number(featuredPriority)
+        : 0;
+
+    if (!Number.isInteger(priority) || priority < 0) {
+      return res.status(400).json({
+        success: false,
+        message: "featuredPriority must be a non-negative integer",
+      });
+    }
+
+    await connection.query(
+      `
+      UPDATE barber_shops
+      SET
+        is_featured = ?,
+        featured_until = ?,
+        featured_priority = ?
+      WHERE id = ?
+      `,
+      [
+        isFeatured ? 1 : 0,
+        isFeatured ? featuredUntil || null : null,
+        isFeatured ? priority : 0,
+        shopId,
+      ]
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: isFeatured
+        ? "Barber shop featured successfully"
+        : "Barber shop removed from featured listings",
+      data: {
+        shopId: Number(shopId),
+        isFeatured,
+        featuredUntil: isFeatured ? featuredUntil || null : null,
+        featuredPriority: isFeatured ? priority : 0,
+      },
+    });
+  } catch (error) {
+    console.error("Update shop featured status error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update featured status",
+    });
+  } finally {
+    connection.release();
+  }
+};
+
 module.exports = {
   getAllOwners,
   getOwnerById,
   updateOwnerStatus,
+  reviewBarberRegistration,
+  getPendingBarberRegistrations,
+  updateShopFeaturedStatus,
 };

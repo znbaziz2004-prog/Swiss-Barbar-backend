@@ -4,6 +4,9 @@ const {
   getAllOwners,
    getOwnerById,
    updateOwnerStatus,
+   reviewBarberRegistration,
+  getPendingBarberRegistrations,
+   updateShopFeaturedStatus,
 
 } = require("../controllers/adminOwnerController");
 
@@ -17,6 +20,13 @@ const router = express.Router();
  */
 
 // Get all owners
+
+router.get(
+  "/registrations/pending",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  getPendingBarberRegistrations
+);
 
 router.get(
   "/:id",
@@ -36,6 +46,20 @@ router.patch(
   authMiddleware,
   authorizeRoles("super_admin"),
   updateOwnerStatus
+);
+
+router.patch(
+  "/registrations/:id/review",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  reviewBarberRegistration
+);
+
+router.patch(
+  "/shops/:id/featured",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  updateShopFeaturedStatus
 );
 
 router.get(

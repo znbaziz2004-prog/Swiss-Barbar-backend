@@ -1,4 +1,13 @@
 const { pool } = require("../config/db");
+const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
+
+const {
+  verifyBookingToken,
+  consumeBookingToken,
+} = require("../services/customerOtpService");
+
+const { sendEmail } = require("../services/emailService");
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +82,7 @@ const createAppointment = async (req, res) => {
 
   try {
     const {
+      shopId: bodyShopId,
       branchId,
       staffId,
       serviceId,
@@ -82,12 +92,19 @@ const createAppointment = async (req, res) => {
       customerPhone,
       customerEmail,
       customerNote,
+      bookingVerificationToken,
     } = req.body;
 
-    // IMPORTANT:
-    // Shop ID comes from authenticated shop access middleware.
-    // It must NOT come from the client request body.
-    const shopId = req.shopId;
+    /*
+     * Public booking:
+     * - Authenticated/admin requests may have req.shopId.
+     * - Public booking uses shopId from request body.
+     *
+     * The booking verification token is also tied to this shopId,
+     * so the token cannot be used for another shop.
+     */
+
+    const shopId = req.shopId || Number(bodyShopId);
 
     if (
       !shopId ||
@@ -97,12 +114,14 @@ const createAppointment = async (req, res) => {
       !appointmentDate ||
       !startTime ||
       !customerName ||
-      !customerPhone
+      !customerPhone ||
+      !customerEmail ||
+      !bookingVerificationToken
     ) {
       return res.status(400).json({
         success: false,
         message:
-          "shopId, branchId, staffId, serviceId, appointmentDate, startTime, customerName and customerPhone are required",
+          "shopId, branchId, staffId, serviceId, appointmentDate, startTime, customerName, customerPhone, customerEmail and bookingVerificationToken are required",
       });
     }
 
@@ -111,19 +130,41 @@ const createAppointment = async (req, res) => {
     await connection.beginTransaction();
 
     /*
+     * 0. Verify booking token
+     */
+
+    try {
+      await verifyBookingToken({
+        token: bookingVerificationToken,
+        email: customerEmail,
+        shopId,
+        connection,
+      });
+    } catch (verificationError) {
+      await connection.rollback();
+
+      return res.status(400).json({
+        success: false,
+        message:
+          verificationError.message ||
+          "Email verification is required before booking",
+      });
+    }
+
+    /*
      * 1. Validate shop
      */
 
     const [shops] = await connection.query(
       `
-      SELECT
-        id,
-        name,
-        status,
-        currency
-      FROM barber_shops
-      WHERE id = ?
-      LIMIT 1
+        SELECT
+          id,
+          name,
+          status,
+          currency
+        FROM barber_shops
+        WHERE id = ?
+        LIMIT 1
       `,
       [shopId]
     );
@@ -154,14 +195,14 @@ const createAppointment = async (req, res) => {
 
     const [branches] = await connection.query(
       `
-      SELECT
-        id,
-        name,
-        status
-      FROM branches
-      WHERE id = ?
-      AND shop_id = ?
-      LIMIT 1
+        SELECT
+          id,
+          name,
+          status
+        FROM branches
+        WHERE id = ?
+        AND shop_id = ?
+        LIMIT 1
       `,
       [branchId, shopId]
     );
@@ -190,15 +231,15 @@ const createAppointment = async (req, res) => {
 
     const [staffRows] = await connection.query(
       `
-      SELECT
-        id,
-        display_name,
-        status
-      FROM staff
-      WHERE id = ?
-      AND shop_id = ?
-      AND branch_id = ?
-      LIMIT 1
+        SELECT
+          id,
+          display_name,
+          status
+        FROM staff
+        WHERE id = ?
+        AND shop_id = ?
+        AND branch_id = ?
+        LIMIT 1
       `,
       [staffId, shopId, branchId]
     );
@@ -229,17 +270,17 @@ const createAppointment = async (req, res) => {
 
     const [services] = await connection.query(
       `
-      SELECT
-        id,
-        name,
-        duration_minutes,
-        price,
-        currency,
-        status
-      FROM services
-      WHERE id = ?
-      AND shop_id = ?
-      LIMIT 1
+        SELECT
+          id,
+          name,
+          duration_minutes,
+          price,
+          currency,
+          status
+        FROM services
+        WHERE id = ?
+        AND shop_id = ?
+        LIMIT 1
       `,
       [serviceId, shopId]
     );
@@ -270,11 +311,11 @@ const createAppointment = async (req, res) => {
 
     const [staffServices] = await connection.query(
       `
-      SELECT 1
-      FROM staff_services
-      WHERE staff_id = ?
-      AND service_id = ?
-      LIMIT 1
+        SELECT 1
+        FROM staff_services
+        WHERE staff_id = ?
+        AND service_id = ?
+        LIMIT 1
       `,
       [staffId, serviceId]
     );
@@ -304,10 +345,6 @@ const createAppointment = async (req, res) => {
         message: "appointmentDate must be YYYY-MM-DD",
       });
     }
-
-    /*
-     * Prevent booking in the past
-     */
 
     const todayDate = getTodayDate();
 
@@ -370,12 +407,13 @@ const createAppointment = async (req, res) => {
      * 8. Check working hours
      */
 
-    const [dayRows] = await connection.query(
-      `
-      SELECT DAYOFWEEK(?) - 1 AS day_of_week
-      `,
-      [appointmentDate]
-    );
+    const [dayRows] =
+      await connection.query(
+        `
+          SELECT DAYOFWEEK(?) - 1 AS day_of_week
+        `,
+        [appointmentDate]
+      );
 
     const dayOfWeek =
       Number(dayRows[0].day_of_week);
@@ -383,16 +421,16 @@ const createAppointment = async (req, res) => {
     const [workingHours] =
       await connection.query(
         `
-        SELECT
-          start_time,
-          end_time
-        FROM working_hours
-        WHERE shop_id = ?
-        AND branch_id = ?
-        AND staff_id = ?
-        AND day_of_week = ?
-        AND is_available = 1
-        ORDER BY start_time ASC
+          SELECT
+            start_time,
+            end_time
+          FROM working_hours
+          WHERE shop_id = ?
+          AND branch_id = ?
+          AND staff_id = ?
+          AND day_of_week = ?
+          AND is_available = 1
+          ORDER BY start_time ASC
         `,
         [
           shopId,
@@ -437,27 +475,27 @@ const createAppointment = async (req, res) => {
     const [blockedTimes] =
       await connection.query(
         `
-        SELECT
-          DATE_FORMAT(
-            start_datetime,
-            '%Y-%m-%d %H:%i:%s'
-          ) AS start_datetime_local,
+          SELECT
+            DATE_FORMAT(
+              start_datetime,
+              '%Y-%m-%d %H:%i:%s'
+            ) AS start_datetime_local,
 
-          DATE_FORMAT(
-            end_datetime,
-            '%Y-%m-%d %H:%i:%s'
-          ) AS end_datetime_local
+            DATE_FORMAT(
+              end_datetime,
+              '%Y-%m-%d %H:%i:%s'
+            ) AS end_datetime_local
 
-        FROM blocked_times
+          FROM blocked_times
 
-        WHERE shop_id = ?
-        AND branch_id = ?
-        AND staff_id = ?
+          WHERE shop_id = ?
+          AND branch_id = ?
+          AND staff_id = ?
 
-        AND DATE(start_datetime) <= ?
-        AND DATE(end_datetime) >= ?
+          AND DATE(start_datetime) <= ?
+          AND DATE(end_datetime) >= ?
 
-        ORDER BY start_datetime ASC
+          ORDER BY start_datetime ASC
         `,
         [
           shopId,
@@ -522,34 +560,31 @@ const createAppointment = async (req, res) => {
 
     /*
      * 10. Re-check existing appointments
-     *
-     * Only pending and confirmed appointments
-     * block a time slot.
      */
 
     const [existingAppointments] =
       await connection.query(
         `
-        SELECT
-          id,
-          start_time,
-          end_time,
-          status
-        FROM appointments
+          SELECT
+            id,
+            start_time,
+            end_time,
+            status
+          FROM appointments
 
-        WHERE shop_id = ?
-        AND branch_id = ?
-        AND staff_id = ?
-        AND appointment_date = ?
+          WHERE shop_id = ?
+          AND branch_id = ?
+          AND staff_id = ?
+          AND appointment_date = ?
 
-        AND status IN (
-          'pending',
-          'confirmed'
-        )
+          AND status IN (
+            'pending',
+            'confirmed'
+          )
 
-        ORDER BY start_time ASC
+          ORDER BY start_time ASC
 
-        FOR UPDATE
+          FOR UPDATE
         `,
         [
           shopId,
@@ -595,63 +630,165 @@ const createAppointment = async (req, res) => {
      * 11. Find or create customer
      */
 
-    let customerId;
+    /*
+ * 11. Find or create customer
+ */
 
-    const [existingCustomers] =
-      await connection.query(
-        `
-        SELECT id
-        FROM customers
-        WHERE shop_id = ?
-        AND phone = ?
-        LIMIT 1
-        `,
-        [shopId, customerPhone]
+let customerId;
+let credentialsEmailData = null;
+
+const normalizedEmail =
+  customerEmail.trim().toLowerCase();
+
+const [existingCustomers] =
+  await connection.query(
+    `
+      SELECT
+        id,
+        password_hash,
+        email_verified_at,
+        dashboard_enabled,
+        credentials_sent_at
+      FROM customers
+      WHERE shop_id = ?
+      AND email = ?
+      LIMIT 1
+    `,
+    [
+      shopId,
+      normalizedEmail,
+    ]
+  );
+
+if (existingCustomers.length > 0) {
+  const existingCustomer =
+    existingCustomers[0];
+
+  customerId =
+    existingCustomer.id;
+
+  /*
+   * Update customer basic information
+   */
+  await connection.query(
+    `
+      UPDATE customers
+      SET
+        name = ?,
+        phone = ?,
+        email_verified_at =
+          COALESCE(
+            email_verified_at,
+            CURRENT_TIMESTAMP
+          )
+      WHERE id = ?
+    `,
+    [
+      customerName,
+      customerPhone,
+      customerId,
+    ]
+  );
+
+  /*
+   * Enable dashboard and create credentials
+   * if customer does not have usable dashboard access.
+   */
+  if (
+    !existingCustomer.password_hash ||
+    !existingCustomer.dashboard_enabled
+  ) {
+    const temporaryPassword =
+      crypto
+        .randomBytes(9)
+        .toString("base64url")
+        .slice(0, 12);
+
+    const passwordHash =
+      await bcrypt.hash(
+        temporaryPassword,
+        12
       );
 
-    if (existingCustomers.length > 0) {
-      customerId =
-        existingCustomers[0].id;
-
-      await connection.query(
-        `
+    await connection.query(
+      `
         UPDATE customers
         SET
-          name = ?,
-          email = ?
+          password_hash = ?,
+          dashboard_enabled = 1,
+          credentials_sent_at = CURRENT_TIMESTAMP
         WHERE id = ?
-        `,
-        [
-          customerName,
-          customerEmail || null,
-          customerId,
-        ]
-      );
-    } else {
-      const [customerResult] =
-        await connection.query(
-          `
-          INSERT INTO customers
-          (
-            shop_id,
-            name,
-            phone,
-            email
-          )
-          VALUES (?, ?, ?, ?)
-          `,
-          [
-            shopId,
-            customerName,
-            customerPhone,
-            customerEmail || null,
-          ]
-        );
+      `,
+      [
+        passwordHash,
+        customerId,
+      ]
+    );
 
-      customerId =
-        customerResult.insertId;
-    }
+    credentialsEmailData = {
+      email: normalizedEmail,
+      password: temporaryPassword,
+    };
+  }
+} else {
+  /*
+   * New customer
+   */
 
+  const temporaryPassword =
+    crypto
+      .randomBytes(9)
+      .toString("base64url")
+      .slice(0, 12);
+
+  const passwordHash =
+    await bcrypt.hash(
+      temporaryPassword,
+      12
+    );
+
+  const [customerResult] =
+    await connection.query(
+      `
+        INSERT INTO customers
+        (
+          shop_id,
+          name,
+          phone,
+          email,
+          password_hash,
+          email_verified_at,
+          dashboard_enabled,
+          credentials_sent_at
+        )
+        VALUES (
+          ?,
+          ?,
+          ?,
+          ?,
+          ?,
+          CURRENT_TIMESTAMP,
+          1,
+          CURRENT_TIMESTAMP
+        )
+      `,
+      [
+        shopId,
+        customerName,
+        customerPhone,
+        normalizedEmail,
+        passwordHash,
+      ]
+    );
+
+  customerId =
+    customerResult.insertId;
+
+  credentialsEmailData = {
+    email: normalizedEmail,
+    password: temporaryPassword,
+  };
+}
     /*
      * 12. Create appointment
      */
@@ -659,34 +796,34 @@ const createAppointment = async (req, res) => {
     const [appointmentResult] =
       await connection.query(
         `
-        INSERT INTO appointments
-        (
-          shop_id,
-          branch_id,
-          customer_id,
-          staff_id,
-          appointment_date,
-          start_time,
-          end_time,
-          status,
-          total_amount,
-          currency,
-          customer_note
-        )
-        VALUES
-        (
-          ?,
-          ?,
-          ?,
-          ?,
-          ?,
-          ?,
-          ?,
-          'pending',
-          ?,
-          ?,
-          ?
-        )
+          INSERT INTO appointments
+          (
+            shop_id,
+            branch_id,
+            customer_id,
+            staff_id,
+            appointment_date,
+            start_time,
+            end_time,
+            status,
+            total_amount,
+            currency,
+            customer_note
+          )
+          VALUES
+          (
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            ?,
+            'pending',
+            ?,
+            ?,
+            ?
+          )
         `,
         [
           shopId,
@@ -711,15 +848,15 @@ const createAppointment = async (req, res) => {
 
     await connection.query(
       `
-      INSERT INTO appointment_services
-      (
-        appointment_id,
-        service_id,
-        service_name,
-        duration_minutes,
-        price
-      )
-      VALUES (?, ?, ?, ?, ?)
+        INSERT INTO appointment_services
+        (
+          appointment_id,
+          service_id,
+          service_name,
+          duration_minutes,
+          price
+        )
+        VALUES (?, ?, ?, ?, ?)
       `,
       [
         appointmentId,
@@ -736,16 +873,15 @@ const createAppointment = async (req, res) => {
 
     let notificationId = null;
 
-    if (customerEmail) {
-      const notificationSubject =
-        "Your appointment has been booked";
+    const notificationSubject =
+      "Your appointment has been booked";
 
-      const notificationMessage =
-        `Hello ${customerName}, your appointment at ${shop.name} has been booked for ${appointmentDate} at ${normalizedStartTime}. Service: ${service.name}. Duration: ${service.duration_minutes} minutes. Price: ${service.currency} ${service.price}.`;
+    const notificationMessage =
+      `Hello ${customerName}, your appointment at ${shop.name} has been booked for ${appointmentDate} at ${normalizedStartTime}. Service: ${service.name}. Duration: ${service.duration_minutes} minutes. Price: ${service.currency} ${service.price}.`;
 
-      const [notificationResult] =
-        await connection.query(
-          `
+    const [notificationResult] =
+      await connection.query(
+        `
           INSERT INTO notifications
           (
             user_id,
@@ -768,24 +904,256 @@ const createAppointment = async (req, res) => {
             ?,
             'pending'
           )
-          `,
-          [
-            appointmentId,
-            customerEmail,
-            notificationSubject,
-            notificationMessage,
-          ]
-        );
+        `,
+        [
+          appointmentId,
+          normalizedEmail,
+          notificationSubject,
+          notificationMessage,
+        ]
+      );
 
-      notificationId =
-        notificationResult.insertId;
-    }
+    notificationId =
+      notificationResult.insertId;
+
+      /*
+ * 14.1 Prepare dashboard credentials email
+ */
+
+let credentialsEmailNotificationId = null;
+
+if (credentialsEmailData) {
+  const credentialsSubject =
+    "Swiss Barber - Your Customer Dashboard Login";
+
+  const credentialsMessage =
+    `Hello ${customerName}, your Swiss Barber customer dashboard has been created.`;
+
+  const [credentialsNotificationResult] =
+    await connection.query(
+      `
+        INSERT INTO notifications
+        (
+          user_id,
+          appointment_id,
+          type,
+          channel,
+          recipient,
+          subject,
+          message,
+          status
+        )
+        VALUES
+        (
+          NULL,
+          ?,
+          'booking_confirmation',
+          'email',
+          ?,
+          ?,
+          ?,
+          'pending'
+        )
+      `,
+      [
+        appointmentId,
+        credentialsEmailData.email,
+        credentialsSubject,
+        credentialsMessage,
+      ]
+    );
+
+  credentialsEmailNotificationId =
+    credentialsNotificationResult.insertId;
+}
 
     /*
-     * 15. Commit
+     * 15. Consume booking verification token
+     */
+
+    await consumeBookingToken({
+      token: bookingVerificationToken,
+      email: normalizedEmail,
+      shopId,
+      connection,
+    });
+
+    /*
+     * 16. Commit
      */
 
     await connection.commit();
+        /*
+     * 15.1 Send appointment confirmation email
+     */
+
+    try {
+      await sendEmail({
+        to: normalizedEmail,
+        subject: notificationSubject,
+        html: `
+          <div style="
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            color: #222;
+          ">
+            <h2>Swiss Barber</h2>
+
+            <p>Hello ${customerName},</p>
+
+            <p>
+              Your appointment has been successfully booked.
+            </p>
+
+            <p>
+              <strong>Date:</strong> ${appointmentDate}<br>
+              <strong>Time:</strong> ${normalizedStartTime}<br>
+              <strong>Service:</strong> ${service.name}<br>
+              <strong>Duration:</strong> ${service.duration_minutes} minutes<br>
+              <strong>Price:</strong> ${service.currency} ${service.price}
+            </p>
+
+            <p>
+              Thank you for choosing Swiss Barber.
+            </p>
+
+            <p>
+              Swiss Barber Team
+            </p>
+          </div>
+        `,
+      });
+
+      await pool.execute(
+        `
+          UPDATE notifications
+          SET status = 'sent'
+          WHERE id = ?
+        `,
+        [notificationId]
+      );
+
+      console.log(
+        "Appointment confirmation email sent successfully"
+      );
+    } catch (emailError) {
+      console.error(
+        "Appointment confirmation email failed:",
+        emailError.message
+      );
+
+      await pool.execute(
+        `
+          UPDATE notifications
+          SET status = 'failed'
+          WHERE id = ?
+        `,
+        [notificationId]
+      );
+    }
+
+    /*
+     * 15.2 Send customer dashboard credentials email
+     */
+
+    if (
+      credentialsEmailData &&
+      credentialsEmailNotificationId
+    ) {
+      try {
+        const dashboardUrl =
+          process.env.CUSTOMER_DASHBOARD_URL ||
+          "http://localhost:5173/customer/login";
+
+        await sendEmail({
+          to: credentialsEmailData.email,
+          subject:
+            "Swiss Barber - Your Customer Dashboard Login",
+          html: `
+            <div style="
+              font-family: Arial, sans-serif;
+              max-width: 600px;
+              margin: 0 auto;
+              padding: 30px;
+              color: #222;
+            ">
+              <h2>Swiss Barber</h2>
+
+              <p>Hello ${customerName},</p>
+
+              <p>
+                Your Swiss Barber customer dashboard account
+                has been created successfully.
+              </p>
+
+              <h3>Your Login Credentials</h3>
+
+              <div style="
+                background: #f5f5f5;
+                padding: 20px;
+                border-radius: 8px;
+                margin: 20px 0;
+              ">
+                <p>
+                  <strong>Email:</strong>
+                  ${credentialsEmailData.email}
+                </p>
+
+                <p>
+                  <strong>Password:</strong>
+                  ${credentialsEmailData.password}
+                </p>
+              </div>
+
+              <p>
+                <strong>Dashboard:</strong>
+                <a href="${dashboardUrl}">
+                  Login to Customer Dashboard
+                </a>
+              </p>
+
+              <p>
+                From your dashboard you can view your bookings
+                and manage your customer information.
+              </p>
+
+              <p>
+                Swiss Barber Team
+              </p>
+            </div>
+          `,
+        });
+
+        await pool.execute(
+          `
+            UPDATE notifications
+            SET status = 'sent'
+            WHERE id = ?
+          `,
+          [credentialsEmailNotificationId]
+        );
+
+        console.log(
+          "Customer credentials email sent successfully"
+        );
+      } catch (emailError) {
+        console.error(
+          "Customer credentials email failed:",
+          emailError.message
+        );
+
+        await pool.execute(
+          `
+            UPDATE notifications
+            SET status = 'failed'
+            WHERE id = ?
+          `,
+          [credentialsEmailNotificationId]
+        );
+      }
+    }
 
     return res.status(201).json({
       success: true,
@@ -807,7 +1175,7 @@ const createAppointment = async (req, res) => {
           id: customerId,
           name: customerName,
           phone: customerPhone,
-          email: customerEmail || null,
+          email: normalizedEmail,
         },
 
         shop: {
@@ -834,15 +1202,13 @@ const createAppointment = async (req, res) => {
           currency: service.currency,
         },
 
-        notification: notificationId
-          ? {
-              id: notificationId,
-              type: "booking_confirmation",
-              channel: "email",
-              status: "pending",
-              recipient: customerEmail,
-            }
-          : null,
+        notification: {
+          id: notificationId,
+          type: "booking_confirmation",
+          channel: "email",
+          status: "pending",
+          recipient: normalizedEmail,
+        },
       },
     });
   } catch (error) {
@@ -889,7 +1255,6 @@ const getAppointments = async (req, res) => {
       status,
     } = req.query;
 
-    // Shop comes from authenticated access middleware.
     const shopId = req.shopId;
 
     if (!shopId) {
@@ -940,6 +1305,15 @@ const getAppointments = async (req, res) => {
     `;
 
     const params = [shopId];
+
+    /*
+     * BARBER ACCESS:
+     * Barber can only see appointments assigned to himself.
+     */
+    if (req.user.role === "barber") {
+      query += ` AND a.staff_id = ?`;
+      params.push(req.staffId);
+    }
 
     if (branchId) {
       query += ` AND a.branch_id = ?`;
@@ -1017,7 +1391,6 @@ const getAppointmentById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Shop comes from authenticated access middleware.
     const shopId = req.shopId;
 
     if (!shopId) {
@@ -1027,51 +1400,64 @@ const getAppointmentById = async (req, res) => {
       });
     }
 
+    let query = `
+      SELECT
+        a.id,
+        a.shop_id,
+        a.branch_id,
+        a.customer_id,
+        a.staff_id,
+        a.appointment_date,
+        a.start_time,
+        a.end_time,
+        a.status,
+        a.total_amount,
+        a.currency,
+        a.customer_note,
+        a.internal_note,
+        a.created_at,
+        a.updated_at,
+
+        b.name AS branch_name,
+
+        st.display_name AS staff_name,
+
+        c.name AS customer_name,
+        c.phone AS customer_phone,
+        c.email AS customer_email
+
+      FROM appointments a
+
+      INNER JOIN branches b
+        ON b.id = a.branch_id
+
+      INNER JOIN staff st
+        ON st.id = a.staff_id
+
+      INNER JOIN customers c
+        ON c.id = a.customer_id
+
+      WHERE a.id = ?
+      AND a.shop_id = ?
+    `;
+
+    const params = [id, shopId];
+
+    /*
+     * BARBER ACCESS:
+     * Barber can only open his own appointment.
+     */
+    if (req.user.role === "barber") {
+      query += ` AND a.staff_id = ?`;
+      params.push(req.staffId);
+    }
+
+    query += ` LIMIT 1`;
+
     const [appointments] =
       await pool.query(
-        `
-        SELECT
-          a.id,
-          a.shop_id,
-          a.branch_id,
-          a.customer_id,
-          a.staff_id,
-          a.appointment_date,
-          a.start_time,
-          a.end_time,
-          a.status,
-          a.total_amount,
-          a.currency,
-          a.customer_note,
-          a.internal_note,
-          a.created_at,
-          a.updated_at,
-
-          b.name AS branch_name,
-
-          st.display_name AS staff_name,
-
-          c.name AS customer_name,
-          c.phone AS customer_phone,
-          c.email AS customer_email
-
-        FROM appointments a
-
-        INNER JOIN branches b
-          ON b.id = a.branch_id
-
-        INNER JOIN staff st
-          ON st.id = a.staff_id
-
-        INNER JOIN customers c
-          ON c.id = a.customer_id
-
-        WHERE a.id = ?
-        AND a.shop_id = ?
-
-        LIMIT 1
-        `,
-        [id, shopId]
+        query,
+        params
       );
 
     if (appointments.length === 0) {
@@ -1094,15 +1480,15 @@ const getAppointmentById = async (req, res) => {
     const [services] =
       await pool.query(
         `
-        SELECT
-          id,
-          service_id,
-          service_name,
-          duration_minutes,
-          price
-        FROM appointment_services
-        WHERE appointment_id = ?
-        ORDER BY id ASC
+          SELECT
+            id,
+            service_id,
+            service_name,
+            duration_minutes,
+            price
+          FROM appointment_services
+          WHERE appointment_id = ?
+          ORDER BY id ASC
         `,
         [id]
       );
@@ -1182,49 +1568,63 @@ const updateAppointmentStatus = async (req, res) => {
       });
     }
 
+    let query = `
+      SELECT
+        a.id,
+        a.shop_id,
+        a.staff_id,
+        a.status,
+        a.appointment_date,
+        a.start_time,
+        a.end_time,
+        a.total_amount,
+        a.currency,
+
+        c.name AS customer_name,
+        c.email AS customer_email,
+
+        s.name AS service_name,
+
+        bs.name AS shop_name
+
+      FROM appointments a
+
+      LEFT JOIN customers c
+        ON c.id = a.customer_id
+
+      LEFT JOIN appointment_services aps
+        ON aps.appointment_id = a.id
+
+      LEFT JOIN services s
+        ON s.id = aps.service_id
+
+      LEFT JOIN barber_shops bs
+        ON bs.id = a.shop_id
+
+      WHERE a.id = ?
+      AND a.shop_id = ?
+    `;
+
+    const queryParams = [
+      appointmentId,
+      shopId,
+    ];
+
+    /*
+     * BARBER ACCESS:
+     * Barber can only update his own appointment.
+     */
+    if (req.user.role === "barber") {
+      query += ` AND a.staff_id = ?`;
+      queryParams.push(req.staffId);
+    }
+
+    query += ` LIMIT 1`;
+
     const [appointments] =
       await pool.query(
-        `
-        SELECT
-          a.id,
-          a.shop_id,
-          a.status,
-          a.appointment_date,
-          a.start_time,
-          a.end_time,
-          a.total_amount,
-          a.currency,
-
-          c.name AS customer_name,
-          c.email AS customer_email,
-
-          s.name AS service_name,
-
-          bs.name AS shop_name
-
-        FROM appointments a
-
-        LEFT JOIN customers c
-          ON c.id = a.customer_id
-
-        LEFT JOIN appointment_services aps
-          ON aps.appointment_id = a.id
-
-        LEFT JOIN services s
-          ON s.id = aps.service_id
-
-        LEFT JOIN barber_shops bs
-          ON bs.id = a.shop_id
-
-        WHERE a.id = ?
-        AND a.shop_id = ?
-
-        LIMIT 1
-        `,
-        [
-          appointmentId,
-          shopId,
-        ]
+        query,
+        queryParams
       );
 
     if (appointments.length === 0) {
@@ -1294,18 +1694,31 @@ const updateAppointmentStatus = async (req, res) => {
       });
     }
 
-    await pool.query(
-      `
+    let updateQuery = `
       UPDATE appointments
       SET status = ?
       WHERE id = ?
       AND shop_id = ?
-      `,
-      [
-        status,
-        appointmentId,
-        shopId,
-      ]
+    `;
+
+    const updateParams = [
+      status,
+      appointmentId,
+      shopId,
+    ];
+
+    /*
+     * BARBER ACCESS:
+     * Prevent barber from updating another barber's appointment.
+     */
+    if (req.user.role === "barber") {
+      updateQuery += ` AND staff_id = ?`;
+      updateParams.push(req.staffId);
+    }
+
+    await pool.query(
+      updateQuery,
+      updateParams
     );
 
     /*
@@ -1318,17 +1731,17 @@ const updateAppointmentStatus = async (req, res) => {
     ) {
       await pool.query(
         `
-        INSERT INTO notifications (
-          user_id,
-          appointment_id,
-          type,
-          channel,
-          recipient,
-          subject,
-          message,
-          status
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO notifications (
+            user_id,
+            appointment_id,
+            type,
+            channel,
+            recipient,
+            subject,
+            message,
+            status
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `,
         [
           null,
@@ -1355,17 +1768,17 @@ const updateAppointmentStatus = async (req, res) => {
     ) {
       await pool.query(
         `
-        INSERT INTO notifications (
-          user_id,
-          appointment_id,
-          type,
-          channel,
-          recipient,
-          subject,
-          message,
-          status
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO notifications (
+            user_id,
+            appointment_id,
+            type,
+            channel,
+            recipient,
+            subject,
+            message,
+            status
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `,
         [
           null,
@@ -1386,33 +1799,46 @@ const updateAppointmentStatus = async (req, res) => {
      * Get updated appointment
      */
 
+    let updatedQuery = `
+      SELECT
+        a.id,
+        a.shop_id,
+        a.branch_id,
+        a.staff_id,
+        a.customer_id,
+        a.appointment_date,
+        a.start_time,
+        a.end_time,
+        a.status,
+        a.total_amount,
+        a.currency
+
+      FROM appointments a
+
+      WHERE a.id = ?
+      AND a.shop_id = ?
+    `;
+
+    const updatedParams = [
+      appointmentId,
+      shopId,
+    ];
+
+    /*
+     * BARBER ACCESS:
+     * Only return his own updated appointment.
+     */
+    if (req.user.role === "barber") {
+      updatedQuery += ` AND a.staff_id = ?`;
+      updatedParams.push(req.staffId);
+    }
+
+    updatedQuery += ` LIMIT 1`;
+
     const [updatedAppointments] =
       await pool.query(
-        `
-        SELECT
-          a.id,
-          a.shop_id,
-          a.branch_id,
-          a.staff_id,
-          a.customer_id,
-          a.appointment_date,
-          a.start_time,
-          a.end_time,
-          a.status,
-          a.total_amount,
-          a.currency
-
-        FROM appointments a
-
-        WHERE a.id = ?
-        AND a.shop_id = ?
-
-        LIMIT 1
-        `,
-        [
-          appointmentId,
-          shopId,
-        ]
+        updatedQuery,
+        updatedParams
       );
 
     return res.json({
@@ -1463,8 +1889,6 @@ const rescheduleAppointment = async (req, res) => {
       startTime,
     } = req.body;
 
-    // IMPORTANT:
-    // Shop ID comes from authenticated shop access middleware.
     const shopId = req.shopId;
 
     if (
@@ -1496,11 +1920,8 @@ const rescheduleAppointment = async (req, res) => {
       });
     }
 
-    /*
-     * Prevent rescheduling to a past date
-     */
-
-    const todayDate = getTodayDate();
+    const todayDate =
+      getTodayDate();
 
     if (appointmentDate < todayDate) {
       return res.status(400).json({
@@ -1557,26 +1978,45 @@ const rescheduleAppointment = async (req, res) => {
      * 1. Get existing appointment
      */
 
+    let appointmentQuery = `
+      SELECT
+        id,
+        shop_id,
+        branch_id,
+        customer_id,
+        staff_id,
+        appointment_date,
+        start_time,
+        end_time,
+        status
+      FROM appointments
+      WHERE id = ?
+      AND shop_id = ?
+    `;
+
+    const appointmentParams = [
+      id,
+      shopId,
+    ];
+
+    /*
+     * BARBER ACCESS:
+     * Barber can only reschedule his own appointment.
+     */
+    if (req.user.role === "barber") {
+      appointmentQuery += ` AND staff_id = ?`;
+      appointmentParams.push(req.staffId);
+    }
+
+    appointmentQuery += `
+      LIMIT 1
+      FOR UPDATE
+    `;
+
     const [appointments] =
       await connection.query(
-        `
-        SELECT
-          id,
-          shop_id,
-          branch_id,
-          customer_id,
-          staff_id,
-          appointment_date,
-          start_time,
-          end_time,
-          status
-        FROM appointments
-        WHERE id = ?
-        AND shop_id = ?
-        LIMIT 1
-        FOR UPDATE
-        `,
-        [id, shopId]
+        appointmentQuery,
+        appointmentParams
       );
 
     if (appointments.length === 0) {
@@ -1622,12 +2062,12 @@ const rescheduleAppointment = async (req, res) => {
     const [appointmentServices] =
       await connection.query(
         `
-        SELECT
-          service_id,
-          duration_minutes
-        FROM appointment_services
-        WHERE appointment_id = ?
-        ORDER BY id ASC
+          SELECT
+            service_id,
+            duration_minutes
+          FROM appointment_services
+          WHERE appointment_id = ?
+          ORDER BY id ASC
         `,
         [id]
       );
@@ -1675,8 +2115,8 @@ const rescheduleAppointment = async (req, res) => {
     const [dayRows] =
       await connection.query(
         `
-        SELECT
-          DAYOFWEEK(?) - 1 AS day_of_week
+          SELECT
+            DAYOFWEEK(?) - 1 AS day_of_week
         `,
         [appointmentDate]
       );
@@ -1689,16 +2129,16 @@ const rescheduleAppointment = async (req, res) => {
     const [workingHours] =
       await connection.query(
         `
-        SELECT
-          start_time,
-          end_time
-        FROM working_hours
-        WHERE shop_id = ?
-        AND branch_id = ?
-        AND staff_id = ?
-        AND day_of_week = ?
-        AND is_available = 1
-        ORDER BY start_time ASC
+          SELECT
+            start_time,
+            end_time
+          FROM working_hours
+          WHERE shop_id = ?
+          AND branch_id = ?
+          AND staff_id = ?
+          AND day_of_week = ?
+          AND is_available = 1
+          ORDER BY start_time ASC
         `,
         [
           appointment.shop_id,
@@ -1745,27 +2185,27 @@ const rescheduleAppointment = async (req, res) => {
     const [blockedTimes] =
       await connection.query(
         `
-        SELECT
-          DATE_FORMAT(
-            start_datetime,
-            '%Y-%m-%d %H:%i:%s'
-          ) AS start_datetime_local,
+          SELECT
+            DATE_FORMAT(
+              start_datetime,
+              '%Y-%m-%d %H:%i:%s'
+            ) AS start_datetime_local,
 
-          DATE_FORMAT(
-            end_datetime,
-            '%Y-%m-%d %H:%i:%s'
-          ) AS end_datetime_local
+            DATE_FORMAT(
+              end_datetime,
+              '%Y-%m-%d %H:%i:%s'
+            ) AS end_datetime_local
 
-        FROM blocked_times
+          FROM blocked_times
 
-        WHERE shop_id = ?
-        AND branch_id = ?
-        AND staff_id = ?
+          WHERE shop_id = ?
+          AND branch_id = ?
+          AND staff_id = ?
 
-        AND DATE(start_datetime) <= ?
-        AND DATE(end_datetime) >= ?
+          AND DATE(start_datetime) <= ?
+          AND DATE(end_datetime) >= ?
 
-        ORDER BY start_datetime ASC
+          ORDER BY start_datetime ASC
         `,
         [
           appointment.shop_id,
@@ -1841,28 +2281,28 @@ const rescheduleAppointment = async (req, res) => {
     const [existingAppointments] =
       await connection.query(
         `
-        SELECT
-          id,
-          start_time,
-          end_time,
-          status
-        FROM appointments
+          SELECT
+            id,
+            start_time,
+            end_time,
+            status
+          FROM appointments
 
-        WHERE shop_id = ?
-        AND branch_id = ?
-        AND staff_id = ?
-        AND appointment_date = ?
+          WHERE shop_id = ?
+          AND branch_id = ?
+          AND staff_id = ?
+          AND appointment_date = ?
 
-        AND id != ?
+          AND id != ?
 
-        AND status IN (
-          'pending',
-          'confirmed'
-        )
+          AND status IN (
+            'pending',
+            'confirmed'
+          )
 
-        ORDER BY start_time ASC
+          ORDER BY start_time ASC
 
-        FOR UPDATE
+          FOR UPDATE
         `,
         [
           appointment.shop_id,
@@ -1909,8 +2349,7 @@ const rescheduleAppointment = async (req, res) => {
      * 6. Update appointment
      */
 
-    await connection.query(
-      `
+    let updateQuery = `
       UPDATE appointments
       SET
         appointment_date = ?,
@@ -1918,14 +2357,28 @@ const rescheduleAppointment = async (req, res) => {
         end_time = ?
       WHERE id = ?
       AND shop_id = ?
-      `,
-      [
-        appointmentDate,
-        normalizedStartTime,
-        endTime,
-        id,
-        shopId,
-      ]
+    `;
+
+    const updateParams = [
+      appointmentDate,
+      normalizedStartTime,
+      endTime,
+      id,
+      shopId,
+    ];
+
+    /*
+     * BARBER ACCESS:
+     * Barber can only update his own appointment.
+     */
+    if (req.user.role === "barber") {
+      updateQuery += ` AND staff_id = ?`;
+      updateParams.push(req.staffId);
+    }
+
+    await connection.query(
+      updateQuery,
+      updateParams
     );
 
     /*
@@ -1935,12 +2388,12 @@ const rescheduleAppointment = async (req, res) => {
     const [customerRows] =
       await connection.query(
         `
-        SELECT
-          name,
-          email
-        FROM customers
-        WHERE id = ?
-        LIMIT 1
+          SELECT
+            name,
+            email
+          FROM customers
+          WHERE id = ?
+          LIMIT 1
         `,
         [appointment.customer_id]
       );
@@ -1955,11 +2408,11 @@ const rescheduleAppointment = async (req, res) => {
       const [shopRows] =
         await connection.query(
           `
-          SELECT
-            name
-          FROM barber_shops
-          WHERE id = ?
-          LIMIT 1
+            SELECT
+              name
+            FROM barber_shops
+            WHERE id = ?
+            LIMIT 1
           `,
           [shopId]
         );
@@ -1971,18 +2424,18 @@ const rescheduleAppointment = async (req, res) => {
 
       await connection.query(
         `
-        INSERT INTO notifications
-        (
-          user_id,
-          appointment_id,
-          type,
-          channel,
-          recipient,
-          subject,
-          message,
-          status
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+          INSERT INTO notifications
+          (
+            user_id,
+            appointment_id,
+            type,
+            channel,
+            recipient,
+            subject,
+            message,
+            status
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         `,
         [
           null,
@@ -1999,8 +2452,6 @@ const rescheduleAppointment = async (req, res) => {
 
     /*
      * 8. Commit
-     *
-     * Only ONE commit.
      */
 
     await connection.commit();
@@ -2174,88 +2625,103 @@ const getCalendarAppointments = async (req, res) => {
      * Get appointments
      */
 
+    let query = `
+      SELECT
+        a.id,
+        a.appointment_date,
+        a.start_time,
+        a.end_time,
+        a.status,
+        a.total_amount,
+        a.currency,
+
+        c.id AS customer_id,
+        c.name AS customer_name,
+        c.phone AS customer_phone,
+        c.email AS customer_email,
+
+        st.id AS staff_id,
+        st.display_name AS staff_name,
+
+        b.id AS branch_id,
+        b.name AS branch_name,
+
+        GROUP_CONCAT(
+          DISTINCT CONCAT(
+            s.name,
+            ' | ',
+            s.duration_minutes,
+            ' min | CHF ',
+            s.price
+          )
+          SEPARATOR ', '
+        ) AS services
+
+      FROM appointments a
+
+      LEFT JOIN customers c
+        ON c.id = a.customer_id
+
+      LEFT JOIN staff st
+        ON st.id = a.staff_id
+
+      LEFT JOIN branches b
+        ON b.id = a.branch_id
+
+      LEFT JOIN appointment_services aps
+        ON aps.appointment_id = a.id
+
+      LEFT JOIN services s
+        ON s.id = aps.service_id
+
+      WHERE a.shop_id = ?
+
+      AND a.appointment_date
+          BETWEEN ? AND ?
+    `;
+
+    const params = [
+      shopId,
+      startDate,
+      endDate,
+    ];
+
+    /*
+     * BARBER ACCESS:
+     * Barber calendar shows only his appointments.
+     */
+    if (req.user.role === "barber") {
+      query += ` AND a.staff_id = ?`;
+      params.push(req.staffId);
+    }
+
+    query += `
+      GROUP BY
+        a.id,
+        a.appointment_date,
+        a.start_time,
+        a.end_time,
+        a.status,
+        a.total_amount,
+        a.currency,
+        c.id,
+        c.name,
+        c.phone,
+        c.email,
+        st.id,
+        st.display_name,
+        b.id,
+        b.name
+
+      ORDER BY
+        a.appointment_date ASC,
+        a.start_time ASC
+    `;
+
     const [appointments] =
       await pool.query(
-        `
-        SELECT
-          a.id,
-          a.appointment_date,
-          a.start_time,
-          a.end_time,
-          a.status,
-          a.total_amount,
-          a.currency,
-
-          c.id AS customer_id,
-          c.name AS customer_name,
-          c.phone AS customer_phone,
-          c.email AS customer_email,
-
-          st.id AS staff_id,
-          st.display_name AS staff_name,
-
-          b.id AS branch_id,
-          b.name AS branch_name,
-
-          GROUP_CONCAT(
-            DISTINCT CONCAT(
-              s.name,
-              ' | ',
-              s.duration_minutes,
-              ' min | CHF ',
-              s.price
-            )
-            SEPARATOR ', '
-          ) AS services
-
-        FROM appointments a
-
-        LEFT JOIN customers c
-          ON c.id = a.customer_id
-
-        LEFT JOIN staff st
-          ON st.id = a.staff_id
-
-        LEFT JOIN branches b
-          ON b.id = a.branch_id
-
-        LEFT JOIN appointment_services aps
-          ON aps.appointment_id = a.id
-
-        LEFT JOIN services s
-          ON s.id = aps.service_id
-
-        WHERE a.shop_id = ?
-
-        AND a.appointment_date
-            BETWEEN ? AND ?
-
-        GROUP BY
-          a.id,
-          a.appointment_date,
-          a.start_time,
-          a.end_time,
-          a.status,
-          a.total_amount,
-          a.currency,
-          c.id,
-          c.name,
-          c.phone,
-          c.email,
-          st.id,
-          st.display_name,
-          b.id,
-          b.name
-
-        ORDER BY
-          a.appointment_date ASC,
-          a.start_time ASC
-        `,
-        [
-          shopId,
-          startDate,
-          endDate,
-        ]
+        query,
+        params
       );
 
     const formattedAppointments =

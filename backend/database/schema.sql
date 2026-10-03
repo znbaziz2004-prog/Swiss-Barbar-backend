@@ -566,3 +566,172 @@ ON branches(city);
 
 CREATE INDEX idx_services_shop_status
 ON services(shop_id, status);
+
+-- =====================================================
+-- 16. SUBSCRIPTION PLANS
+-- =====================================================
+
+CREATE TABLE subscription_plans (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+
+    monthly_price DECIMAL(10,2) NOT NULL,
+    currency CHAR(3) DEFAULT 'CHF',
+
+    billing_interval ENUM(
+        'monthly',
+        'yearly'
+    ) NOT NULL DEFAULT 'monthly',
+
+    features JSON,
+
+    status ENUM(
+        'active',
+        'inactive'
+    ) NOT NULL DEFAULT 'active',
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+-- =====================================================
+-- 17. SHOP SUBSCRIPTIONS
+-- =====================================================
+
+CREATE TABLE shop_subscriptions (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    shop_id INT UNSIGNED NOT NULL,
+    plan_id INT UNSIGNED NOT NULL,
+
+    status ENUM(
+        'pending',
+        'active',
+        'past_due',
+        'cancelled',
+        'expired'
+    ) NOT NULL DEFAULT 'pending',
+
+    start_date DATE,
+    end_date DATE,
+    next_billing_date DATE,
+
+    auto_renew BOOLEAN DEFAULT TRUE,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_subscription_shop
+        FOREIGN KEY (shop_id)
+        REFERENCES barber_shops(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_subscription_plan
+        FOREIGN KEY (plan_id)
+        REFERENCES subscription_plans(id)
+        ON DELETE RESTRICT,
+
+    INDEX idx_subscription_shop (shop_id),
+    INDEX idx_subscription_status (status),
+    INDEX idx_subscription_billing (next_billing_date)
+);
+
+
+-- =====================================================
+-- 18. SUBSCRIPTION PAYMENTS
+-- =====================================================
+
+CREATE TABLE subscription_payments (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    subscription_id INT UNSIGNED NOT NULL,
+
+    amount DECIMAL(10,2) NOT NULL,
+    currency CHAR(3) DEFAULT 'CHF',
+
+    billing_period_start DATE,
+    billing_period_end DATE,
+
+    status ENUM(
+        'pending',
+        'paid',
+        'failed',
+        'refunded'
+    ) NOT NULL DEFAULT 'pending',
+
+    payment_method VARCHAR(50),
+
+    transaction_reference VARCHAR(255),
+
+    invoice_number VARCHAR(100),
+
+    paid_at DATETIME,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_subscription_payment_subscription
+        FOREIGN KEY (subscription_id)
+        REFERENCES shop_subscriptions(id)
+        ON DELETE CASCADE,
+
+    INDEX idx_subscription_payment_status (status),
+    INDEX idx_subscription_payment_invoice (invoice_number),
+    INDEX idx_subscription_payment_transaction (transaction_reference)
+);
+
+
+-- =====================================================
+-- 19. BARBER REGISTRATIONS
+-- =====================================================
+
+CREATE TABLE barber_registrations (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+    user_id INT UNSIGNED NOT NULL,
+    shop_id INT UNSIGNED NOT NULL,
+
+    registration_status ENUM(
+        'pending',
+        'approved',
+        'rejected'
+    ) NOT NULL DEFAULT 'pending',
+
+    business_name VARCHAR(200) NOT NULL,
+
+    registration_data JSON,
+
+    add_ons JSON,
+
+    rejection_reason TEXT,
+
+    reviewed_by INT UNSIGNED,
+    reviewed_at DATETIME,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_registration_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_registration_shop
+        FOREIGN KEY (shop_id)
+        REFERENCES barber_shops(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_registration_reviewer
+        FOREIGN KEY (reviewed_by)
+        REFERENCES users(id)
+        ON DELETE SET NULL,
+
+    INDEX idx_registration_status (registration_status),
+    INDEX idx_registration_user (user_id),
+    INDEX idx_registration_shop (shop_id)
+);
