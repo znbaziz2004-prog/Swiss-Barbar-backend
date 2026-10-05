@@ -5,6 +5,7 @@ const {
   getRevenueReport,
   getServicePerformanceReport,
   getStaffPerformanceReport,
+  getSummaryReport,
 } = require("../controllers/reportController");
 
 const authMiddleware = require("../middleware/authMiddleware");
@@ -19,6 +20,17 @@ const reportRoles = [
   "manager",
   "receptionist",
 ];
+
+// ==========================================
+// SUPER ADMIN SUMMARY REPORT
+// ==========================================
+
+router.get(
+  "/summary",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  getSummaryReport
+);
 
 // ==========================================
 // APPOINTMENT REPORT

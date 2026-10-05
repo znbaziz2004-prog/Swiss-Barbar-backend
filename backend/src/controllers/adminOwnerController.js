@@ -19,8 +19,7 @@ const getAllOwners = async (req, res) => {
         u.created_at,
         u.updated_at,
 
-        COUNT(bs.id) AS shop_count,
-
+        COUNT(bs.id) AS shops_count,
         GROUP_CONCAT(
           DISTINCT bs.name
           ORDER BY bs.name
@@ -128,12 +127,14 @@ const getOwnerById = async (req, res) => {
     );
 
     return res.status(200).json({
-      success: true,
-      data: {
-        owner: owners[0],
-        shops,
-      },
-    });
+  success: true,
+  data: {
+    owner: {
+      ...owners[0],
+      shops,
+    },
+  },
+});
   } catch (error) {
     console.error("Get owner by ID error:", error);
 
@@ -159,13 +160,14 @@ const updateOwnerStatus = async (req, res) => {
     const allowedStatuses = [
       "active",
       "inactive",
+      "suspended",
     ];
 
     if (!allowedStatuses.includes(status)) {
       return res.status(400).json({
         success: false,
         message:
-          "Invalid status. Allowed values: active, inactive",
+          "Invalid status. Allowed values: active, inactive, suspended",
       });
     }
 
@@ -542,6 +544,227 @@ const getPendingBarberRegistrations = async (req, res) => {
   }
 };
 
+/*
+ * =========================================================
+ * GET ALL BARBER REGISTRATIONS
+ * =========================================================
+ */
+
+const getBarberRegistrations = async (req, res) => {
+  try {
+    const { status } = req.query;
+
+    const allowedStatuses = [
+      "pending",
+      "approved",
+      "rejected",
+    ];
+
+    if (status && !allowedStatuses.includes(status)) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Invalid status. Allowed values: pending, approved, rejected",
+      });
+    }
+
+    let query = `
+      SELECT
+        br.id,
+        br.user_id,
+        br.shop_id,
+        br.registration_status AS status,
+        br.business_name,
+
+        br.rejection_reason,
+        br.created_at,
+        br.updated_at,
+
+        u.name AS owner_name,
+        u.email AS owner_email,
+        u.phone AS owner_phone,
+
+        bs.name AS shop_name,
+        bs.phone AS shop_phone,
+        bs.email AS shop_email,
+        bs.address,
+        bs.city,
+        bs.postal_code,
+        bs.canton,
+        bs.status AS shop_status,
+
+        ss.id AS subscription_id,
+        ss.status AS subscription_status,
+
+        sp.id AS plan_id,
+        sp.name AS plan_name,
+        sp.monthly_price,
+        sp.currency,
+        sp.billing_interval
+
+      FROM barber_registrations br
+
+      INNER JOIN users u
+        ON u.id = br.user_id
+
+      INNER JOIN barber_shops bs
+        ON bs.id = br.shop_id
+
+      LEFT JOIN shop_subscriptions ss
+        ON ss.shop_id = br.shop_id
+
+      LEFT JOIN subscription_plans sp
+        ON sp.id = ss.plan_id
+    `;
+
+    const params = [];
+
+    if (status) {
+      query += `
+        WHERE br.registration_status = ?
+      `;
+
+      params.push(status);
+    }
+
+    query += `
+      ORDER BY br.created_at DESC
+    `;
+
+    const [registrations] = await pool.query(query, params);
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        registrations,
+      },
+    });
+  } catch (error) {
+    console.error("Get barber registrations error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch barber registrations",
+    });
+  }
+};
+
+
+/*
+ * =========================================================
+ * GET BARBER REGISTRATION BY ID
+ * =========================================================
+ */
+
+const getBarberRegistrationById = async (req, res) => {
+  try {
+    const registrationId = Number(req.params.id);
+
+    if (!registrationId || registrationId <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid registration ID",
+      });
+    }
+
+    const [registrations] = await pool.query(
+      `
+      SELECT
+        br.id,
+        br.user_id,
+        br.shop_id,
+
+        br.registration_status AS status,
+        br.business_name,
+        br.registration_data,
+        br.add_ons,
+        br.rejection_reason,
+
+        br.reviewed_by,
+        br.reviewed_at,
+
+        br.created_at,
+        br.updated_at,
+
+        u.name AS owner_name,
+        u.email AS owner_email,
+        u.phone AS owner_phone,
+        u.status AS owner_status,
+
+        bs.name AS shop_name,
+        bs.description AS shop_description,
+        bs.phone AS shop_phone,
+        bs.email AS shop_email,
+        bs.website AS shop_website,
+        bs.address,
+        bs.city,
+        bs.postal_code,
+        bs.canton,
+        bs.country,
+        bs.currency,
+        bs.timezone,
+        bs.tax_rate,
+        bs.status AS shop_status,
+
+        ss.id AS subscription_id,
+        ss.status AS subscription_status,
+        ss.start_date,
+        ss.end_date,
+        ss.next_billing_date,
+        ss.auto_renew,
+
+        sp.id AS plan_id,
+        sp.name AS plan_name,
+        sp.description AS plan_description,
+        sp.monthly_price,
+        sp.currency AS plan_currency,
+        sp.billing_interval,
+        sp.features AS plan_features
+
+      FROM barber_registrations br
+
+      INNER JOIN users u
+        ON u.id = br.user_id
+
+      INNER JOIN barber_shops bs
+        ON bs.id = br.shop_id
+
+      LEFT JOIN shop_subscriptions ss
+        ON ss.shop_id = br.shop_id
+
+      LEFT JOIN subscription_plans sp
+        ON sp.id = ss.plan_id
+
+      WHERE br.id = ?
+
+      LIMIT 1
+      `,
+      [registrationId]
+    );
+
+    if (registrations.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Barber registration not found",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: registrations[0],
+    });
+  } catch (error) {
+    console.error(
+      "Get barber registration by ID error:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch barber registration",
+    });
+  }
+};
 
 const updateShopFeaturedStatus = async (req, res) => {
   const connection = await pool.getConnection();
@@ -687,7 +910,11 @@ module.exports = {
   getAllOwners,
   getOwnerById,
   updateOwnerStatus,
-  reviewBarberRegistration,
+
+  getBarberRegistrations,
+  getBarberRegistrationById,
   getPendingBarberRegistrations,
+
+  reviewBarberRegistration,
   updateShopFeaturedStatus,
 };

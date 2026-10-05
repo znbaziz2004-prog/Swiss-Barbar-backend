@@ -26,6 +26,9 @@ const customerDashboardRoutes = require("./routes/customerDashboardRoutes");
 const barberRegistrationRoutes = require("./routes/barberRegistrationRoutes");
 const subscriptionPaymentRoutes = require("./routes/subscriptionPaymentRoutes");
 const publicShopRoutes = require("./routes/publicShopRoutes");
+const subscriptionRoutes = require("./routes/subscriptionRoutes");
+const settingsRoutes = require("./routes/settingsRoutes");
+
 
 const app = express();
 
@@ -56,7 +59,8 @@ app.use("/api/customer-dashboard", customerDashboardRoutes);
 app.use("/api/barber-registration", barberRegistrationRoutes);
 app.use("/api/subscription-payments", subscriptionPaymentRoutes);
 app.use("/api/public/shops", publicShopRoutes);
-
+app.use("/api/subscriptions", subscriptionRoutes);
+app.use("/api/settings", settingsRoutes);
 
 
 app.get("/", (req, res) => {

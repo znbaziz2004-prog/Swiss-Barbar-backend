@@ -397,8 +397,60 @@ const confirmSubscriptionPayment = async (req, res) => {
   }
 };
 
+const getSubscriptionPayments = async (req, res) => {
+  try {
+    const [payments] = await pool.query(`
+      SELECT
+        sp.id,
+        sp.subscription_id,
+        sp.amount,
+        sp.currency,
+        sp.billing_period_start,
+        sp.billing_period_end,
+        sp.status,
+        sp.payment_method,
+        sp.transaction_reference,
+        sp.invoice_number,
+        sp.paid_at,
+        sp.created_at,
 
+        ss.shop_id,
+        ss.plan_id,
+
+        bs.name AS shop_name,
+        sp2.name AS plan_name
+
+      FROM subscription_payments sp
+
+      INNER JOIN shop_subscriptions ss
+        ON ss.id = sp.subscription_id
+
+      INNER JOIN barber_shops bs
+        ON bs.id = ss.shop_id
+
+      INNER JOIN subscription_plans sp2
+        ON sp2.id = ss.plan_id
+
+      ORDER BY sp.id DESC
+    `);
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        payments,
+      },
+    });
+  } catch (error) {
+    console.error("Get subscription payments error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to load subscription payments",
+    });
+  }
+};
 module.exports = {
   createSubscriptionPayment,
   confirmSubscriptionPayment,
+   getSubscriptionPayments,
 };

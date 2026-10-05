@@ -809,6 +809,9 @@ const getAllShops = async (req, res) => {
         bs.timezone,
         bs.tax_rate,
         bs.status,
+        bs.is_featured,
+        bs.featured_until,
+        bs.featured_priority,
         bs.created_at,
         bs.updated_at
       FROM barber_shops bs
@@ -843,15 +846,21 @@ const getShopById = async (req, res) => {
       });
     }
 
+    // =================================================
+    // SHOP + OWNER + SUBSCRIPTION
+    // =================================================
+
     const [shops] = await pool.query(
       `
       SELECT
         bs.id,
         bs.owner_id,
+
         u.name AS owner_name,
         u.email AS owner_email,
         u.phone AS owner_phone,
         u.status AS owner_status,
+
         bs.name,
         bs.description,
         bs.phone,
@@ -868,12 +877,37 @@ const getShopById = async (req, res) => {
         bs.timezone,
         bs.tax_rate,
         bs.status,
+
+        bs.is_featured,
+        bs.featured_until,
+        bs.featured_priority,
+
+        sp.name AS plan_name,
+
+        ss.status AS subscription_status,
+        ss.end_date AS subscription_ends_at,
+
         bs.created_at,
         bs.updated_at
+
       FROM barber_shops bs
+
       INNER JOIN users u
         ON u.id = bs.owner_id
+
+      LEFT JOIN shop_subscriptions ss
+        ON ss.shop_id = bs.id
+        AND ss.id = (
+          SELECT MAX(ss2.id)
+          FROM shop_subscriptions ss2
+          WHERE ss2.shop_id = bs.id
+        )
+
+      LEFT JOIN subscription_plans sp
+        ON sp.id = ss.plan_id
+
       WHERE bs.id = ?
+
       LIMIT 1
       `,
       [shopId]
@@ -886,10 +920,81 @@ const getShopById = async (req, res) => {
       });
     }
 
+    const shop = shops[0];
+
+    // =================================================
+    // SHOP STATS
+    // =================================================
+
+    const [[appointmentStats]] = await pool.query(
+      `
+      SELECT COUNT(*) AS appointments
+      FROM appointments
+      WHERE shop_id = ?
+      `,
+      [shopId]
+    );
+
+    const [[customerStats]] = await pool.query(
+      `
+      SELECT COUNT(DISTINCT customer_id) AS customers
+      FROM appointments
+      WHERE shop_id = ?
+      `,
+      [shopId]
+    );
+
+    const [[staffStats]] = await pool.query(
+      `
+      SELECT COUNT(*) AS staff
+      FROM staff
+      WHERE shop_id = ?
+      AND status = 'active'
+      `,
+      [shopId]
+    );
+
+    const [[revenueStats]] = await pool.query(
+  `
+  SELECT COALESCE(SUM(p.amount), 0) AS revenue
+  FROM payments p
+  INNER JOIN appointments a
+    ON a.id = p.appointment_id
+  WHERE a.shop_id = ?
+  AND p.status = 'paid'
+  `,
+  [shopId]
+);
+
+    // =================================================
+    // RESPONSE
+    // =================================================
+
     return res.status(200).json({
       success: true,
+
       data: {
-        shop: shops[0],
+        shop: {
+          ...shop,
+
+          stats: {
+            appointments: Number(
+              appointmentStats?.appointments || 0
+            ),
+
+            customers: Number(
+              customerStats?.customers || 0
+            ),
+
+            staff: Number(
+              staffStats?.staff || 0
+            ),
+
+            revenue: Number(
+              revenueStats?.revenue || 0
+            ),
+          },
+        },
       },
     });
   } catch (error) {
@@ -901,7 +1006,6 @@ const getShopById = async (req, res) => {
     });
   }
 };
-
 const updateShopStatus = async (req, res) => {
   try {
     const shopId = Number(req.params.id);
@@ -915,7 +1019,6 @@ const updateShopStatus = async (req, res) => {
     }
 
     const allowedStatuses = [
-      "pending",
       "active",
       "suspended",
       "inactive",
@@ -925,15 +1028,24 @@ const updateShopStatus = async (req, res) => {
       return res.status(400).json({
         success: false,
         message:
-          "Invalid status. Allowed values: pending, active, suspended, inactive",
+          "Invalid status. Allowed values: active, suspended, inactive",
       });
     }
 
+    // ================================================
+    // GET SHOP + REGISTRATION STATUS
+    // ================================================
+
     const [shops] = await pool.query(
       `
-      SELECT id, status
-      FROM barber_shops
-      WHERE id = ?
+      SELECT
+        bs.id,
+        bs.status,
+        br.registration_status
+      FROM barber_shops bs
+      LEFT JOIN barber_registrations br
+        ON br.shop_id = bs.id
+      WHERE bs.id = ?
       LIMIT 1
       `,
       [shopId]
@@ -946,16 +1058,45 @@ const updateShopStatus = async (req, res) => {
       });
     }
 
-    const previousStatus = shops[0].status;
+    const shop = shops[0];
+    const previousStatus = shop.status;
+
+    // ================================================
+    // PREVENT PENDING/REJECTED REGISTRATION
+    // FROM BEING ACTIVATED MANUALLY
+    // ================================================
+
+    if (
+      status === "active" &&
+      shop.registration_status !== "approved"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          shop.registration_status === "rejected"
+            ? "This shop cannot be activated because its barber registration was rejected."
+            : "This shop cannot be activated until its barber registration is approved.",
+      });
+    }
+
+    // ================================================
+    // UPDATE SHOP STATUS
+    // ================================================
 
     await pool.query(
       `
       UPDATE barber_shops
-      SET status = ?
+      SET
+        status = ?,
+        updated_at = NOW()
       WHERE id = ?
       `,
       [status, shopId]
     );
+
+    // ================================================
+    // GET UPDATED SHOP
+    // ================================================
 
     const [updatedShops] = await pool.query(
       `
@@ -990,7 +1131,6 @@ const updateShopStatus = async (req, res) => {
     });
   }
 };
-
 module.exports = {
   createShop,
   registerShop,

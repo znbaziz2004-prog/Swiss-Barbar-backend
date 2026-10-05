@@ -2,12 +2,15 @@ const express = require("express");
 
 const {
   getAllOwners,
-   getOwnerById,
-   updateOwnerStatus,
-   reviewBarberRegistration,
-  getPendingBarberRegistrations,
-   updateShopFeaturedStatus,
+  getOwnerById,
+  updateOwnerStatus,
 
+  getBarberRegistrations,
+  getBarberRegistrationById,
+  getPendingBarberRegistrations,
+
+  reviewBarberRegistration,
+  updateShopFeaturedStatus,
 } = require("../controllers/adminOwnerController");
 
 const authMiddleware = require("../middleware/authMiddleware");
@@ -16,11 +19,21 @@ const authorizeRoles = require("../middleware/roleMiddleware");
 const router = express.Router();
 
 /*
- * Super Admin only
+ * =========================================================
+ * BARBER REGISTRATIONS
+ * =========================================================
  */
 
-// Get all owners
+// Get all registrations
+// Optional: ?status=pending / approved / rejected
+router.get(
+  "/registrations",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  getBarberRegistrations
+);
 
+// Get pending registrations
 router.get(
   "/registrations/pending",
   authMiddleware,
@@ -28,26 +41,15 @@ router.get(
   getPendingBarberRegistrations
 );
 
+// Get single registration
 router.get(
-  "/:id",
+  "/registrations/:id",
   authMiddleware,
   authorizeRoles("super_admin"),
-  getOwnerById
-);
-router.get(
-  "/",
-  authMiddleware,
-  authorizeRoles("super_admin"),
-  getAllOwners
+  getBarberRegistrationById
 );
 
-router.patch(
-  "/:id/status",
-  authMiddleware,
-  authorizeRoles("super_admin"),
-  updateOwnerStatus
-);
-
+// Approve / Reject registration
 router.patch(
   "/registrations/:id/review",
   authMiddleware,
@@ -55,13 +57,22 @@ router.patch(
   reviewBarberRegistration
 );
 
-router.patch(
-  "/shops/:id/featured",
+
+/*
+ * =========================================================
+ * OWNERS
+ * =========================================================
+ */
+
+// Get all owners
+router.get(
+  "/",
   authMiddleware,
   authorizeRoles("super_admin"),
-  updateShopFeaturedStatus
+  getAllOwners
 );
 
+// Get owner by ID
 router.get(
   "/:id",
   authMiddleware,
@@ -69,6 +80,27 @@ router.get(
   getOwnerById
 );
 
+// Update owner status
+router.patch(
+  "/:id/status",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  updateOwnerStatus
+);
 
+
+/*
+ * =========================================================
+ * SHOPS
+ * =========================================================
+ */
+
+// Update shop featured status
+router.patch(
+  "/shops/:id/featured",
+  authMiddleware,
+  authorizeRoles("super_admin"),
+  updateShopFeaturedStatus
+);
 
 module.exports = router;

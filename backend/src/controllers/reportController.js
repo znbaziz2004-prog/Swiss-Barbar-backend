@@ -721,6 +721,382 @@ const getStaffPerformanceReport =
     }
   };
 
+   /*
+ |--------------------------------------------------------------------------
+ | GET SUPER ADMIN SUMMARY REPORT
+ |--------------------------------------------------------------------------
+ */
+
+const getSummaryReport = async (req, res) => {
+  try {
+    const { range = "30d" } = req.query;
+
+    const allowedRanges = ["7d", "30d", "90d"];
+
+    if (!allowedRanges.includes(range)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid range. Use 7d, 30d or 90d",
+      });
+    }
+
+    const days = Number(range.replace("d", ""));
+
+    // -------------------------------------------------
+    // Date range
+    // -------------------------------------------------
+
+    const fromDate = new Date();
+    fromDate.setHours(0, 0, 0, 0);
+    fromDate.setDate(fromDate.getDate() - (days - 1));
+
+    const from =
+      fromDate.toISOString().slice(0, 10);
+
+    // -------------------------------------------------
+    // TOTAL APPOINTMENTS
+    // -------------------------------------------------
+
+    const [appointmentTotals] =
+      await pool.query(
+        `
+        SELECT
+          COUNT(*) AS appointments
+        FROM appointments a
+        WHERE a.appointment_date >= ?
+          AND a.appointment_date <= CURDATE()
+        `,
+        [from]
+      );
+
+    // -------------------------------------------------
+    // SHOP REVENUE
+    // Completed bookings only
+    // -------------------------------------------------
+
+    const [revenueTotals] =
+      await pool.query(
+        `
+        SELECT
+          COALESCE(SUM(p.amount), 0) AS revenue
+        FROM payments p
+        INNER JOIN appointments a
+          ON a.id = p.appointment_id
+        WHERE a.status = 'completed'
+          AND p.status = 'paid'
+          AND DATE(p.created_at) >= ?
+          AND DATE(p.created_at) <= CURDATE()
+        `,
+        [from]
+      );
+
+    // -------------------------------------------------
+    // SUBSCRIPTION REVENUE
+    // -------------------------------------------------
+
+    const [subscriptionTotals] =
+      await pool.query(
+        `
+        SELECT
+          COALESCE(SUM(sp.amount), 0) AS subscription_revenue
+        FROM subscription_payments sp
+        WHERE sp.status = 'paid'
+          AND DATE(
+            COALESCE(sp.paid_at, sp.created_at)
+          ) >= ?
+          AND DATE(
+            COALESCE(sp.paid_at, sp.created_at)
+          ) <= CURDATE()
+        `,
+        [from]
+      );
+
+    // -------------------------------------------------
+    // NEW SHOPS
+    // -------------------------------------------------
+
+    const [shopTotals] =
+      await pool.query(
+        `
+        SELECT
+          COUNT(*) AS new_shops
+        FROM barber_shops
+        WHERE DATE(created_at) >= ?
+          AND DATE(created_at) <= CURDATE()
+        `,
+        [from]
+      );
+
+    // -------------------------------------------------
+    // DAILY SERIES
+    // -------------------------------------------------
+
+    const [seriesRows] =
+      await pool.query(
+        `
+        SELECT
+          dates.report_date AS date,
+
+          COALESCE(
+            COUNT(
+              CASE
+                WHEN a.status = 'completed'
+                THEN a.id
+              END
+            ),
+            0
+          ) AS appointments,
+
+          COALESCE(
+            SUM(
+              CASE
+                WHEN a.status = 'completed'
+                 AND p.status = 'paid'
+                THEN p.amount
+                ELSE 0
+              END
+            ),
+            0
+          ) AS revenue
+
+        FROM (
+          SELECT
+            DATE_SUB(
+              CURDATE(),
+              INTERVAL seq.day DAY
+            ) AS report_date
+          FROM (
+            SELECT 0 AS day
+            UNION ALL SELECT 1
+            UNION ALL SELECT 2
+            UNION ALL SELECT 3
+            UNION ALL SELECT 4
+            UNION ALL SELECT 5
+            UNION ALL SELECT 6
+            UNION ALL SELECT 7
+            UNION ALL SELECT 8
+            UNION ALL SELECT 9
+            UNION ALL SELECT 10
+            UNION ALL SELECT 11
+            UNION ALL SELECT 12
+            UNION ALL SELECT 13
+            UNION ALL SELECT 14
+            UNION ALL SELECT 15
+            UNION ALL SELECT 16
+            UNION ALL SELECT 17
+            UNION ALL SELECT 18
+            UNION ALL SELECT 19
+            UNION ALL SELECT 20
+            UNION ALL SELECT 21
+            UNION ALL SELECT 22
+            UNION ALL SELECT 23
+            UNION ALL SELECT 24
+            UNION ALL SELECT 25
+            UNION ALL SELECT 26
+            UNION ALL SELECT 27
+            UNION ALL SELECT 28
+            UNION ALL SELECT 29
+            UNION ALL SELECT 30
+            UNION ALL SELECT 31
+            UNION ALL SELECT 32
+            UNION ALL SELECT 33
+            UNION ALL SELECT 34
+            UNION ALL SELECT 35
+            UNION ALL SELECT 36
+            UNION ALL SELECT 37
+            UNION ALL SELECT 38
+            UNION ALL SELECT 39
+            UNION ALL SELECT 40
+            UNION ALL SELECT 41
+            UNION ALL SELECT 42
+            UNION ALL SELECT 43
+            UNION ALL SELECT 44
+            UNION ALL SELECT 45
+            UNION ALL SELECT 46
+            UNION ALL SELECT 47
+            UNION ALL SELECT 48
+            UNION ALL SELECT 49
+            UNION ALL SELECT 50
+            UNION ALL SELECT 51
+            UNION ALL SELECT 52
+            UNION ALL SELECT 53
+            UNION ALL SELECT 54
+            UNION ALL SELECT 55
+            UNION ALL SELECT 56
+            UNION ALL SELECT 57
+            UNION ALL SELECT 58
+            UNION ALL SELECT 59
+            UNION ALL SELECT 60
+            UNION ALL SELECT 61
+            UNION ALL SELECT 62
+            UNION ALL SELECT 63
+            UNION ALL SELECT 64
+            UNION ALL SELECT 65
+            UNION ALL SELECT 66
+            UNION ALL SELECT 67
+            UNION ALL SELECT 68
+            UNION ALL SELECT 69
+            UNION ALL SELECT 70
+            UNION ALL SELECT 71
+            UNION ALL SELECT 72
+            UNION ALL SELECT 73
+            UNION ALL SELECT 74
+            UNION ALL SELECT 75
+            UNION ALL SELECT 76
+            UNION ALL SELECT 77
+            UNION ALL SELECT 78
+            UNION ALL SELECT 79
+            UNION ALL SELECT 80
+            UNION ALL SELECT 81
+            UNION ALL SELECT 82
+            UNION ALL SELECT 83
+            UNION ALL SELECT 84
+            UNION ALL SELECT 85
+            UNION ALL SELECT 86
+            UNION ALL SELECT 87
+            UNION ALL SELECT 88
+            UNION ALL SELECT 89
+          ) seq
+          WHERE seq.day < ?
+        ) dates
+
+        LEFT JOIN appointments a
+          ON a.appointment_date = dates.report_date
+
+        LEFT JOIN payments p
+          ON p.appointment_id = a.id
+
+        GROUP BY dates.report_date
+        ORDER BY dates.report_date ASC
+        `,
+        [days]
+      );
+
+    // -------------------------------------------------
+    // TOP SHOPS
+    // -------------------------------------------------
+
+    const [topShopRows] =
+      await pool.query(
+        `
+        SELECT
+          bs.id,
+          bs.name,
+
+          COUNT(
+            CASE
+              WHEN a.status = 'completed'
+              THEN a.id
+            END
+          ) AS appointments,
+
+          COALESCE(
+            SUM(
+              CASE
+                WHEN a.status = 'completed'
+                 AND p.status = 'paid'
+                THEN p.amount
+                ELSE 0
+              END
+            ),
+            0
+          ) AS revenue
+
+        FROM barber_shops bs
+
+        LEFT JOIN appointments a
+          ON a.shop_id = bs.id
+          AND a.appointment_date >= ?
+          AND a.appointment_date <= CURDATE()
+
+        LEFT JOIN payments p
+          ON p.appointment_id = a.id
+
+        GROUP BY
+          bs.id,
+          bs.name
+
+        HAVING
+          appointments > 0
+          OR revenue > 0
+
+        ORDER BY
+          revenue DESC,
+          appointments DESC,
+          bs.name ASC
+
+        LIMIT 10
+        `,
+        [from]
+      );
+
+    // -------------------------------------------------
+    // FORMAT RESPONSE
+    // -------------------------------------------------
+
+    const totals = {
+      appointments: Number(
+        appointmentTotals[0]?.appointments || 0
+      ),
+
+      revenue: Number(
+        revenueTotals[0]?.revenue || 0
+      ),
+
+      subscription_revenue: Number(
+        subscriptionTotals[0]?.subscription_revenue || 0
+      ),
+
+      new_shops: Number(
+        shopTotals[0]?.new_shops || 0
+      ),
+    };
+
+    const series = seriesRows.map((row) => ({
+      date: row.date,
+      appointments: Number(row.appointments || 0),
+      revenue: Number(row.revenue || 0),
+    }));
+
+    const top_shops = topShopRows.map((shop) => ({
+      id: Number(shop.id),
+      name: shop.name,
+      appointments: Number(shop.appointments || 0),
+      revenue: Number(shop.revenue || 0),
+    }));
+
+    return res.json({
+      success: true,
+
+      data: {
+        range,
+
+        from,
+
+        to: new Date()
+          .toISOString()
+          .slice(0, 10),
+
+        totals,
+
+        series,
+
+        top_shops,
+      },
+    });
+  } catch (error) {
+    console.error(
+      "Get summary report error:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to generate summary report",
+    });
+  }
+};
+
 /*
 |--------------------------------------------------------------------------
 | EXPORTS
@@ -732,4 +1108,5 @@ module.exports = {
   getRevenueReport,
   getServicePerformanceReport,
   getStaffPerformanceReport,
+  getSummaryReport,
 };
