@@ -70,6 +70,7 @@
                 </form>
 
                 <script>
+                    console.log('Swiss Barber Home JS loaded');
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('barberSearchForm');
 
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
 </script>
 
                 <div class="kk-hero-testimonial">
