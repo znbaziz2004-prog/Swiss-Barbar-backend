@@ -25,14 +25,22 @@ const customerAuthRoutes = require("./routes/customerAuthRoutes");
 const customerDashboardRoutes = require("./routes/customerDashboardRoutes");
 const barberRegistrationRoutes = require("./routes/barberRegistrationRoutes");
 const subscriptionPaymentRoutes = require("./routes/subscriptionPaymentRoutes");
+const subscriptionPlanRoutes = require("./routes/subscriptionPlanRoutes");
 const publicShopRoutes = require("./routes/publicShopRoutes");
 const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
+const stripeRoutes = require("./routes/stripeRoutes");
 
 
 const app = express();
 
 app.use(cors());
+
+app.use(
+  "/api/stripe/webhook",
+  express.raw({ type: "application/json" })
+);
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
@@ -43,7 +51,6 @@ app.use("/api/staff", staffRoutes);
 app.use("/api/staff", staffServiceRoutes);
 app.use("/api/working-hours", workingHoursRoutes);
 app.use("/api/blocked-times", blockedTimeRoutes);
-app.use("/api/availability", availabilityRoutes);
 app.use("/api/availability", availabilityRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/notifications", notificationRoutes);
@@ -58,9 +65,13 @@ app.use("/api/customer-auth", customerAuthRoutes);
 app.use("/api/customer-dashboard", customerDashboardRoutes);
 app.use("/api/barber-registration", barberRegistrationRoutes);
 app.use("/api/subscription-payments", subscriptionPaymentRoutes);
+app.use("/api/subscription-plans", subscriptionPlanRoutes);
 app.use("/api/public/shops", publicShopRoutes);
 app.use("/api/subscriptions", subscriptionRoutes);
 app.use("/api/settings", settingsRoutes);
+app.use("/api/stripe", stripeRoutes);
+
+
 
 
 app.get("/", (req, res) => {

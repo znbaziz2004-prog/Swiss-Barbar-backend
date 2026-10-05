@@ -110,6 +110,9 @@ export const getSubscriptionPayments = async (params) =>
     'payments',
   )
 
+  export const createSubscriptionPayment = async (payload) =>
+  unwrap(await api.post('/subscription-payments/create', payload))
+
 /* REPORTS */
 export const getReports = async (params) =>
   unwrap(await api.get('/reports/summary', { params }))

@@ -20,7 +20,7 @@
                     quickly and easily.
                 </p>
 
-                <form class="kk-search-box" action="#" method="GET">
+                <form class="kk-search-box" id="barberSearchForm">
 
                     <label class="kk-search-control">
                         <span>Search</span>
@@ -68,6 +68,53 @@
                     </button>
 
                 </form>
+
+                <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('barberSearchForm');
+
+    if (!form) return;
+
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const search = document.querySelector('.kk-search-field')?.value.trim() || '';
+        const country = document.querySelector('.kk-search-select[name="country"]')?.value || '';
+        const city = document.querySelector('.kk-search-select[name="city"]')?.value || '';
+
+        try {
+            const params = new URLSearchParams();
+
+            if (search) params.append('search', search);
+            if (country) params.append('country', country);
+            if (city) params.append('city', city);
+
+            const response = await window.api.get(
+                `/public/shops?${params.toString()}`
+            );
+
+            console.log('Barber search result:', response.data);
+
+            // Temporary test
+            alert(
+                `Backend connected! Found ${
+                    Array.isArray(response.data?.data)
+                        ? response.data.data.length
+                        : 0
+                } barber shops.`
+            );
+
+        } catch (error) {
+            console.error('Barber search error:', error);
+
+            alert(
+                error?.response?.data?.message ||
+                'Could not connect to the barber service.'
+            );
+        }
+    });
+});
+</script>
 
                 <div class="kk-hero-testimonial">
                     <p>Fijn programma, klanten zijn er ook heel tevreden mee!</p>
