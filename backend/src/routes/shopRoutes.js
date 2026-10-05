@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   createShop,
+  registerShop,
   getShopProfile,
   updateShopProfile,
   getAllShops,
@@ -14,6 +15,8 @@ const authorizeRoles = require("../middleware/roleMiddleware");
 const shopAccessMiddleware = require("../middleware/shopAccessMiddleware");
 
 const router = express.Router();
+
+router.post("/register", registerShop);
 
 /*
  * =========================================================

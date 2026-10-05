@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const { pool } = require("../config/db");
 
@@ -241,6 +242,224 @@ const createShop = async (req, res) => {
     });
   }
 };
+
+// =====================================================
+// PUBLIC SHOP REGISTRATION
+// =====================================================
+
+const registerShop = async (req, res) => {
+  let connection;
+  let transactionStarted = false;
+
+  try {
+    const {
+      shopName,
+      defaultLanguage,
+      firstName,
+      lastName,
+      email,
+      cocNumber,
+      vatId,
+      country,
+      streetName,
+      buildingNumber,
+      postalCode,
+      city,
+      companyPhone,
+      privatePhone,
+      instagramUsername,
+      referralSource,
+      packageCode,
+      password,
+    } = req.body;
+
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+    const allowedLanguages = ["en", "de", "fr", "it"];
+    const swissPhonePattern = /^\+41\d{7,12}$/;
+
+    if (
+      !shopName ||
+      !defaultLanguage ||
+      !firstName ||
+      !normalizedEmail ||
+      !streetName ||
+      !buildingNumber ||
+      !postalCode ||
+      !city ||
+      !companyPhone ||
+      !privatePhone ||
+      !password
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Please complete all required registration fields",
+      });
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter a valid email address",
+      });
+    }
+
+    if (!allowedLanguages.includes(defaultLanguage)) {
+      return res.status(400).json({
+        success: false,
+        message: "Select a supported language",
+      });
+    }
+
+    if (country !== "Switzerland") {
+      return res.status(400).json({
+        success: false,
+        message: "Registration is currently available in Switzerland",
+      });
+    }
+
+    if (!swissPhonePattern.test(companyPhone) || !swissPhonePattern.test(privatePhone)) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter valid Swiss phone numbers with the +41 country code",
+      });
+    }
+
+    if (packageCode !== "standard") {
+      return res.status(400).json({
+        success: false,
+        message: "Select the Standard package to continue",
+      });
+    }
+
+    if (String(password).length < 8) {
+      return res.status(400).json({
+        success: false,
+        message: "Password must be at least 8 characters",
+      });
+    }
+
+    connection = await pool.getConnection();
+
+    const [existingUsers] = await connection.query(
+      "SELECT id FROM users WHERE email = ? LIMIT 1",
+      [normalizedEmail]
+    );
+
+    if (existingUsers.length > 0) {
+      return res.status(409).json({
+        success: false,
+        message: "An account with this email already exists",
+      });
+    }
+
+    await connection.beginTransaction();
+    transactionStarted = true;
+
+    const normalizedFirstName = String(firstName).trim();
+    const normalizedLastName = String(lastName || "").trim();
+    const fullName = [normalizedFirstName, normalizedLastName].filter(Boolean).join(" ");
+    const passwordHash = await bcrypt.hash(password, 12);
+    const [ownerResult] = await connection.query(
+      `
+      INSERT INTO users
+        (name, first_name, last_name, default_language, email, phone, password_hash, role, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, 'owner', 'active')
+      `,
+      [
+        fullName,
+        normalizedFirstName,
+        normalizedLastName || null,
+        defaultLanguage,
+        normalizedEmail,
+        privatePhone,
+        passwordHash,
+      ]
+    );
+
+    const address = `${String(streetName).trim()} ${String(buildingNumber).trim()}`;
+    const [shopResult] = await connection.query(
+      `
+      INSERT INTO barber_shops
+        (owner_id, name, phone, email, address, street_name, building_number,
+         city, postal_code, country, coc_number, vat_id, instagram_username,
+         referral_source, subscription_package, subscription_monthly_price,
+         subscription_currency, subscription_one_time_fee, currency, timezone, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'Switzerland', ?, ?, ?, ?,
+              'standard', 29.00, 'EUR', 0.00, 'CHF', 'Europe/Zurich', 'pending')
+      `,
+      [
+        ownerResult.insertId,
+        String(shopName).trim(),
+        companyPhone,
+        normalizedEmail,
+        address,
+        String(streetName).trim(),
+        String(buildingNumber).trim(),
+        String(city).trim(),
+        String(postalCode).trim(),
+        cocNumber ? String(cocNumber).trim() : null,
+        vatId ? String(vatId).trim() : null,
+        instagramUsername ? String(instagramUsername).trim() : null,
+        referralSource ? String(referralSource).trim() : null,
+      ]
+    );
+
+    await connection.commit();
+    transactionStarted = false;
+
+    const user = {
+      id: ownerResult.insertId,
+      name: fullName,
+      email: normalizedEmail,
+      phone: privatePhone,
+      role: "owner",
+      status: "active",
+    };
+    const token = jwt.sign(
+      { id: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    return res.status(201).json({
+      success: true,
+      message: "Registration received. Your shop is pending activation.",
+      data: {
+        user,
+        shop: {
+          id: shopResult.insertId,
+          name: String(shopName).trim(),
+          country: "Switzerland",
+          status: "pending",
+          package: "standard",
+          monthlyPrice: 29,
+          currency: "EUR",
+          oneTimeFee: 0,
+        },
+        token,
+      },
+    });
+  } catch (error) {
+    if (connection && transactionStarted) {
+      try {
+        await connection.rollback();
+      } catch (rollbackError) {
+        console.error("Shop registration rollback error:", rollbackError.message);
+      }
+    }
+
+    console.error("Shop registration error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Registration failed. Please try again.",
+    });
+  } finally {
+    if (connection) {
+      connection.release();
+    }
+  }
+};
+
 // =====================================================
 // GET SHOP PROFILE
 // Owner / Manager / Receptionist / Barber
@@ -774,6 +993,7 @@ const updateShopStatus = async (req, res) => {
 
 module.exports = {
   createShop,
+  registerShop,
   getShopProfile,
   updateShopProfile,
   getAllShops,

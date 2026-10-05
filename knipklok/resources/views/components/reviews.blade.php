@@ -65,7 +65,7 @@
                         <div class="kk-review-quote">“</div>
 
                         <p class="kk-review-text">
-                            Knipklok is ideaal voor kappers. Je ziet vanzelf op het scherm
+                            Swiss Barber is ideaal voor kappers. Je ziet vanzelf op het scherm
                             wie er hoelaat binnenkomt.
                         </p>
 
@@ -86,7 +86,7 @@
                         <div class="kk-review-quote">“</div>
 
                         <p class="kk-review-text">
-                            Ik vind Knipklok heel handig. Mijn klanten kunnen eenvoudig
+                            Ik vind Swiss Barber heel handig. Mijn klanten kunnen eenvoudig
                             zelf hun afspraak maken.
                         </p>
 
@@ -148,7 +148,7 @@
                         <div class="kk-review-quote">“</div>
 
                         <p class="kk-review-text">
-                            Knipklok maakt het plannen van afspraken veel eenvoudiger.
+                            Swiss Barber maakt het plannen van afspraken veel eenvoudiger.
                         </p>
 
                         <div class="kk-review-author">

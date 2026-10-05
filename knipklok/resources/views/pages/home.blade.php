@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Knipklok - online kapper afspraak maken')
+@section('title', 'Swiss Barber - online kapper afspraak maken')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 
                 <p class="kk-hero-kicker">Welcome to</p>
 
-                <h1 class="kk-hero-title">KNIPKLOK</h1>
+                <h1 class="kk-hero-title">SWISS BARBER</h1>
 
                 <p class="kk-hero-subtitle">
                     Find and book your next barber appointment<br>

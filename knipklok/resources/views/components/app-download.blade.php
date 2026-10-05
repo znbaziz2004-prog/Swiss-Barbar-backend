@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="kk-phone-logo">
-                        Knipklok
+                        Swiss Barber
                     </div>
 
                     <div class="kk-phone-search">

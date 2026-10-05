@@ -2,19 +2,20 @@
     <div class="kk-header-inner">
 
         <a href="{{ route('home') }}" class="kk-brand">
-            <span class="kk-brand-script">Knipklok</span>
+            <span class="kk-brand-script">Swiss Barber</span>
         </a>
 
         <nav class="kk-main-nav">
          <a href="{{ route('search') }}">Search</a>
             <a href="{{ route('info') }}">Info</a>
-            <a href="#contact">Contact</a>
+
+            <a href="{{ route('contact') }}">Contact</a>
         </nav>
 
-        <a href="{{ route('register-info') }}" class="kk-register">
+        <a href="{{ route('register') }}" class="kk-register">
     Register barbershop
 </a>
-            <a href="#" class="kk-login">
+            <a href="{{ route('login') }}" class="kk-login">
                 Log in as barber
                 <span>→</span>
             </a>
@@ -37,9 +38,9 @@
        <a href="{{ route('search') }}">Search</a>
         <a href="{{ route('info') }}">Info</a>
         <a href="#contact">Contact</a>
-        <a href="{{ route('register-info') }}" class="kk-register">
+        <a href="{{ route('register') }}" class="kk-register">
     Register barbershop
 </a>
-        <a href="#">Log in as barber →</a>
+        <a href="{{ route('login') }}">Log in as barber →</a>
     </div>
 </header>

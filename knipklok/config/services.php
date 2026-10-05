@@ -2,6 +2,10 @@
 
 return [
 
+    'swiss_barber_api' => [
+        'url' => env('SWISS_BARBER_API_URL', 'http://127.0.0.1:5000'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

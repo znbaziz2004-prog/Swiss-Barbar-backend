@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Information - Knipklok')
+@section('title', 'Information - Swiss Barber')
 
 @section('content')
 
@@ -12,12 +12,12 @@
         <div class="kk-info-hero-decoration kk-info-circle-two"></div>
 
         <div class="kk-info-hero-content">
-            <span class="kk-info-eyebrow">KNIPKLOK INFORMATION</span>
+            <span class="kk-info-eyebrow">SWISS BARBER INFORMATION</span>
 
             <h1>Everything you need<br>to know.</h1>
 
             <p>
-                Find answers, learn more about Knipklok,
+                Find answers, learn more about Swiss Barber,
                 and get started with your barber booking journey.
             </p>
         </div>
@@ -37,7 +37,7 @@
                     <h2>Simple barber appointments,<br>made easy.</h2>
 
                     <p>
-                        Knipklok ensures that you can quickly and easily
+                        Swiss Barber ensures that you can quickly and easily
                         make an appointment at your local barber.
                         You can make an appointment whenever you like.
                         With a few clicks you can see all available dates
@@ -193,7 +193,7 @@
             </h2>
 
             <p>
-                We're happy to help. Get in touch with the Knipklok team.
+                We're happy to help. Get in touch with the Swiss Barber team.
             </p>
 
             <a href="{{ route('contact') }}" class="kk-info-cta-button">

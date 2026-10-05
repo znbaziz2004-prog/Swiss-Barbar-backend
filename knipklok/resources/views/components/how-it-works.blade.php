@@ -18,7 +18,7 @@
             </h2>
 
             <p>
-                Booking your next grooming session is quick and easy with Knipklok.<br>
+                Booking your next grooming session is quick and easy with Swiss Barber.<br>
                 Follow these simple steps and get started in minutes.
             </p>
 
@@ -50,7 +50,7 @@
                     </h3>
 
                     <p>
-                        Knipklok automatically shows<br>
+                        Swiss Barber automatically shows<br>
                         barbers based on your location.<br>
                         You can also search manually.
                     </p>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contact - Knipklok')
+@section('title', 'Contact - Swiss Barber')
 
 @section('content')
 
@@ -28,7 +28,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>You can edit or cancel your appointment using the confirmation message you received after booking. Open your appointment details and follow the available edit or cancel option.</p>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>If it is no longer possible to edit or cancel your appointment online, please contact the barber directly. The barber can tell you whether anything can still be changed.</p>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>No. You do not have to create an account to make an appointment. You can simply choose your barber, select an available date and time, and complete the booking.</p>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>Yes. Your name, phone number, and e-mail address are required so the barber can identify your appointment and you can receive the appointment confirmation and reminders.</p>
             </div>
         </div>
 
@@ -68,7 +68,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>After you complete your booking, the appointment is automatically added to the barber's schedule. The barber can see the appointment and the associated booking information.</p>
             </div>
         </div>
 
@@ -78,7 +78,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>Go to the Register barbershop page and follow the registration steps. You can start the registration process directly from the Register barbershop button in the navigation.</p>
             </div>
         </div>
 
@@ -88,7 +88,7 @@
                 <span class="kk-contact-faq-arrow">⌄</span>
             </button>
             <div class="kk-contact-faq-answer">
-                <p>Click here to open the answer.</p>
+                <p>If your IP address has been blocked, please contact Swiss Barber support so they can help you resolve the issue.</p>
             </div>
         </div>
 
@@ -104,7 +104,7 @@
 
         <div class="kk-contact-note">
             <span class="kk-contact-note-icon">!</span>
-            <span>Note: this sends a message to Knipklok and NOT to your barber!</span>
+            <span>Note: this sends a message to Swiss Barber and NOT to your barber!</span>
         </div>
 
         <form action="#" method="POST" class="kk-contact-form">

@@ -12,7 +12,7 @@
 
     <meta
         name="description"
-        content="Maak online een afspraak bij je kapper met Knipklok. Vind een lokale kapper, kies een tijd en voorkom wachten."
+        content="Maak online een afspraak bij je kapper met Swiss Barber. Vind een lokale kapper, kies een tijd en voorkom wachten."
     >
 
     <meta
@@ -21,7 +21,7 @@
     >
 
     <title>
-        @yield('title', 'Knipklok')
+        @yield('title', 'Swiss Barber')
     </title>
 
     @vite([

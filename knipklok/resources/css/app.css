@@ -1371,21 +1371,8 @@ img {
 
 
 
-
-
-
 .kk-region-section {
-
-
-
     position: relative;
-
-
-
-
-
-
-
     width: 100%;
 
 
@@ -2602,54 +2589,16 @@ img {
 
     height: 46px;
 
-
-
-
-
-
-
     padding: 0;
-
-
-
-
-
-
 
     border: 0;
 
-
-
     border-radius: 50%;
 
-
-
-
-
-
-
     background: #fff;
-
-
-
-
-
-
-
     box-shadow: 0 3px 12px rgba(0,0,0,.11);
 
-
-
-
-
-
-
     color: #7c858e;
-
-
-
-
-
 
 
     font-family: Arial, sans-serif;
@@ -2661,17 +2610,7 @@ img {
 
 
     font-weight: 300;
-
-
-
     line-height: 46px;
-
-
-
-
-
-
-
     text-align: center;
 
 
@@ -2681,13 +2620,6 @@ img {
 
 
     cursor: pointer;
-
-
-
-
-
-
-
     transform: translateY(-50%);
 
 
@@ -5086,48 +5018,10 @@ img {
 
 }
 /* =========================================================
-   HOW IT WORKS
-========================================================= */
+   BEST IN THE REGION
 
-.kk-how-section {
-    position: relative;
-    width: 100%;
-    min-height: 500px;
-    padding: 86px 40px 82px;
-    overflow: hidden;
-    background: #f8f8f8;
-}
+   ========================================================= */
 
-.kk-how-inner {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1080px;
-    margin: 0 auto;
-}
-
-.kk-how-title {
-    margin: 0 0 62px;
-    text-align: center;
-    font-family: "DM Sans", sans-serif;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -1.2px;
-    color: #454545;
-}
-
-.kk-how-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 85px;
-    align-items: start;
-}
-
-.kk-how-item {
-    position: relative;
-    text-align: center;
-}
 
 .kk-how-icon {
     width: 100px;
@@ -5638,87 +5532,6 @@ img {
 
 }
 /* =========================================================
-   REVIEWS / WHAT OUR BARBERS SAY
-   ========================================================= */
-
-.kk-reviews-section {
-    position: relative;
-    width: 100%;
-    padding: 88px 0 96px;
-    background: #f8f8f8;
-    overflow: hidden;
-}
-
-.kk-reviews-inner {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-}
-
-.kk-reviews-title {
-    margin: 0 0 55px;
-    padding: 0 30px;
-
-    text-align: center;
-
-    font-family: "DM Sans", sans-serif;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 1.15;
-    letter-spacing: -1px;
-
-    color: #454545;
-}
-
-
-/* -----------------------------------------
-   CAROUSEL
-   ----------------------------------------- */
-
-.kk-reviews-carousel {
-    position: relative;
-    width: 100%;
-}
-
-.kk-reviews-track {
-    display: flex;
-    align-items: stretch;
-    gap: 28px;
-
-    width: 100%;
-
-    padding: 5px 70px 18px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-
-    scrollbar-width: none;
-}
-
-.kk-reviews-track::-webkit-scrollbar {
-    display: none;
-}
-
-
-/* -----------------------------------------
-   CARD
-   ----------------------------------------- */
-
-.kk-review-card {
-    position: relative;
-
-    flex: 0 0 390px;
-
-    min-height: 300px;
-
-    padding: 42px 34px 30px;
-
-    background: #ffffff;
-
-    border: 1px solid #e4e4e4;
 
     border-radius: 2px;
 
@@ -7790,50 +7603,6 @@ img {
         flex-direction: column;
     }
 }
-/* =========================================================
-   KNIPKLOK FOOTER
-   ========================================================= */
-
-.kk-footer {
-    width: 100%;
-    background: #111111;
-    color: #a9a9a9;
-    font-family: "DM Sans", sans-serif;
-}
-
-
-/* =========================================================
-   FOOTER MAIN AREA
-   ========================================================= */
-
-.kk-footer-main {
-    width: 100%;
-    min-height: 192px;
-
-    padding: 54px 24px 45px;
-
-    box-sizing: border-box;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-/* =========================================================
-   FOOTER LINKS
-   ========================================================= */
-
-.kk-footer-simple-links {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 48px;
-}
-
 .kk-footer-simple-links a {
     color: #a9a9a9;
 
@@ -8016,89 +7785,6 @@ img {
         font-size: 12px;
     }
 
-}
-/* =========================================================
-   REMOVE OLD BARBER CTA
-   ========================================================= */
-
-.kk-barber-cta {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-
-/* =========================================================
-   GREEN BARBER LOGIN BAR
-   ========================================================= */
-
-.kk-barber-login-bar {
-    width: 100% !important;
-    height: 106px !important;
-    min-height: 106px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: #3b9668 !important;
-    box-sizing: border-box !important;
-}
-
-.kk-barber-login-button {
-    width: 212px !important;
-    height: 60px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    box-sizing: border-box !important;
-
-    border: 1px solid #ffffff !important;
-    border-radius: 0 !important;
-
-    background: transparent !important;
-    color: #ffffff !important;
-
-    font-family: "DM Sans", sans-serif !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    line-height: 1 !important;
-
-    text-decoration: none !important;
-}
-
-.kk-barber-login-button:hover {
-    background: #ffffff !important;
-    color: #3b9668 !important;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .kk-barber-login-bar {
-        height: 96px !important;
-        min-height: 96px !important;
-    }
-
-    .kk-barber-login-button {
-        width: 200px !important;
-        height: 56px !important;
-    }
 }
 .kk-shops-hero {
     position: relative;
@@ -8384,55 +8070,6 @@ img {
 .kk-info-card a:hover .info-arrow {
     transform: translateX(3px);
 }
-/* =========================================================
-   INFO PAGE - FINAL OVERRIDE
-   ========================================================= */
-
-/* ---------- INFO HERO ---------- */
-
-.kk-info-hero {
-    position: relative !important;
-    width: 100% !important;
-    height: 232px !important;
-    min-height: 232px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    background: #000000 !important;
-    overflow: hidden !important;
-    box-sizing: border-box !important;
-}
-
-.kk-info-hero h1 {
-    position: relative !important;
-    z-index: 10 !important;
-}
-/* INFO PAGE CONTENT ALIGNMENT */
-.kk-info-inner {
-    text-align: center !important;
-}
-
-.kk-info-card {
-    text-align: center !important;
-}
-
-.kk-info-card h2 {
-    font-size: 18px !important;
-    color: #111 !important;
-}
-
-.kk-info-card p {
-    font-size: 14px !important;
-    color: #222 !important;
-}
-
-
-/* =========================================================
-   CONTACT PAGE - ONLY CONTACT PAGE STYLES
-   Append this block at the END of resources/css/app.css
-   ========================================================= */
 
 .kk-contact-hero {
     position: relative;
@@ -9116,27 +8753,6 @@ img {
     .kk-register-overview-inner > h2 {
         font-size: 31px;
     }
-}
-/* =========================================================
-   REGISTER INFO - MATCH SECOND ROW ICONS WITH FIRST ROW
-   ========================================================= */
-
-.kk-register-feature:nth-child(4) img,
-.kk-register-feature:nth-child(5) img,
-.kk-register-feature:nth-child(6) img {
-    width: 100px !important;
-    height: 100px !important;
-    max-width: 100px !important;
-    max-height: 100px !important;
-
-    display: block !important;
-    margin: 0 auto 20px !important;
-
-    object-fit: contain !important;
-    object-position: center center !important;
-
-    transform: scale(1.45) !important;
-    transform-origin: center center !important;
 }
 /* =========================================================
    KNIPKLOK — INFORMATION PAGE REDESIGN
@@ -10889,98 +10505,6 @@ img {
 
 
 /* =========================================================
-   ICON
-   ========================================================= */
-
-.kk-register-feature-icon {
-    width: 92px !important;
-    height: 92px !important;
-
-    margin: 0 auto 22px !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    box-sizing: border-box !important;
-
-    border-radius: 50% !important;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffffff 0,
-            #effbf6 55%,
-            #dff5eb 100%
-        ) !important;
-
-    border: 1px solid #d6eee4 !important;
-
-    box-shadow:
-        0 10px 25px rgba(59, 150, 104, 0.09) !important;
-
-    position: relative !important;
-}
-
-
-/* Outer decorative ring */
-
-.kk-register-feature-icon::before {
-    content: "" !important;
-
-    position: absolute !important;
-
-    inset: 7px !important;
-
-    border-radius: 50% !important;
-
-    border: 1px solid rgba(59, 150, 104, 0.13) !important;
-
-    pointer-events: none !important;
-}
-
-
-/* Existing icon */
-
-.kk-register-feature-icon img {
-    width: 54px !important;
-    height: 54px !important;
-
-    max-width: 54px !important;
-    max-height: 54px !important;
-
-    object-fit: contain !important;
-
-    display: block !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    background: transparent !important;
-
-    border: 0 !important;
-
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-
-    position: relative !important;
-
-    z-index: 2 !important;
-
-    transition: transform .25s ease !important;
-}
-
-
-.kk-register-feature-card:hover
-.kk-register-feature-icon img {
-    transform: scale(1.08) !important;
-}
-
-
-/* =========================================================
    CARD TITLE
    ========================================================= */
 
@@ -11019,112 +10543,6 @@ img {
     line-height: 1.65 !important;
 
     font-weight: 400 !important;
-}
-
-
-/* =========================================================
-   GREEN CARD LINE
-   ========================================================= */
-
-.kk-register-feature-line {
-    display: block !important;
-
-    width: 48px !important;
-    height: 4px !important;
-
-    margin: 21px auto 0 !important;
-
-    border-radius: 20px !important;
-
-    background: #168d6d !important;
-
-    transition:
-        width .25s ease !important;
-}
-
-
-.kk-register-feature-card:hover
-.kk-register-feature-line {
-    width: 68px !important;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 1000px) {
-
-    .kk-register-features {
-        padding: 65px 20px 75px !important;
-    }
-
-    .kk-register-features-heading h2 {
-        font-size: 38px !important;
-    }
-
-    .kk-register-features-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-    }
-}
-
-
-@media (max-width: 650px) {
-
-    .kk-register-features {
-        padding: 55px 16px 65px !important;
-    }
-
-    .kk-register-features-heading {
-        margin-bottom: 34px !important;
-    }
-
-    .kk-register-features-eyebrow {
-        font-size: 10px !important;
-        letter-spacing: 2.5px !important;
-
-        padding: 7px 20px !important;
-    }
-
-    .kk-register-features-heading h2 {
-        font-size: 30px !important;
-
-        letter-spacing: -0.6px !important;
-    }
-
-    .kk-register-features-heading p {
-        font-size: 14px !important;
-    }
-
-    .kk-register-features-grid {
-        grid-template-columns: 1fr !important;
-
-        gap: 18px !important;
-    }
-
-    .kk-register-feature-card {
-        min-height: auto !important;
-
-        padding: 28px 22px 25px !important;
-    }
-
-    .kk-register-feature-icon {
-        width: 82px !important;
-        height: 82px !important;
-    }
-
-    .kk-register-feature-icon img {
-        width: 48px !important;
-        height: 48px !important;
-
-        max-width: 48px !important;
-        max-height: 48px !important;
-    }
-
-    .kk-register-feature-card h3 {
-        font-size: 18px !important;
-    }
 }
 /* =========================================================
    KNIPKLOK REGISTER INFO
@@ -11375,98 +10793,6 @@ img {
 
 
 /* =========================================================
-   ICON
-   ========================================================= */
-
-.kk-register-feature-icon {
-    width: 92px !important;
-    height: 92px !important;
-
-    margin: 0 auto 22px !important;
-
-    display: flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    box-sizing: border-box !important;
-
-    border-radius: 50% !important;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffffff 0,
-            #effbf6 55%,
-            #dff5eb 100%
-        ) !important;
-
-    border: 1px solid #d6eee4 !important;
-
-    box-shadow:
-        0 10px 25px rgba(59, 150, 104, 0.09) !important;
-
-    position: relative !important;
-}
-
-
-/* Outer decorative ring */
-
-.kk-register-feature-icon::before {
-    content: "" !important;
-
-    position: absolute !important;
-
-    inset: 7px !important;
-
-    border-radius: 50% !important;
-
-    border: 1px solid rgba(59, 150, 104, 0.13) !important;
-
-    pointer-events: none !important;
-}
-
-
-/* Existing icon */
-
-.kk-register-feature-icon img {
-    width: 54px !important;
-    height: 54px !important;
-
-    max-width: 54px !important;
-    max-height: 54px !important;
-
-    object-fit: contain !important;
-
-    display: block !important;
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-    background: transparent !important;
-
-    border: 0 !important;
-
-    border-radius: 0 !important;
-
-    box-shadow: none !important;
-
-    position: relative !important;
-
-    z-index: 2 !important;
-
-    transition: transform .25s ease !important;
-}
-
-
-.kk-register-feature-card:hover
-.kk-register-feature-icon img {
-    transform: scale(1.08) !important;
-}
-
-
-/* =========================================================
    CARD TITLE
    ========================================================= */
 
@@ -11508,107 +10834,2474 @@ img {
 }
 
 
+
 /* =========================================================
-   GREEN CARD LINE
+   REGISTER INFO - MATCH ALL 6 FEATURE ICONS
    ========================================================= */
 
-.kk-register-feature-line {
+/* Reset all six icons to one identical visual system */
+.kk-register-features-grid .kk-register-feature > img {
+    width: 100px !important;
+    height: 100px !important;
+
+    min-width: 100px !important;
+    min-height: 100px !important;
+
+    max-width: 100px !important;
+    max-height: 100px !important;
+
     display: block !important;
 
-    width: 48px !important;
-    height: 4px !important;
+    box-sizing: border-box !important;
 
-    margin: 21px auto 0 !important;
+    padding: 9px !important;
+    margin: 0 auto 21px !important;
 
-    border-radius: 20px !important;
+    border-radius: 50% !important;
+    border: 1px solid #cceee0 !important;
 
-    background: #168d6d !important;
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            #f7fcfa 63%,
+            #eaf8f2 100%
+        ) !important;
 
-    transition:
-        width .25s ease !important;
+    box-shadow:
+        0 0 0 7px rgba(59, 150, 104, 0.035),
+        inset 0 0 0 1px rgba(59, 150, 104, 0.04) !important;
+
+    object-position: center center !important;
+
+    transform: none !important;
+    scale: 1 !important;
 }
 
 
-.kk-register-feature-card:hover
-.kk-register-feature-line {
+/* IMPORTANT:
+   Remove the old mobile enlargement completely.
+*/
+
+@media (max-width: 480px) {
+
+    .kk-register-features-grid .kk-register-feature > img {
+        width: 92px !important;
+        height: 92px !important;
+
+        min-width: 92px !important;
+        min-height: 92px !important;
+
+        max-width: 92px !important;
+        max-height: 92px !important;
+
+        padding: 8px !important;
+
+        transform: none !important;
+        scale: 1 !important;
+    }
+
+}
+/* =========================================================
+   REGISTER INFO - MATCH ALL 6 FEATURE ICONS
+   ========================================================= */
+
+/* Reset all six icons to one identical visual system */
+.kk-register-features-grid .kk-register-feature > img {
+    width: 100px !important;
+    height: 100px !important;
+
+    min-width: 100px !important;
+    min-height: 100px !important;
+
+    max-width: 100px !important;
+    max-height: 100px !important;
+
+    display: block !important;
+
+    box-sizing: border-box !important;
+
+    padding: 9px !important;
+    margin: 0 auto 21px !important;
+
+    border-radius: 50% !important;
+    border: 1px solid #cceee0 !important;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff 0%,
+            #f7fcfa 63%,
+            #eaf8f2 100%
+        ) !important;
+
+    box-shadow:
+        0 0 0 7px rgba(59, 150, 104, 0.035),
+        inset 0 0 0 1px rgba(59, 150, 104, 0.04) !important;
+
+    object-position: center center !important;
+
+    transform: none !important;
+    scale: 1 !important;
+}
+
+
+/* IMPORTANT:
+   Remove the old mobile enlargement completely.
+*/
+
+@media (max-width: 480px) {
+
+    .kk-register-features-grid .kk-register-feature > img {
+        width: 92px !important;
+        height: 92px !important;
+
+        min-width: 92px !important;
+        min-height: 92px !important;
+
+        max-width: 92px !important;
+        max-height: 92px !important;
+
+        padding: 8px !important;
+
+        transform: none !important;
+        scale: 1 !important;
+    }
+
+}
+/* =========================================================
+   REGISTER INFO - CIRCLE ONLY FINAL FIX
+   DO NOT CHANGE ANY OTHER CSS
+   ========================================================= */
+
+.kk-register-features-grid .kk-register-feature > img {
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+
+    display: block !important;
+    margin: 0 auto 21px !important;
+    padding: 9px !important;
+
+    box-sizing: border-box !important;
+    border-radius: 50% !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    transform: none !important;
+    scale: 1 !important;
+    clip-path: none !important;
+}
+/* =========================================================
+   SWISS BARBER — FOOTER
+   ========================================================= */
+
+.swiss-footer {
+    width: 100%;
+    background: #151515;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.swiss-footer-inner {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 72px 0 64px;
+
+    display: grid;
+    grid-template-columns:
+        minmax(260px, 1.7fr)
+        minmax(150px, 1fr)
+        minmax(170px, 1fr)
+        minmax(150px, 1fr);
+
+    gap: 50px;
+}
+
+/* subtle Swiss red accent */
+.swiss-footer-inner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #d71920;
+}
+
+/* Brand */
+
+.swiss-footer-brand {
+    max-width: 320px;
+}
+
+.swiss-footer-logo {
+    display: inline-block;
+    margin-bottom: 18px;
+
+    color: #ffffff;
+    font-size: 27px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    text-decoration: none;
+}
+
+.swiss-footer-brand p {
+    margin: 0;
+    max-width: 285px;
+
+    color: #a5a5a5;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.swiss-footer-contact-link {
+    display: inline-block;
+    margin-top: 24px;
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.swiss-footer-contact-link:hover {
+    color: #d71920;
+    transform: translateX(3px);
+}
+
+/* Columns */
+
+.swiss-footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.swiss-footer-column h3 {
+    margin: 2px 0 22px;
+
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.swiss-footer-column a {
+    display: inline-block;
+    margin-bottom: 13px;
+
+    color: #a5a5a5;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.swiss-footer-column a:hover {
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+/* Bottom */
+
+.swiss-footer-bottom {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+
+    min-height: 72px;
+    padding: 20px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.swiss-footer-bottom p {
+    margin: 0;
+
+    color: #777777;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.swiss-footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.swiss-footer-bottom-links a {
+    color: #8e8e8e;
+    font-size: 13px;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.swiss-footer-bottom-links a:hover {
+    color: #ffffff;
+}
+
+.swiss-footer-bottom-links span {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #666666;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .swiss-footer-inner {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 42px;
+    }
+
+    .swiss-footer-brand {
+        grid-column: 1 / -1;
+        max-width: 420px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .swiss-footer-inner {
+        width: min(100% - 40px, 500px);
+        padding: 54px 0 42px;
+
+        grid-template-columns: 1fr 1fr;
+        gap: 38px 28px;
+    }
+
+    .swiss-footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .swiss-footer-logo {
+        font-size: 25px;
+    }
+
+    .swiss-footer-column h3 {
+        margin-bottom: 17px;
+    }
+
+    .swiss-footer-column a {
+        font-size: 13px;
+        margin-bottom: 11px;
+    }
+
+    .swiss-footer-bottom {
+        width: min(100% - 40px, 500px);
+        padding: 22px 0 26px;
+
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .swiss-footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 380px) {
+    .swiss-footer-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .swiss-footer-brand {
+        grid-column: auto;
+    }
+}
+
+/* =========================================================
+   SWISS BARBER — LEGAL PAGES
+   ========================================================= */
+
+.swiss-legal-hero {
+    width: 100%;
+    min-height: 310px;
+    background: #151515;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.swiss-legal-hero::before,
+.swiss-legal-hero::after {
+    content: "";
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform: rotate(45deg);
+}
+
+.swiss-legal-hero::before {
+    left: -85px;
+    top: 70px;
+}
+
+.swiss-legal-hero::after {
+    right: -85px;
+    bottom: 70px;
+}
+
+.swiss-legal-hero-inner {
+    position: relative;
+    z-index: 2;
+    width: min(800px, calc(100% - 40px));
+}
+
+.swiss-legal-eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #d71920;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.swiss-legal-hero h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.swiss-legal-hero p {
+    margin: 20px auto 0;
+    max-width: 600px;
+    color: #a5a5a5;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.swiss-legal-content {
+    width: 100%;
+    background: #f6f5f2;
+    padding: 80px 0 100px;
+}
+
+.swiss-legal-container {
+    width: min(920px, calc(100% - 40px));
+    margin: 0 auto;
+}
+
+.swiss-legal-intro {
+    background: #ffffff;
+    border: 1px solid #e5e3df;
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-bottom: 22px;
+}
+
+.swiss-legal-updated {
+    margin: 0 0 14px;
+    color: #d71920;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.swiss-legal-intro p:last-child {
+    margin: 0;
+    color: #4d4d4d;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.swiss-legal-section {
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    gap: 22px;
+    background: #ffffff;
+    border: 1px solid #e5e3df;
+    border-radius: 16px;
+    padding: 30px 34px;
+    margin-bottom: 14px;
+}
+
+.swiss-legal-number {
+    color: #d71920;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding-top: 3px;
+}
+
+.swiss-legal-section h2 {
+    margin: 0 0 12px;
+    color: #181818;
+    font-size: 19px;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
+.swiss-legal-section p {
+    margin: 0 0 12px;
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.swiss-legal-section p:last-child {
+    margin-bottom: 0;
+}
+
+.swiss-legal-section a {
+    color: #d71920;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.swiss-legal-section a:hover {
+    text-decoration: underline;
+}
+
+.swiss-legal-back {
+    padding-top: 26px;
+    text-align: center;
+}
+
+.swiss-legal-back a {
+    display: inline-flex;
+    align-items: center;
+    color: #151515;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.swiss-legal-back a:hover {
+    color: #d71920;
+}
+
+@media (max-width: 600px) {
+
+    .swiss-legal-hero {
+        min-height: 260px;
+    }
+
+    .swiss-legal-hero h1 {
+        font-size: 40px;
+    }
+
+    .swiss-legal-content {
+        padding: 48px 0 65px;
+    }
+
+    .swiss-legal-container {
+        width: min(100% - 28px, 600px);
+    }
+
+    .swiss-legal-intro {
+        padding: 24px 22px;
+        border-radius: 12px;
+    }
+
+    .swiss-legal-section {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 24px 22px;
+        border-radius: 12px;
+    }
+
+    .swiss-legal-number {
+        padding-top: 0;
+    }
+
+    .swiss-legal-section h2 {
+        font-size: 18px;
+    }
+
+    .swiss-legal-section p,
+    .swiss-legal-intro p:last-child {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+}
+/* =========================================================
+   REGISTER INFO — MAKE ALL 6 FEATURE ICONS IDENTICAL
+   ========================================================= */
+
+/* Keep all six feature icons in the same visual system */
+.kk-register-feature {
+    position: relative !important;
+}
+
+/*
+ * First-row icons already contain the desired inner circle.
+ * Add the same soft inner circle behind icons 4, 5 and 6.
+ */
+.kk-register-feature:nth-child(4)::before,
+.kk-register-feature:nth-child(5)::before,
+.kk-register-feature:nth-child(6)::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 24px !important;
+    left: 50% !important;
+
     width: 68px !important;
+    height: 68px !important;
+
+    transform: translateX(-50%) !important;
+
+    border-radius: 50% !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #f0f0f0 !important;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.055) !important;
+
+    z-index: 0 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Put the actual icon above the new inner circle */
+.kk-register-feature:nth-child(4) > img,
+.kk-register-feature:nth-child(5) > img,
+.kk-register-feature:nth-child(6) > img {
+    position: relative !important;
+
+    z-index: 2 !important;
+}
+
+
+/* Keep all six icon sizes identical */
+.kk-register-feature > img {
+    display: block !important;
+
+    width: 100px !important;
+    height: 100px !important;
+
+    margin: 0 auto 18px !important;
+
+    object-fit: contain !important;
+}
+
+
+/* Remove any old special second-row icon wrapper styling */
+.kk-register-feature-icon {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+/* =========================================================
+   FINAL FIX — SECOND ROW ICONS MUST MATCH FIRST ROW
+   ========================================================= */
+
+/* Remove all previous special sizing/effects */
+.kk-register-features-grid .kk-register-feature:nth-child(4) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(5) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(6) > img {
+    width: 100px !important;
+    height: 100px !important;
+
+    min-width: 100px !important;
+    min-height: 100px !important;
+
+    max-width: 100px !important;
+    max-height: 100px !important;
+
+    padding: 0 !important;
+    margin: 0 auto 21px !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+    box-shadow: none !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    clip-path: none !important;
+
+    transform: none !important;
+    scale: 1 !important;
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   CREATE THE SAME DOUBLE-RING FRAME AROUND ROW 2
    ========================================================= */
 
-@media (max-width: 1000px) {
-
-    .kk-register-features {
-        padding: 65px 20px 75px !important;
-    }
-
-    .kk-register-features-heading h2 {
-        font-size: 38px !important;
-    }
-
-    .kk-register-features-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-    }
+.kk-register-features-grid .kk-register-feature:nth-child(4),
+.kk-register-features-grid .kk-register-feature:nth-child(5),
+.kk-register-features-grid .kk-register-feature:nth-child(6) {
+    position: relative !important;
 }
 
 
-@media (max-width: 650px) {
+/* Outer ring */
+.kk-register-features-grid .kk-register-feature:nth-child(4)::before,
+.kk-register-features-grid .kk-register-feature:nth-child(5)::before,
+.kk-register-features-grid .kk-register-feature:nth-child(6)::before {
+    content: "" !important;
 
-    .kk-register-features {
-        padding: 55px 16px 65px !important;
+    position: absolute !important;
+
+    top: -3px !important;
+    left: 50% !important;
+
+    width: 100px !important;
+    height: 100px !important;
+
+    transform: translateX(-50%) !important;
+
+    border-radius: 50% !important;
+
+    border: 1px solid #cceee0 !important;
+
+    box-shadow:
+        0 0 0 7px rgba(59, 150, 104, 0.035) !important;
+
+    background: transparent !important;
+
+    z-index: 1 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Keep actual icon above the ring */
+.kk-register-features-grid .kk-register-feature:nth-child(4) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(5) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(6) > img {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+
+/* =========================================================
+   INNER CIRCLE — SAME AS FIRST ROW VISUAL
+   ========================================================= */
+
+.kk-register-features-grid .kk-register-feature:nth-child(4)::after,
+.kk-register-features-grid .kk-register-feature:nth-child(5)::after,
+.kk-register-features-grid .kk-register-feature:nth-child(6)::after {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 11px !important;
+    left: 50% !important;
+
+    width: 76px !important;
+    height: 76px !important;
+
+    transform: translateX(-50%) !important;
+
+    border-radius: 50% !important;
+
+    border: 1px solid rgba(59, 150, 104, 0.10) !important;
+
+    background: #ffffff !important;
+
+    z-index: 1 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* Icon artwork above both circles */
+.kk-register-features-grid .kk-register-feature:nth-child(4) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(5) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(6) > img {
+    z-index: 3 !important;
+}
+/* ============================================================
+   SWISS BARBER REGISTER INFO
+   FEATURE ICONS — FINAL COMPLETE FIX
+   ============================================================ */
+
+/* Feature card */
+.kk-register-features-grid .kk-register-feature {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+
+/* ------------------------------------------------------------
+   ALL 6 ICONS — SAME SIZE / SAME POSITION
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature > img {
+    position: relative !important;
+
+    display: block !important;
+
+    width: 100px !important;
+    height: 100px !important;
+
+    min-width: 100px !important;
+    min-height: 100px !important;
+
+    max-width: 100px !important;
+    max-height: 100px !important;
+
+    margin: 0 auto 18px !important;
+    padding: 0 !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    background: transparent !important;
+    box-shadow: none !important;
+
+    transform: none !important;
+
+    z-index: 5 !important;
+}
+
+
+/* ------------------------------------------------------------
+   SECOND ROW OUTER CIRCLE
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature:nth-child(4)::before,
+.kk-register-features-grid .kk-register-feature:nth-child(5)::before,
+.kk-register-features-grid .kk-register-feature:nth-child(6)::before {
+
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 0 !important;
+    left: 50% !important;
+
+    width: 100px !important;
+    height: 100px !important;
+
+    margin: 0 !important;
+
+    transform: translateX(-50%) !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 50% !important;
+
+    border: 1.5px solid #B9E4D1 !important;
+
+    background: transparent !important;
+
+    box-shadow:
+        0 0 0 6px rgba(59, 150, 104, 0.08) !important;
+
+    z-index: 1 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   SECOND ROW INNER CIRCLE
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature:nth-child(4)::after,
+.kk-register-features-grid .kk-register-feature:nth-child(5)::after,
+.kk-register-features-grid .kk-register-feature:nth-child(6)::after {
+
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 12px !important;
+    left: 50% !important;
+
+    width: 76px !important;
+    height: 76px !important;
+
+    margin: 0 !important;
+
+    transform: translateX(-50%) !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 50% !important;
+
+    border: 1.5px solid #D0EDE0 !important;
+
+    background: #FFFFFF !important;
+
+    z-index: 2 !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   ICON MUST STAY ABOVE BOTH CIRCLES
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature:nth-child(4) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(5) > img,
+.kk-register-features-grid .kk-register-feature:nth-child(6) > img {
+
+    position: relative !important;
+
+    z-index: 5 !important;
+}
+
+
+/* ------------------------------------------------------------
+   REMOVE OLD SECOND-ROW SPECIAL STYLING
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) .kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) .kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) .kk-register-feature-icon {
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    transform: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   FEATURE TITLES
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature h3 {
+
+    margin-top: 0 !important;
+
+    color: #172B4D !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+
+    text-align: center !important;
+}
+
+
+/* ------------------------------------------------------------
+   FEATURE DESCRIPTION
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature p {
+
+    color: #5D7290 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.65 !important;
+
+    text-align: center !important;
+}
+
+
+/* ------------------------------------------------------------
+   GREEN UNDERLINE
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature::marker {
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .kk-register-features-grid .kk-register-feature > img {
+
+        width: 90px !important;
+        height: 90px !important;
+
+        min-width: 90px !important;
+        min-height: 90px !important;
+
+        max-width: 90px !important;
+        max-height: 90px !important;
     }
 
-    .kk-register-features-heading {
-        margin-bottom: 34px !important;
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4)::before,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5)::before,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6)::before {
+
+        width: 90px !important;
+        height: 90px !important;
     }
 
-    .kk-register-features-eyebrow {
-        font-size: 10px !important;
-        letter-spacing: 2.5px !important;
 
-        padding: 7px 20px !important;
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4)::after,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5)::after,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6)::after {
+
+        top: 11px !important;
+
+        width: 68px !important;
+        height: 68px !important;
+    }
+}
+/* ============================================================
+   SWISS BARBER - REGISTER INFO
+   FINAL FEATURE ICON FIX
+   IMPORTANT:
+   This replaces the previous pseudo-element circle solution.
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. REMOVE ALL PREVIOUS PSEUDO CIRCLES
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)::before,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)::before,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)::before,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)::after,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)::after,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)::after {
+
+    content: none !important;
+
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   2. SECOND ROW ICON CONTAINER
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4),
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5),
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) {
+
+    position: relative !important;
+
+    overflow: visible !important;
+}
+
+
+/* ------------------------------------------------------------
+   3. SECOND ROW ICONS
+   Make the actual image itself the circular frame.
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    display: block !important;
+
+    position: relative !important;
+
+    width: 100px !important;
+    height: 100px !important;
+
+    min-width: 100px !important;
+    min-height: 100px !important;
+
+    max-width: 100px !important;
+    max-height: 100px !important;
+
+    margin: 0 auto 18px !important;
+
+    padding: 0 !important;
+
+    box-sizing: border-box !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: #ffffff !important;
+
+    border-radius: 50% !important;
+
+    /*
+     * First visible ring
+     */
+    border: 1.5px solid #B8E2D0 !important;
+
+    /*
+     * Second outer ring
+     */
+    box-shadow:
+        0 0 0 6px #F1FAF6 !important,
+        0 0 0 7.5px #CDEBDD !important;
+
+    transform: none !important;
+
+    z-index: 1 !important;
+}
+
+
+/* ------------------------------------------------------------
+   4. REMOVE ANY OLD SPECIAL IMAGE STYLING
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    border-style: solid !important;
+
+    outline: none !important;
+
+    clip-path: none !important;
+
+    filter: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   5. MAKE SECOND ROW MATCH FIRST ROW VERTICAL POSITION
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    margin-top: 0 !important;
+}
+
+
+/* ------------------------------------------------------------
+   6. KEEP TITLES BELOW THE CIRCLE
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) h3,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) h3,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) h3 {
+
+    position: relative !important;
+
+    margin-top: 0 !important;
+
+    z-index: 2 !important;
+}
+
+
+/* ------------------------------------------------------------
+   7. KEEP DESCRIPTIONS CLEAN
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) p,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) p,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) p {
+
+    position: relative !important;
+
+    z-index: 2 !important;
+}
+
+
+/* ------------------------------------------------------------
+   8. RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6) > img {
+
+        width: 90px !important;
+        height: 90px !important;
+
+        min-width: 90px !important;
+        min-height: 90px !important;
+
+        max-width: 90px !important;
+        max-height: 90px !important;
+
+        box-shadow:
+            0 0 0 5px #F1FAF6 !important,
+            0 0 0 6.5px #CDEBDD !important;
+    }
+}
+
+/* ============================================================
+   SWISS BARBER - REGISTER INFO
+   FEATURE ICONS
+   FINAL MATCH: ROW 1 = ROW 2
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   RESET OLD SECOND-ROW CIRCLE STYLING
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)::before,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)::before,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)::before,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)::after,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)::after,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)::after {
+
+    content: none !important;
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   SECOND ROW CARD
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4),
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5),
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) {
+
+    position: relative !important;
+
+    overflow: visible !important;
+}
+
+
+/* ------------------------------------------------------------
+   SECOND ROW ICON
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    display: block !important;
+
+    position: relative !important;
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    box-sizing: content-box !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: #ffffff !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    outline: none !important;
+
+    /*
+     * EXACT DOUBLE-RING STYLE
+     *
+     * Inner green ring
+     * Light gap
+     * Outer green ring
+     * Very soft shadow
+     */
+    box-shadow:
+        0 0 0 1px #D2EFE2,
+        0 0 0 7px #F5FBF8,
+        0 0 0 8px #D9F1E6,
+        0 5px 15px rgba(25, 70, 50, 0.08) !important;
+
+    transform: none !important;
+
+    z-index: 2 !important;
+}
+
+
+/* ------------------------------------------------------------
+   REMOVE ANY OLD ICON WRAPPER EFFECTS
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)
+.kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)
+.kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)
+.kk-register-feature-icon {
+
+    display: contents !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    box-shadow: none !important;
+
+    padding: 0 !important;
+
+    margin: 0 !important;
+}
+
+
+/* ------------------------------------------------------------
+   SECOND ROW TITLE
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) h3,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) h3,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) h3 {
+
+    position: relative !important;
+
+    margin-top: 0 !important;
+
+    color: #172B4D !important;
+
+    text-align: center !important;
+
+    z-index: 5 !important;
+}
+
+
+/* ------------------------------------------------------------
+   SECOND ROW DESCRIPTION
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) p,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) p,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) p {
+
+    position: relative !important;
+
+    color: #5D7290 !important;
+
+    text-align: center !important;
+
+    z-index: 5 !important;
+}
+
+
+/* ------------------------------------------------------------
+   GREEN TOP ACCENT
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)::marker,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)::marker,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)::marker {
+
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6) > img {
+
+        width: 72px !important;
+        height: 72px !important;
+
+        min-width: 72px !important;
+        min-height: 72px !important;
+
+        max-width: 72px !important;
+        max-height: 72px !important;
+
+        margin-top: 9px !important;
+        margin-bottom: 25px !important;
+
+        box-shadow:
+            0 0 0 1px #D2EFE2,
+            0 0 0 6px #F5FBF8,
+            0 0 0 7px #D9F1E6,
+            0 4px 12px rgba(25, 70, 50, 0.08) !important;
+    }
+}
+/* ============================================================
+   SWISS BARBER
+   REGISTER INFO — ALL 6 FEATURE ICONS
+   EXACT SAME ICON FRAME
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   FEATURE CARD
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+
+/* ------------------------------------------------------------
+   REMOVE ALL OLD ICON PSEUDO ELEMENTS
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature::before,
+.kk-register-features-grid .kk-register-feature::after {
+    content: none !important;
+    display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   ALL 6 ICONS — ONE IDENTICAL STYLE
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature > img {
+
+    display: block !important;
+
+    position: relative !important;
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    box-sizing: content-box !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #D3EFE2 !important;
+
+    border-radius: 50% !important;
+
+    outline: none !important;
+
+    /*
+     * SAME DOUBLE RING FOR ALL 6
+     */
+    box-shadow:
+        0 0 0 6px #F4FBF8,
+        0 0 0 7px #D7F0E5,
+        0 4px 14px rgba(30, 80, 58, 0.08) !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+    clip-path: none !important;
+
+    z-index: 2 !important;
+}
+
+
+/* ------------------------------------------------------------
+   FORCE OLD CHILD-SPECIFIC IMAGE RULES OFF
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(1) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(2) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(3) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    border: 1px solid #D3EFE2 !important;
+
+    border-radius: 50% !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 0 6px #F4FBF8,
+        0 0 0 7px #D7F0E5,
+        0 4px 14px rgba(30, 80, 58, 0.08) !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+    clip-path: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   REMOVE OLD FEATURE ICON WRAPPERS
+   ------------------------------------------------------------ */
+
+.kk-register-feature-icon {
+
+    display: contents !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    transform: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   ALL 6 TITLES — SAME
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature h3 {
+
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+
+    color: #172B4D !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+
+    text-align: center !important;
+}
+
+
+/* ------------------------------------------------------------
+   ALL 6 DESCRIPTIONS — SAME
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature p {
+
+    margin-top: 0 !important;
+
+    color: #5D7290 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.65 !important;
+
+    font-weight: 400 !important;
+
+    text-align: center !important;
+}
+
+
+/* ------------------------------------------------------------
+   ALL 6 GREEN ACCENTS — SAME
+   ------------------------------------------------------------ */
+
+.kk-register-features-grid .kk-register-feature h3::after {
+
+    content: "" !important;
+
+    display: block !important;
+
+    width: 38px !important;
+
+    height: 3px !important;
+
+    margin: 14px auto 0 !important;
+
+    background: #3B9668 !important;
+
+    border-radius: 2px !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE — SAME STYLE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .kk-register-features-grid .kk-register-feature > img {
+
+        width: 72px !important;
+        height: 72px !important;
+
+        min-width: 72px !important;
+        min-height: 72px !important;
+
+        max-width: 72px !important;
+        max-height: 72px !important;
+
+        margin: 8px auto 25px !important;
+
+        box-shadow:
+            0 0 0 5px #F4FBF8,
+            0 0 0 6px #D7F0E5,
+            0 4px 12px rgba(30, 80, 58, 0.08) !important;
     }
 
-    .kk-register-features-heading h2 {
-        font-size: 30px !important;
 
-        letter-spacing: -0.6px !important;
+    .kk-register-features-grid .kk-register-feature h3 {
+
+        font-size: 17px !important;
     }
 
-    .kk-register-features-heading p {
-        font-size: 14px !important;
+
+    .kk-register-features-grid .kk-register-feature p {
+
+        font-size: 13px !important;
+    }
+}
+/* ============================================================
+   SWISS BARBER
+   REGISTER INFO FEATURE ICONS
+   FINAL CLEAN FIX
+   ============================================================ */
+
+
+/* ============================================================
+   1. RESET ALL PREVIOUS CUSTOM ICON/PSEUDO STYLING
+   ============================================================ */
+
+.kk-register-features-grid .kk-register-feature::before,
+.kk-register-features-grid .kk-register-feature::after {
+
+    content: none !important;
+    display: none !important;
+
+}
+
+
+/* ============================================================
+   2. ALL FEATURE CARDS
+   ============================================================ */
+
+.kk-register-features-grid .kk-register-feature {
+
+    position: relative !important;
+
+    overflow: visible !important;
+
+}
+
+
+/* ============================================================
+   3. IMPORTANT:
+      DO NOT ADD CSS CIRCLES TO FIRST 3 ICONS.
+      THEIR PNG FILES ALREADY CONTAIN THE CIRCLE DESIGN.
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(1) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(2) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(3) > img {
+
+    display: block !important;
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+}
+
+
+/* ============================================================
+   4. BOTTOM 3 ICONS
+      CREATE THE SAME DOUBLE-RING LOOK
+      USING ONLY BOX-SHADOW.
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    display: block !important;
+
+    position: relative !important;
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    box-sizing: content-box !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #D3EFE2 !important;
+
+    border-radius: 50% !important;
+
+    outline: none !important;
+
+    /*
+     * TWO OUTER RINGS
+     *
+     * Ring 1 = light green
+     * Ring 2 = pale green gap
+     * Ring 3 = soft outer green
+     */
+    box-shadow:
+
+        0 0 0 5px #F6FCF9,
+
+        0 0 0 6px #D7F0E5,
+
+        0 0 12px rgba(59, 150, 104, 0.10) !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+}
+
+
+/* ============================================================
+   5. REMOVE ANY OLD SPECIAL WRAPPER STYLING
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)
+.kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)
+.kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)
+.kk-register-feature-icon {
+
+    display: contents !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    transform: none !important;
+
+}
+
+
+/* ============================================================
+   6. ALL SIX TITLES — IDENTICAL
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature h3 {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 10px !important;
+
+    color: #172B4D !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+
+    text-align: center !important;
+
+}
+
+
+/* ============================================================
+   7. ALL SIX DESCRIPTIONS — IDENTICAL
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature p {
+
+    margin-top: 0 !important;
+
+    color: #5D7290 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.65 !important;
+
+    font-weight: 400 !important;
+
+    text-align: center !important;
+
+}
+
+
+/* ============================================================
+   8. ALL SIX GREEN UNDERLINES — IDENTICAL
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature h3::after {
+
+    content: "" !important;
+
+    display: block !important;
+
+    width: 38px !important;
+
+    height: 3px !important;
+
+    margin: 14px auto 0 !important;
+
+    background: #3B9668 !important;
+
+    border-radius: 2px !important;
+
+}
+
+
+/* ============================================================
+   9. MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(1) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(2) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(3) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6) > img {
+
+        width: 72px !important;
+        height: 72px !important;
+
+        min-width: 72px !important;
+        min-height: 72px !important;
+
+        max-width: 72px !important;
+        max-height: 72px !important;
+
+        margin: 8px auto 25px !important;
+
     }
 
-    .kk-register-features-grid {
-        grid-template-columns: 1fr !important;
 
-        gap: 18px !important;
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6) > img {
+
+        box-shadow:
+
+            0 0 0 4px #F6FCF9,
+
+            0 0 0 5px #D7F0E5,
+
+            0 0 10px rgba(59, 150, 104, 0.10) !important;
+
     }
 
-    .kk-register-feature-card {
-        min-height: auto !important;
 
-        padding: 28px 22px 25px !important;
+    .kk-register-features-grid
+    .kk-register-feature h3 {
+
+        font-size: 17px !important;
+
     }
 
-    .kk-register-feature-icon {
-        width: 82px !important;
-        height: 82px !important;
+
+    .kk-register-features-grid
+    .kk-register-feature p {
+
+        font-size: 13px !important;
+
     }
 
-    .kk-register-feature-icon img {
-        width: 48px !important;
-        height: 48px !important;
+}
+/* ============================================================
+   SWISS BARBER
+   REGISTER INFO FEATURE ICONS
+   FINAL CLEAN FIX
+   ============================================================ */
 
-        max-width: 48px !important;
-        max-height: 48px !important;
+
+/* ============================================================
+   1. RESET ALL PREVIOUS CUSTOM ICON/PSEUDO STYLING
+   ============================================================ */
+
+.kk-register-features-grid .kk-register-feature::before,
+.kk-register-features-grid .kk-register-feature::after {
+
+    content: none !important;
+    display: none !important;
+
+}
+
+
+/* ============================================================
+   2. ALL FEATURE CARDS
+   ============================================================ */
+
+.kk-register-features-grid .kk-register-feature {
+
+    position: relative !important;
+
+    overflow: visible !important;
+
+}
+
+
+/* ============================================================
+   3. IMPORTANT:
+      DO NOT ADD CSS CIRCLES TO FIRST 3 ICONS.
+      THEIR PNG FILES ALREADY CONTAIN THE CIRCLE DESIGN.
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(1) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(2) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(3) > img {
+
+    display: block !important;
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    outline: none !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+}
+
+
+/* ============================================================
+   4. BOTTOM 3 ICONS
+      CREATE THE SAME DOUBLE-RING LOOK
+      USING ONLY BOX-SHADOW.
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5) > img,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6) > img {
+
+    display: block !important;
+
+    position: relative !important;
+
+    width: 82px !important;
+    height: 82px !important;
+
+    min-width: 82px !important;
+    min-height: 82px !important;
+
+    max-width: 82px !important;
+    max-height: 82px !important;
+
+    margin: 9px auto 27px !important;
+
+    padding: 0 !important;
+
+    box-sizing: content-box !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #D3EFE2 !important;
+
+    border-radius: 50% !important;
+
+    outline: none !important;
+
+    /*
+     * TWO OUTER RINGS
+     *
+     * Ring 1 = light green
+     * Ring 2 = pale green gap
+     * Ring 3 = soft outer green
+     */
+    box-shadow:
+
+        0 0 0 5px #F6FCF9,
+
+        0 0 0 6px #D7F0E5,
+
+        0 0 12px rgba(59, 150, 104, 0.10) !important;
+
+    transform: none !important;
+
+    filter: none !important;
+
+}
+
+
+/* ============================================================
+   5. REMOVE ANY OLD SPECIAL WRAPPER STYLING
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(4)
+.kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(5)
+.kk-register-feature-icon,
+
+.kk-register-features-grid
+.kk-register-feature:nth-child(6)
+.kk-register-feature-icon {
+
+    display: contents !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    border: 0 !important;
+
+    border-radius: 0 !important;
+
+    box-shadow: none !important;
+
+    transform: none !important;
+
+}
+
+
+/* ============================================================
+   6. ALL SIX TITLES — IDENTICAL
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature h3 {
+
+    margin-top: 0 !important;
+
+    margin-bottom: 10px !important;
+
+    color: #172B4D !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.35 !important;
+
+    font-weight: 600 !important;
+
+    text-align: center !important;
+
+}
+
+
+/* ============================================================
+   7. ALL SIX DESCRIPTIONS — IDENTICAL
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature p {
+
+    margin-top: 0 !important;
+
+    color: #5D7290 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.65 !important;
+
+    font-weight: 400 !important;
+
+    text-align: center !important;
+
+}
+
+
+/* ============================================================
+   8. ALL SIX GREEN UNDERLINES — IDENTICAL
+   ============================================================ */
+
+.kk-register-features-grid
+.kk-register-feature h3::after {
+
+    content: "" !important;
+
+    display: block !important;
+
+    width: 38px !important;
+
+    height: 3px !important;
+
+    margin: 14px auto 0 !important;
+
+    background: #3B9668 !important;
+
+    border-radius: 2px !important;
+
+}
+
+
+/* ============================================================
+   9. MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(1) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(2) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(3) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6) > img {
+
+        width: 72px !important;
+        height: 72px !important;
+
+        min-width: 72px !important;
+        min-height: 72px !important;
+
+        max-width: 72px !important;
+        max-height: 72px !important;
+
+        margin: 8px auto 25px !important;
+
     }
 
-    .kk-register-feature-card h3 {
-        font-size: 18px !important;
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(4) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(5) > img,
+
+    .kk-register-features-grid
+    .kk-register-feature:nth-child(6) > img {
+
+        box-shadow:
+
+            0 0 0 4px #F6FCF9,
+
+            0 0 0 5px #D7F0E5,
+
+            0 0 10px rgba(59, 150, 104, 0.10) !important;
+
     }
+
+
+    .kk-register-features-grid
+    .kk-register-feature h3 {
+
+        font-size: 17px !important;
+
+    }
+
+
+    .kk-register-features-grid
+    .kk-register-feature p {
+
+        font-size: 13px !important;
+
+    }
+
 }

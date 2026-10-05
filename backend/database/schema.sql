@@ -8,6 +8,9 @@ CREATE TABLE users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 
     name VARCHAR(150) NOT NULL,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    default_language VARCHAR(5) NOT NULL DEFAULT 'en',
     email VARCHAR(191) NOT NULL UNIQUE,
     phone VARCHAR(30),
 
@@ -51,10 +54,16 @@ CREATE TABLE barber_shops (
     website VARCHAR(255),
 
     address VARCHAR(255),
+    street_name VARCHAR(150),
+    building_number VARCHAR(30),
     city VARCHAR(100),
     postal_code VARCHAR(20),
     canton VARCHAR(100),
     country VARCHAR(100) DEFAULT 'Switzerland',
+    coc_number VARCHAR(50),
+    vat_id VARCHAR(50),
+    instagram_username VARCHAR(100),
+    referral_source VARCHAR(150),
 
     latitude DECIMAL(10, 8),
     longitude DECIMAL(11, 8),
@@ -63,6 +72,10 @@ CREATE TABLE barber_shops (
     timezone VARCHAR(50) DEFAULT 'Europe/Zurich',
 
     tax_rate DECIMAL(5,2) DEFAULT 0.00,
+    subscription_package VARCHAR(50),
+    subscription_monthly_price DECIMAL(10,2),
+    subscription_currency CHAR(3),
+    subscription_one_time_fee DECIMAL(10,2),
 
     status ENUM(
         'pending',
