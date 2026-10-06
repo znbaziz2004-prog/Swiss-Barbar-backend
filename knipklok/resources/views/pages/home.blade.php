@@ -136,8 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
     @include('components.how-it-works')
     @include('components.reviews')
     @include('components.app-download')
-    @include('components.barber-login-bar')
-
 </div>
 
 @endsection

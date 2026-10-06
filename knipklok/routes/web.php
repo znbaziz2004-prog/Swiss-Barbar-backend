@@ -57,3 +57,12 @@ Route::get('/terms-of-use', function () {
 Route::get('/privacy-policy', function () {
     return view('pages.privacy-policy');
 })->name('privacy-policy');
+Route::get('/barbers', function () {
+    return view('pages.barbers');
+})->name('barbers.index');
+
+Route::get('/barber/{slug}', function (string $slug) {
+    return view('pages.barber-detail', [
+        'slug' => $slug,
+    ]);
+})->name('barber.show');

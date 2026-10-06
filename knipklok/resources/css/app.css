@@ -13305,3 +13305,294 @@ img {
     }
 
 }
+/* =========================================================
+   SWISS BARBER - BEST IN REGION POLISH
+   ========================================================= */
+
+.kk-region-section {
+    background: #ffffff !important;
+}
+
+.kk-region-inner {
+    width: min(1240px, calc(100% - 48px)) !important;
+    margin: 0 auto !important;
+}
+
+.kk-region-title {
+    margin-bottom: 32px !important;
+    color: #17283b !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.8px !important;
+}
+
+/* Card layout */
+.kk-region-card {
+    position: relative !important;
+    flex: 0 0 calc((100% - 30px) / 4) !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    border: 1px solid #e3e9e6 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 7px 22px rgba(23, 40, 59, 0.07) !important;
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease !important;
+}
+
+.kk-region-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: #b8d8ca !important;
+    box-shadow: 0 15px 32px rgba(23, 40, 59, 0.13) !important;
+}
+
+/* Image */
+.kk-region-image {
+    height: 205px !important;
+    background: #edf4f0 !important;
+    overflow: hidden !important;
+}
+
+.kk-region-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    transform: none !important;
+    transition: transform 0.35s ease !important;
+}
+
+.kk-region-card:hover .kk-region-image img {
+    transform: scale(1.045) !important;
+}
+
+/* Content */
+.kk-region-card-content {
+    padding: 17px 17px 18px !important;
+    background: #ffffff !important;
+}
+
+.kk-region-card-content h3 {
+    margin: 0 0 10px !important;
+    color: #1d2d3f !important;
+    font-family: "DM Sans", Arial, sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: -0.15px !important;
+}
+
+/* Rating row */
+.kk-region-details {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-height: 20px !important;
+    flex-wrap: wrap !important;
+}
+
+.kk-region-rating {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: #c99600 !important;
+    background: transparent !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+}
+
+.kk-star {
+    color: #e2b300 !important;
+    font-size: 16px !important;
+    line-height: 1 !important;
+}
+
+.kk-rating-count {
+    color: #8b96a3 !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+}
+
+.kk-review-count {
+    color: #7d8895 !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    line-height: 18px !important;
+}
+
+/* Location */
+.kk-region-location {
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    margin-top: 12px !important;
+    padding-top: 11px !important;
+    border-top: 1px solid #edf0ee !important;
+    color: #687581 !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+}
+
+.kk-pin {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 17px !important;
+    height: 17px !important;
+    border-radius: 50% !important;
+    background: #edf7f2 !important;
+    color: #3b9668 !important;
+    font-size: 9px !important;
+}
+
+/* Carousel arrow */
+.kk-region-arrow {
+    width: 42px !important;
+    height: 42px !important;
+    border: 1px solid #e0e7e3 !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    color: #233548 !important;
+    box-shadow: 0 6px 18px rgba(23, 40, 59, 0.10) !important;
+    font-size: 24px !important;
+    line-height: 40px !important;
+    transition: all 0.2s ease !important;
+}
+
+.kk-region-arrow:hover {
+    background: #3b9668 !important;
+    border-color: #3b9668 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+}
+
+/* View all button */
+.kk-region-footer {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 35px !important;
+}
+
+.kk-region-all {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 205px !important;
+    min-height: 46px !important;
+    padding: 0 22px !important;
+    border: 1px solid #3b9668 !important;
+    border-radius: 7px !important;
+    background: #3b9668 !important;
+    color: #ffffff !important;
+    font-family: "DM Sans", Arial, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    box-shadow: 0 6px 16px rgba(59, 150, 104, 0.16) !important;
+    transition: all 0.2s ease !important;
+}
+
+.kk-region-all:hover {
+    background: #2d8056 !important;
+    border-color: #2d8056 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 9px 20px rgba(59, 150, 104, 0.22) !important;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .kk-region-inner {
+        width: min(100%, calc(100% - 32px)) !important;
+    }
+
+    .kk-region-card {
+        flex: 0 0 calc((100% - 16px) / 2) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .kk-region-card {
+        flex: 0 0 84% !important;
+    }
+
+    .kk-region-image {
+        height: 200px !important;
+    }
+
+    .kk-region-card-content {
+        padding: 16px !important;
+    }
+
+    .kk-region-title {
+        margin-bottom: 28px !important;
+    }
+}
+
+
+/* =========================================================
+   BEST IN REGION - CLEAN CAROUSEL ARROW POSITION
+   ========================================================= */
+
+.kk-region-carousel {
+    position: relative !important;
+}
+
+.kk-region-arrow {
+    position: absolute !important;
+    right: -18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 1px solid #dce4e0 !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    color: #1d2d3f !important;
+
+    font-size: 22px !important;
+    line-height: 1 !important;
+    box-shadow: 0 6px 18px rgba(23, 40, 59, 0.12) !important;
+
+    z-index: 10 !important;
+}
+
+.kk-region-arrow:hover {
+    background: #3b9668 !important;
+    border-color: #3b9668 !important;
+    color: #ffffff !important;
+    transform: translateY(-50%) !important;
+}
+
+@media (max-width: 1280px) {
+    .kk-region-arrow {
+        right: -10px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .kk-region-arrow {
+        right: -8px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .kk-region-arrow {
+        right: 4px !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+    }
+}
+
