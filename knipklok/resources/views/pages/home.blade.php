@@ -70,53 +70,45 @@
                 </form>
 
                 <script>
-                    console.log('Swiss Barber Home JS loaded');
 document.addEventListener('DOMContentLoaded', function () {
+
     const form = document.getElementById('barberSearchForm');
 
     if (!form) return;
 
-    form.addEventListener('submit', async function (event) {
+    form.addEventListener('submit', function (event) {
+
         event.preventDefault();
 
-        const search = document.querySelector('.kk-search-field')?.value.trim() || '';
-        const country = document.querySelector('.kk-search-select[name="country"]')?.value || '';
-        const city = document.querySelector('.kk-search-select[name="city"]')?.value || '';
+        const search =
+            document.querySelector('.kk-search-field')?.value.trim() || '';
 
-        try {
-            const params = new URLSearchParams();
+        const country =
+            document.querySelector('.kk-search-select[name="country"]')?.value || '';
 
-            if (search) params.append('search', search);
-            if (country) params.append('country', country);
-            if (city) params.append('city', city);
+        const city =
+            document.querySelector('.kk-search-select[name="city"]')?.value || '';
 
-            const response = await window.api.get(
-                `/public/shops?${params.toString()}`
-            );
+        const params = new URLSearchParams();
 
-            console.log('Barber search result:', response.data);
-
-            // Temporary test
-            alert(
-                `Backend connected! Found ${
-                    Array.isArray(response.data?.data)
-                        ? response.data.data.length
-                        : 0
-                } barber shops.`
-            );
-
-        } catch (error) {
-            console.error('Barber search error:', error);
-
-            alert(
-                error?.response?.data?.message ||
-                'Could not connect to the barber service.'
-            );
+        if (search) {
+            params.append('search', search);
         }
-    });
-});
 
+        if (country) {
+            params.append('country', country);
+        }
+
+        if (city) {
+            params.append('city', city);
+        }
+
+        window.location.href = `/search?${params.toString()}`;
+    });
+
+});
 </script>
+
 
                 <div class="kk-hero-testimonial">
                     <p>Fijn programma, klanten zijn er ook heel tevreden mee!</p>

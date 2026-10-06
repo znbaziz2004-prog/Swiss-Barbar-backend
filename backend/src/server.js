@@ -30,6 +30,7 @@ const publicShopRoutes = require("./routes/publicShopRoutes");
 const subscriptionRoutes = require("./routes/subscriptionRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
 const stripeRoutes = require("./routes/stripeRoutes");
+const contactRoutes = require("./routes/contactRoutes");
 
 
 const app = express();
@@ -70,6 +71,7 @@ app.use("/api/public/shops", publicShopRoutes);
 app.use("/api/subscriptions", subscriptionRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/stripe", stripeRoutes);
+app.use("/api/contact", contactRoutes);
 
 
 

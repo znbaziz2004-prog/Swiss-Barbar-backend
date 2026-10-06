@@ -72,9 +72,9 @@ const createCustomerDashboardAccess = async ({
     according to the customer dashboard route.
   */
   const dashboardSetupUrl =
-    `http://localhost:5173/customer/setup-password?token=${setupToken}&email=${encodeURIComponent(
-      normalizedEmail
-    )}`;
+  `http://127.0.0.1:8000/customer/setup-password?token=${setupToken}&email=${encodeURIComponent(
+    normalizedEmail
+  )}`;
 
   await sendEmail({
     to: normalizedEmail,

@@ -215,64 +215,317 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+
     const form = document.getElementById('swissRegisterForm');
 
     if (!form) {
         return;
     }
 
-    const steps = Array.from(form.querySelectorAll('[data-register-step]'));
-    const indicators = Array.from(document.querySelectorAll('[data-register-indicator]'));
+    const steps = Array.from(
+        form.querySelectorAll('[data-register-step]')
+    );
+
+    const indicators = Array.from(
+        document.querySelectorAll('[data-register-indicator]')
+    );
+
     const showStep = function (stepNumber) {
+
         steps.forEach(function (step) {
-            step.hidden = Number(step.dataset.registerStep) !== stepNumber;
+
+            step.hidden =
+                Number(step.dataset.registerStep) !== stepNumber;
+
         });
 
         indicators.forEach(function (indicator) {
-            const number = Number(indicator.dataset.registerIndicator);
-            indicator.classList.toggle('is-active', number === stepNumber);
-            indicator.classList.toggle('is-complete', number < stepNumber);
+
+            const number =
+                Number(indicator.dataset.registerIndicator);
+
+            indicator.classList.toggle(
+                'is-active',
+                number === stepNumber
+            );
+
+            indicator.classList.toggle(
+                'is-complete',
+                number < stepNumber
+            );
+
         });
     };
 
-    form.querySelector('[data-register-next]').addEventListener('click', function () {
-        const detailsStep = form.querySelector('[data-register-step="1"]');
-        const fields = Array.from(detailsStep.querySelectorAll('input, select'));
-        const firstInvalid = fields.find(function (field) {
-            return !field.checkValidity();
+    // STEP 1 → STEP 2
+    form
+        .querySelector('[data-register-next]')
+        .addEventListener('click', function () {
+
+            const detailsStep =
+                form.querySelector('[data-register-step="1"]');
+
+            const fields =
+                Array.from(
+                    detailsStep.querySelectorAll('input, select')
+                );
+
+            const firstInvalid =
+                fields.find(function (field) {
+                    return !field.checkValidity();
+                });
+
+            if (firstInvalid) {
+
+                firstInvalid.reportValidity();
+                firstInvalid.focus();
+
+                return;
+            }
+
+            const password =
+                form.querySelector('#password');
+
+            const confirmation =
+                form.querySelector('#password_confirmation');
+
+            if (password.value !== confirmation.value) {
+
+                confirmation.setCustomValidity(
+                    'The passwords do not match.'
+                );
+
+                confirmation.reportValidity();
+                confirmation.focus();
+
+                return;
+            }
+
+            confirmation.setCustomValidity('');
+
+            showStep(2);
         });
 
-        if (firstInvalid) {
-            firstInvalid.reportValidity();
-            firstInvalid.focus();
-            return;
+
+    // STEP 2 → STEP 1
+    form
+        .querySelector('[data-register-back]')
+        .addEventListener('click', function () {
+
+            showStep(1);
+
+        });
+
+
+    // Clear password error while typing
+    form
+        .querySelector('#password_confirmation')
+        .addEventListener('input', function () {
+
+            this.setCustomValidity('');
+
+        });
+
+
+    // FINAL REGISTRATION
+    form.addEventListener('submit', async function (event) {
+
+        event.preventDefault();
+
+        const submitButton =
+            form.querySelector('button[type="submit"]');
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Creating account...';
+
+
+        try {
+
+            const firstName =
+                document.getElementById('first_name').value.trim();
+
+            const lastName =
+                document.getElementById('last_name').value.trim();
+
+            const shopName =
+                document.getElementById('shop_name').value.trim();
+
+            const email =
+                document.getElementById('email').value.trim();
+
+            const companyPhone =
+                document.getElementById('company_phone').value.trim();
+
+            const privatePhone =
+                document.getElementById('private_phone').value.trim();
+
+            const streetName =
+                document.getElementById('street_name').value.trim();
+
+            const buildingNumber =
+                document.getElementById('building_number').value.trim();
+
+            const postalCode =
+                document.getElementById('postal_code').value.trim();
+
+            const city =
+                document.getElementById('city').value.trim();
+
+            const password =
+                document.getElementById('password').value;
+
+            const instagram =
+                document.getElementById('instagram_username').value.trim();
+
+
+            /*
+             * Backend expects:
+             *
+             * name
+             * email
+             * phone
+             * password
+             * shopName
+             * description
+             * shopPhone
+             * shopEmail
+             * website
+             * address
+             * city
+             * postalCode
+             * canton
+             * planId
+             * addOns
+             */
+
+
+            const payload = {
+
+                name: `${firstName} ${lastName}`.trim(),
+
+                email: email,
+
+                phone: privatePhone,
+
+                password: password,
+
+                shopName: shopName,
+
+                description:
+                    'Professional barbershop registered with Swiss Barber.',
+
+                shopPhone: companyPhone,
+
+                shopEmail: email,
+
+                website: '',
+
+                address:
+                    `${streetName} ${buildingNumber}`.trim(),
+
+                city: city,
+
+                postalCode: postalCode,
+
+                canton: '',
+
+                // Starter plan
+                planId: 1,
+
+                addOns: {
+                    instagram: instagram || null
+                }
+
+            };
+
+
+            console.log(
+                'Sending barber registration:',
+                payload
+            );
+
+
+            const response = await window.api.post(
+                '/barber-registration/register',
+                payload
+            );
+
+
+            console.log(
+                'Registration response:',
+                response.data
+            );
+
+
+            if (
+                response.data &&
+                response.data.success
+            ) {
+
+                alert(
+                    'Registration submitted successfully! Your account is now pending approval.'
+                );
+
+                window.location.href =
+                    '/login';
+
+                return;
+            }
+
+
+            throw new Error(
+                response.data?.message ||
+                'Registration failed.'
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                'Barber registration error:',
+                error
+            );
+
+
+            let message =
+                'Registration failed. Please try again.';
+
+
+            if (error.response) {
+
+                const apiMessage =
+                    error.response.data?.message;
+
+                if (apiMessage) {
+                    message = apiMessage;
+                }
+
+            } else if (error.message) {
+
+                message = error.message;
+
+            }
+
+
+            alert(message);
+
+
+            submitButton.disabled = false;
+
+            submitButton.innerHTML =
+                'Create account <span aria-hidden="true">→</span>';
+
         }
 
-        const password = form.querySelector('#password');
-        const confirmation = form.querySelector('#password_confirmation');
-
-        if (password.value !== confirmation.value) {
-            confirmation.setCustomValidity('The passwords do not match.');
-            confirmation.reportValidity();
-            confirmation.focus();
-            return;
-        }
-
-        confirmation.setCustomValidity('');
-        showStep(2);
     });
 
-    form.querySelector('[data-register-back]').addEventListener('click', function () {
-        showStep(1);
-    });
-
-    form.querySelector('#password_confirmation').addEventListener('input', function () {
-        this.setCustomValidity('');
-    });
 
     @if ($errors->any())
+
         showStep(1);
+
     @endif
+
 });
 </script>
 @endpush

@@ -15,6 +15,164 @@ const handleStripeWebhook = async (req, res) => {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
 
+      const paymentType = session.metadata?.paymentType;
+
+      /*
+      |--------------------------------------------------------------------------
+      | APPOINTMENT PAYMENT
+      |--------------------------------------------------------------------------
+      */
+
+      if (paymentType === "appointment") {
+        const appointmentId = Number(
+          session.metadata?.appointmentId
+        );
+
+        if (!appointmentId) {
+          return res.status(200).json({
+            received: true,
+            message: "No appointment ID in Stripe metadata.",
+          });
+        }
+
+        const [appointments] = await pool.query(
+          `
+          SELECT
+            id,
+            shop_id,
+            total_amount,
+            currency
+          FROM appointments
+          WHERE id = ?
+          LIMIT 1
+          `,
+          [appointmentId]
+        );
+
+        if (appointments.length === 0) {
+          return res.status(404).json({
+            success: false,
+            message: "Appointment not found.",
+          });
+        }
+
+        const appointment = appointments[0];
+
+        const transactionReference =
+          session.payment_intent || session.id;
+
+        const amount =
+          Number(session.amount_total) / 100;
+
+        const currency =
+          (session.currency || appointment.currency || "CHF")
+            .toUpperCase();
+
+        /*
+        |--------------------------------------------------------------------------
+        | Find Stripe payment
+        |--------------------------------------------------------------------------
+        */
+
+        const [payments] = await pool.query(
+          `
+          SELECT
+            id,
+            amount,
+            currency,
+            status
+          FROM payments
+          WHERE appointment_id = ?
+            AND transaction_reference = ?
+          LIMIT 1
+          `,
+          [
+            appointmentId,
+            session.id,
+          ]
+        );
+
+        if (payments.length === 0) {
+          /*
+          Create payment if it does not exist
+          */
+
+          await pool.query(
+            `
+            INSERT INTO payments
+            (
+              appointment_id,
+              amount,
+              currency,
+              method,
+              status,
+              transaction_reference,
+              paid_at
+            )
+            VALUES (?, ?, ?, 'stripe', 'paid', ?, NOW())
+            `,
+            [
+              appointmentId,
+              amount,
+              currency,
+              session.id,
+            ]
+          );
+        } else {
+          /*
+          Update existing pending payment
+          */
+
+          await pool.query(
+            `
+            UPDATE payments
+            SET
+              status = 'paid',
+              method = 'stripe',
+              transaction_reference = ?,
+              paid_at = NOW()
+            WHERE id = ?
+            `,
+            [
+              transactionReference,
+              payments[0].id,
+            ]
+          );
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Mark Appointment Paid
+        |--------------------------------------------------------------------------
+        */
+
+        await pool.query(
+          `
+          UPDATE appointments
+          SET
+            payment_status = 'paid',
+            updated_at = NOW()
+          WHERE id = ?
+          `,
+          [appointmentId]
+        );
+
+        console.log(
+          `✅ Appointment payment completed: ${appointmentId}`
+        );
+
+        return res.status(200).json({
+          received: true,
+          message: "Appointment payment processed successfully.",
+        });
+      }
+
+      /*
+      |--------------------------------------------------------------------------
+      | SUBSCRIPTION PAYMENT
+      |--------------------------------------------------------------------------
+      */
+
       const subscriptionId = Number(
         session.metadata?.subscriptionId
       );
@@ -62,7 +220,12 @@ const handleStripeWebhook = async (req, res) => {
       const currency =
         subscription.currency || "CHF";
 
-      // Prevent duplicate payment records
+      /*
+      |--------------------------------------------------------------------------
+      | Prevent duplicate subscription payment
+      |--------------------------------------------------------------------------
+      */
+
       const [existingPayments] = await pool.query(
         `
         SELECT id
@@ -97,7 +260,12 @@ const handleStripeWebhook = async (req, res) => {
         );
       }
 
-      // Activate subscription
+      /*
+      |--------------------------------------------------------------------------
+      | Activate Subscription
+      |--------------------------------------------------------------------------
+      */
+
       await pool.query(
         `
         UPDATE shop_subscriptions
@@ -109,11 +277,16 @@ const handleStripeWebhook = async (req, res) => {
         `,
         [subscriptionId]
       );
+
+      console.log(
+        `✅ Subscription payment completed: ${subscriptionId}`
+      );
     }
 
     return res.status(200).json({
       received: true,
     });
+
   } catch (error) {
     console.error(
       "Stripe Webhook Error:",
